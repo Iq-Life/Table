@@ -1,126 +1,155 @@
-export const initialPeople: StudentType[] = [
-    {
-        id: 1, firstName: 'Иван', lastName: 'Фирстов', class: 1, lesson: "Математика",
-        grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
-    },
-    {
-        id: 2, firstName: 'Иван', lastName: 'Фирстов', class: 1, lesson: "Математика",
-        grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
-    },
-    {
-        id: 3, firstName: 'Иван', lastName: 'Фирстов', class: 1, lesson: "Математика",
-        grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
-    },
-    {
-        id: 4, firstName: 'Иван', lastName: 'Фирстов', class: 1, lesson: "Математика",
-        grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
-    },
-    {
-        id: 5, firstName: 'Иван', lastName: 'Фирстов', class: 1, lesson: "Математика",
-        grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
-    },
-    {
-        id: 6, firstName: 'Иван', lastName: 'Фирстов', class: 1, lesson: "Математика",
-        grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
-    },
-    {
-        id: 7, firstName: 'Иван', lastName: 'Фирстов', class: 1, lesson: "Математика",
-        grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
-    },
-    {
-        id: 8, firstName: 'Иван', lastName: 'Фирстов', class: 1, lesson: "Математика",
-        grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
-    },
-    {
-        id: 9, firstName: 'Иван', lastName: 'Фирстов', class: 1, lesson: "Математика",
-        grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
-    },
-    {
-        id: 10, firstName: 'Иван', lastName: 'Фирстов', class: 1, lesson: "Математика",
-        grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
-    },
-    {
-        id: 11, firstName: 'Иван', lastName: 'Фирстов', class: 1, lesson: "Математика",
-        grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
-    },
-    {
-        id: 12, firstName: 'Иван', lastName: 'Фирстов', class: 1, lesson: "Математика",
-        grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
-    },
-    {
-        id: 13, firstName: 'Иван', lastName: 'Фирстов', class: 1, lesson: "Математика",
-        grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
-    },
-    {
-        id: 14, firstName: 'Иван', lastName: 'Фирстов', class: 1, lesson: "Математика",
-        grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
-    },
-    {
-        id: 15, firstName: 'Иван', lastName: 'Фирстов', class: 1, lesson: "Математика",
-        grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
-    },
-    {
-        id: 16, firstName: 'Иван', lastName: 'Фирстов', class: 1, lesson: "Математика",
-        grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
-    },
-    {
-        id: 17, firstName: 'Иван', lastName: 'Фирстов', class: 1, lesson: "Математика",
-        grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
-    },
-    {
-        id: 18, firstName: 'Иван', lastName: 'Фирстов', class: 1, lesson: "Математика",
-        grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
-    },
-    {
-        id: 19, firstName: 'Иван', lastName: 'Фирстов', class: 1, lesson: "Математика",
-        grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
-    },
-    {
-        id: 20, firstName: 'Иван', lastName: 'Фирстов', class: 1, lesson: "Математика",
-        grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
-    },
-    {
-        id: 21, firstName: 'Иван', lastName: 'Фирстов', class: 1, lesson: "Математика",
-        grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
-    },
-    {
-        id: 22, firstName: 'Иван', lastName: 'Фирстов', class: 1, lesson: "Математика",
-        grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
-    },
-    {
-        id: 23, firstName: 'Иван', lastName: 'Фирстов', class: 1, lesson: "Математика",
-        grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
-    },
-    {
-        id: 24, firstName: 'Иван', lastName: 'Фирстов', class: 1, lesson: "Математика",
-        grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
-    },
+import {v1} from "uuid";
 
+export const initialPeople: Array<StudentType> = [
+    {
+        id: v1(), firstName: 'Иван', lastName: 'Фирстов', class: 1, lesson: "Математика",
+        grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
+    },
+    {
+        id: v1(), firstName: 'Олег', lastName: 'Куплинов', class: 1, lesson: "Математика",
+        grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
+    },
+    {
+        id: v1(), firstName: 'Дмитрий', lastName: 'Дадарчук', class: 1, lesson: "Математика",
+        grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
+    },
+    {
+        id: v1(), firstName: 'Павел', lastName: 'Вавилин', class: 1, lesson: "Математика",
+        grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
+    },
+    {
+        id: v1(), firstName: 'Лиза', lastName: 'Подопригора', class: 1, lesson: "Математика",
+        grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
+    },
+    {
+        id: v1(), firstName: 'Евгения', lastName: 'Зайцева', class: 1, lesson: "Математика",
+        grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
+    },
+    {
+        id: v1(), firstName: 'Кирилл', lastName: 'Вавилин', class: 1, lesson: "Математика",
+        grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
+    },
+    {
+        id: v1(), firstName: 'Александра', lastName: 'Комарова', class: 1, lesson: "Математика",
+        grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
+    },
+    {
+        id: v1(), firstName: 'Иван', lastName: 'Бакалейщиков', class: 1, lesson: "Математика",
+        grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
+    },
+    {
+        id: v1(), firstName: 'Анастасия', lastName: 'Фирстова', class: 1, lesson: "Математика",
+        grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
+    },
+    {
+        id: v1(), firstName: 'Глеб', lastName: 'Радионов', class: 1, lesson: "Математика",
+        grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
+    },
+    {
+        id: v1(), firstName: 'Валерия', lastName: 'Тарасова', class: 1, lesson: "Математика",
+        grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
+    },
+    {
+        id: v1(), firstName: 'Ганзель', lastName: 'Фирстов', class: 1, lesson: "Математика",
+        grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
+    },
+    {
+        id: v1(), firstName: 'Илья', lastName: 'Вавилин', class: 1, lesson: "Математика",
+        grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
+    },
+    {
+        id: v1(), firstName: 'Анна', lastName: 'Ермошина', class: 1, lesson: "Математика",
+        grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
+    },
+    {
+        id: v1(), firstName: 'Богдан', lastName: 'Римов', class: 1, lesson: "Математика",
+        grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
+    },
+    {
+        id: v1(), firstName: 'Рудольф', lastName: 'Адольфовинов', class: 1, lesson: "Математика",
+        grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
+    },
+    {
+        id: v1(), firstName: 'Павел', lastName: 'Кураев', class: 1, lesson: "Математика",
+        grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
+    },
+    {
+        id: v1(), firstName: 'Сергей', lastName: 'Запределькин', class: 1, lesson: "Математика",
+        grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
+    },
+    {
+        id: v1(), firstName: 'Сергей', lastName: 'Мамонов', class: 1, lesson: "Математика",
+        grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
+    },
+    {
+        id: v1(), firstName: 'Александр', lastName: 'Киркоров', class: 1, lesson: "Математика",
+        grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
+    },
+    {
+        id: v1(), firstName: 'Евгения', lastName: 'Бирова', class: 1, lesson: "Математика",
+        grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
+    },
+    {
+        id: v1(), firstName: 'Роман', lastName: 'Кудрявцев', class: 1, lesson: "Математика",
+        grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
+    },
+    {
+        id: v1(), firstName: 'Юлия', lastName: 'Ахламонова', class: 1, lesson: "Математика",
+        grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
+    },
 ]
 
-export const StudentsReducer = (state = initialPeople, action: ActionCreatorType): StudentType[] => {
+export const StudentsReducer = (state = initialPeople, action: ActionTypes): StudentType[] => {
     switch (action.type) {
-        case "STUDENTS": {
-            return [...state]
+        case "ADD_STUDENT" : {
+            return [...state, action.Student]
+        }
+        case "REMOVE_STUDENT" : {
+            return state.filter((s) => s.id !== action.id)
+        }
+        case "CHANGE_FIRST_NAME": {
+            return state.map((s) => s.id === action.id ? {...s, firstName: action.value} : s)
+        }
+        case "CHANGE_LAST_NAME": {
+            return state.map((s) => s.id === action.id ? {...s, lastName: action.value} : s)
+        }
+        case "SORT_FIRST_NAME":{
+
+            return [...state].sort((a,b) => a.firstName.localeCompare(b.firstName))
+        }
+        case "SORT_LAST_NAME":{
+            return state
         }
         default:
             return state
     }
 }
 
-export const loadingAC = (): any => {
-    return {type: "STUDENTS"} as const
+export const addStudent = (Student: StudentType) => {
+    return {type: "ADD_STUDENT", Student} as const
 }
-
-type ActionCreatorType = ReturnType<typeof loadingAC>
-
-export type initStateType = {
-    loading: boolean
+export const removeStudent = (id: string) => {
+    return {type: "REMOVE_STUDENT", id} as const
+}
+export const changeFirstNameAC = (id: string, value: string) => {
+    return {type: "CHANGE_FIRST_NAME", id, value} as const
+}
+export const changeLastNameAC = (id: string, value: string) => {
+    return {type: "CHANGE_LAST_NAME", id, value} as const
+}
+export const sortFirstNameAC = () => {
+    return {type: "SORT_FIRST_NAME"} as const
+}
+export const sortLastNameAC = () => {
+    return {type: "SORT_LAST_NAME"} as const
 }
 
 //types
+type ActionTypes = ReturnType<typeof addStudent> | ReturnType<typeof removeStudent> |
+    ReturnType<typeof changeFirstNameAC> | ReturnType<typeof changeLastNameAC>|
+    ReturnType<typeof sortFirstNameAC> | ReturnType<typeof sortLastNameAC>
 export type StudentType = {
-    id: number
+    id: string
     firstName: string
     lastName: string
     class: number
