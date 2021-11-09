@@ -1,0 +1,36 @@
+.table{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    border: black 1px solid;
+    border-radius: 10px;
+    background: rgba(0,0,0, 0.7);
+    color: white;
+    height: 550px;
+    width: 90%;
+    .header{
+        display: flex;
+        margin: 5px 10px;
+        justify-content: space-between;
+        border: chocolate 1px solid;
+    }
+    .bodyTable{
+        margin: 0 10px;
+       display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border: chocolate 1px solid;
+        .rowTable{
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+}
+
+td{
+    border: 1px solid #ffff;
+}
+.finalAssessment{
+
+}
+
