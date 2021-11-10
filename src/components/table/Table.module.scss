@@ -6,16 +6,34 @@
   border-radius: 10px;
   background: rgba(0, 0, 0, 0.7);
   color: white;
-  height: 550px;
+  height: 580px;
   width: 90%;
+  margin-top: 15px;
 
   .header {
     display: flex;
+    justify-content: center;
     margin: 5px 10px;
-    justify-content: space-around;
     border-radius: 10px 10px 0 0;
     padding: 0 5px;
     background: #1976d2;
+    .firstName {
+
+      flex-basis: 15%;
+    }
+    .lastName {
+      flex-basis: 15%;
+    }
+    .lesson{
+      display: flex;
+      justify-content: center;
+      flex-basis: 18%;
+    }
+    .grades{
+      display: flex;
+      justify-content: center;
+      flex-basis: 40%;
+    }
   }
 
   .bodyTable {
@@ -25,34 +43,39 @@
     border-radius: 0 0 10px 10px;
     background: rgba(0, 120, 255, 0.3);
     overflow: auto;
-    height: 500px;
+    height: 510px;
 
     .rowTable {
       display: flex;
-      justify-content: space-around;
-      padding: 2px 10px;
+      justify-content: center;
+      min-height: 45px;
+      border: 1px solid #ffff;
 
       .firstName {
-        /*min-width: 130px;*/
+        flex-basis: 18%;
       }
-
       .lastName {
-        /*min-width: 150px;*/
-
+        flex-basis: 18%;
       }
-
+      .lesson{
+        flex-basis: 18%;
+      }
       .grades {
         display: flex;
         align-items: center;
         justify-content: center;
         width: 200px;
+        flex-basis: 40%;
       }
     }
   }
-}
+  .battenBar{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 5px;
+  }
 
-td {
-  border: 1px solid #ffff;
 }
 
 .finalAssessment {
