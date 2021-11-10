@@ -31,26 +31,38 @@ const SuperEditableSpan: React.FC<SuperEditableSpanType> = (
 ) => {
     const [editMode, setEditMode] = useState<boolean>(false)
     const [newName, setNewName] = useState<string>(title)
+    const [error, setError] = useState<string>('')
 
-    const {children, onDoubleClick, className, ...restSpanProps} = spanProps || {}
+    const {children, onDoubleClick, ...restSpanProps} = spanProps || {}
 
     const onEnterCallback = () => {
-        setEditMode(false)
-        onEnter && onEnter()
-        onChangeText(newName)
+        if (newName.trim() === "") {
+            setError("name is required")
+        } else {
+            setEditMode(false)
+            onEnter && onEnter()
+            onChangeText(newName)
+        }
     }
     const onBlurCallback = (e: React.FocusEvent<HTMLInputElement>) => {
-        setEditMode(false)
-        onBlur && onBlur(e)
-        onChangeText(newName)
+        if (newName.trim() === "") {
+            setError("name is required")
+        } else {
+            setEditMode(false)
+            onBlur && onBlur(e)
+            onChangeText(newName)
+        }
     }
     const onDoubleClickCallBack = (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
         setEditMode(true)
         onDoubleClick && onDoubleClick(e)
     }
 
-    const spanClassName = `${s.span} ${className}`
-
+    const resetError = () => {
+        if (newName.trim() === "") {
+            setError("")
+        }
+    }
     return (
         <>
             {editMode
@@ -61,12 +73,14 @@ const SuperEditableSpan: React.FC<SuperEditableSpanType> = (
                         onEnter={onEnterCallback}
                         onChangeText={setNewName}
                         name={newName}
+                        resetError={resetError}
+                        error={error}
                         {...restProps}
                     />
                 ) : (
                     <span
                         onDoubleClick={onDoubleClickCallBack}
-                        className={spanClassName}
+                        className={s.span}
 
                         {...restSpanProps}
                     >

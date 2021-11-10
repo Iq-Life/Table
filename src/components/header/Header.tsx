@@ -84,9 +84,9 @@ export const Header: React.FC = () => {
 
     return (
         <Box sx={{ display: 'flex'}}>
-            <AppBar position="static" open={open}>
-                <Toolbar>
-                    <Typography variant="h6" noWrap sx={{ flexGrow: 1 }} component="div">
+            <AppBar position="static" sx={{ flexGrow: 1}} open={open}>
+                <Toolbar sx={{minHeight: '30px'}}>
+                    <Typography variant="h6" noWrap sx={{ flexGrow: 1}} component="div">
                         Persistent drawer
                     </Typography>
                     <IconButton

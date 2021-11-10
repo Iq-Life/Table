@@ -1,52 +1,77 @@
 import React from 'react';
 import s from './Table.module.scss'
-import {changeFirstNameAC, initialPeople, sortFirstNameAC, StudentType} from "../../redux/tableReducer";
-import SuperEditableSpan from "./span/SuperEditableSpan";
-import {useDispatch} from "react-redux";
+import {
+    changeFirstNameAC,
+    changeLastNameAC,
+    sortFNameDecAC, sortFNameIncAC, sortLNameDecAC, sortLNameIncAC,
+    StudentType
+} from "../../redux/tableReducer";
+import SuperEditableSpan from "../others/span/SuperEditableSpan";
+import {useDispatch, useSelector} from "react-redux";
+import {AppStoreType} from "../../redux/Redux-store";
+import {ButtonBar} from "./buttonBar/ButtonBar";
 
+const classArr = ['Математика', 'Физика', 'Информатика']
 
 export const Table: React.FC = () => {
     const dispatch = useDispatch()
-    //const students = useSelector<AppStoreType, StudentType[]>(state=> state.StudentsReducer)
+    const students = useSelector<AppStoreType, StudentType[]>(state => state.StudentsReducer)
 
+//change first/last name
+    const changeFirstname = (id: string, fName: string) => {
+        dispatch(changeFirstNameAC(id, fName))
+    }
+    const changeLastname = (id: string, lName: string) => {
+        dispatch(changeLastNameAC(id, lName))
+    }
+//sort First and Last Name
+    const sortFNameDec = () => {
+        dispatch(sortFNameDecAC())
+    }
+    const sortFNameInc = () => {
+        dispatch(sortFNameIncAC())
+    }
+    const sortLNameDec = () => {
+        dispatch(sortLNameDecAC())
+    }
+    const sortLNameInc = () => {
+        dispatch(sortLNameIncAC())
+    }
 
-    const changeFirstname=(id:string, fName:string)=>{
-        dispatch(changeFirstNameAC(id,fName))
-    }
-    const sortFirstName = () => {
-        dispatch(sortFirstNameAC())
-    }
-    const finalPeople = initialPeople.map((p: StudentType) => (
-        <tr key={p.id} className={s.rowTable}>
-            <td className={s.firstName}>
-                <SuperEditableSpan
-                title={p.firstName}
-                onChangeText={ () => {changeFirstname(p.id, p.firstName)}}
-                /*spanProps={{children: value ? undefined : 'enter text...'}}*//>
-            </td>
-            <td className={s.lastName}>{p.lastName}</td>
-            <td className={s.class}>{p.class}</td>
-            <td className={s.lesson}>{p.lesson}</td>
-            <td className={s.grades}>{p.grades}</td>
-            <td>{p.finalAssessment}</td>
-        </tr>
+    const finalPeople = students.map((p: StudentType) => (
+        <div key={p.id} className={s.rowTable}>
+            <div className={s.firstName}>
+                <SuperEditableSpan title={p.firstName} onChangeText={(newName) => changeFirstname(p.id, newName)}/>
+            </div>
+            <div className={s.lastName}>
+                <SuperEditableSpan title={p.lastName} onChangeText={(newName) => changeLastname(p.id, newName)}/>
+            </div>
+            <div className={s.lesson}>{p.lesson}</div>
+            <div className={s.grades}>{p.grades}</div>
+            <div>{p.finalAssessment}</div>
+        </div>
     ))
 
     return (
-        <table className={s.table}>
-            <thead>
-            <tr className={s.header}>
-                <th onClick={()=>{sortFirstName()}}>Имя</th>
-                <th>Фамилия</th>
-                <th>Курс</th>
-                <th>Предмет</th>
-                <th>Оценки/посещаемость</th>
-                <th className={s.finalAssessment}>Зачёт</th>
-            </tr>
-            </thead>
-                <tbody className={s.bodyTable}>
+        <div className={s.table}>
+            <div>
+                <div className={s.header}>
+                    <div className={s.firstName}>Имя</div>
+                    <div className={s.lastName}>Фамилия</div>
+                    <div className={s.lesson}>Предмет</div>
+                    <div className={s.grades}>Оценки/посещаемость</div>
+                    <div className={s.finalAssessment}>Зачёт</div>
+                </div>
+            </div>
+            <div className={s.bodyTable}>
                 {finalPeople}
-                </tbody>
-        </table>
+            </div>
+            <ButtonBar sortFNameDec={sortFNameDec}
+                       sortFNameInc={sortFNameInc}
+                       sortLNameDec={sortLNameDec}
+                       sortLNameInc={sortLNameInc}
+                       classArr={classArr}
+            />
+        </div>
     )
 }

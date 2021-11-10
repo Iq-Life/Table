@@ -1,0 +1,52 @@
+.buttonBar {
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+
+  .buttonsFSort {
+    display: flex;
+    flex-basis: 15%;
+    justify-content: center;
+
+  }
+
+  .buttonsLSort {
+    display: flex;
+    flex-basis: 22%;
+    justify-content: center;
+
+  }
+
+  .divCalculation {
+    display: flex;
+    flex-basis: 47%;
+    justify-content: flex-end;
+
+    .butCalculation{
+      background-color: #1976d2;
+      color: white;
+      border-radius: 0 0 5px 5px;
+      background-size: .65em auto, 100%;
+    }
+ }
+}
+
+.buttonDec {
+  background-color: rgb(51, 133, 229);
+  background-image: url("../../../icon/arrow-down.png");
+  background-position: right .4em top 50%, 0 0;
+  background-repeat: no-repeat, repeat;
+  background-size: .65em auto, 100%;
+  border-radius: 0 0 5px 5px;
+  color: white;
+  margin-right: 2px;
+}
+.buttonInc {
+  background-image: url("../../../icon/arrow-up.png");
+  background-position: right .4em top 50%, 0 0;
+  background-repeat: no-repeat, repeat;
+  background-size: .65em auto, 100%;
+  border-radius: 0 0 5px 5px;
+  background-color: rgb(51, 133, 229);
+  color: white;
+}

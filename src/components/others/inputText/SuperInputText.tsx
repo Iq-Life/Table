@@ -10,6 +10,7 @@ type SuperInputTextPropsType = DefaultInputPropsType & { // и + ещё проп
     onChangeText?: (value: string) => void
     onEnter?: () => void
     error?: string
+    resetError: () => void
     spanClassName?: string
     name:string
 }
@@ -20,6 +21,7 @@ const SuperInputText: React.FC<SuperInputTextPropsType> = (
         onChange, onChangeText,
         onKeyPress, onEnter,
         error, spanClassName,
+        resetError,
 
         ...restProps// все остальные пропсы попадут в объект restProps
     }
@@ -34,21 +36,22 @@ const SuperInputText: React.FC<SuperInputTextPropsType> = (
         onEnter && e.key === 'Enter' && onEnter()
     }
 
-    const finalSpanClassName = `${s.error} ${spanClassName ? spanClassName : ''}`
+    const finalSpanClassName = `${s.errorSpan} ${spanClassName ? spanClassName : ''}`
     const finalInputClassName = error ? `${s.errorInput}` : `${s.superInput}`
 
     return (
-        <>
+        <div className={s.divInputSpan}>
             <input
                 type={'text'}
                 onChange={onChangeCallback}
                 onKeyPress={onKeyPressCallback}
                 className={finalInputClassName}
                 value={name}
+                onFocus={resetError}
                 {...restProps}
             />
             {error && <span className={finalSpanClassName}>{error}</span>}
-        </>
+        </div>
     )
 }
 
