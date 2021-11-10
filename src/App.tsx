@@ -7,10 +7,8 @@ import {Table} from "./components/table/Table";
 function App() {
     return (
         <div className={s.App}>
-            <Header/>
-            <div className={s.body}>
-                <Table/>
-            </div>
+            <div className={s.header}><Header/></div>
+            <div className={s.body}><Table/></div>
             <footer className={s.footer}><Footer/></footer>
         </div>
     );

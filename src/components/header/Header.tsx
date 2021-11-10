@@ -17,6 +17,8 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+import {NavLink} from "react-router-dom";
+import s from "./Header.module.css";
 
 
 const drawerWidth = 240;
@@ -120,6 +122,7 @@ export const Header: React.FC = () => {
                 </DrawerHeader>
                 <Divider />
                 <List>
+                    <NavLink to={"/page-not-found"} color="inherit" className={s.link}>
                     {['Teachers', 'Students'].map((text, index) => (
                         <ListItem button key={text}>
                             <ListItemIcon>
@@ -128,9 +131,11 @@ export const Header: React.FC = () => {
                             <ListItemText primary={text} />
                         </ListItem>
                     ))}
+                    </NavLink>
                 </List>
                 <Divider />
                 <List>
+                    <NavLink to={"/page-not-found"} color="inherit" className={s.link}>
                     {['Lessons', 'Exams'].map((text, index) => (
                         <ListItem button key={text}>
                             <ListItemIcon>
@@ -139,6 +144,7 @@ export const Header: React.FC = () => {
                             <ListItemText primary={text} />
                         </ListItem>
                     ))}
+                    </NavLink>
                 </List>
             </Drawer>
         </Box>
