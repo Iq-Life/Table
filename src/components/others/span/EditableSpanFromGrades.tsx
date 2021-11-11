@@ -1,56 +1,41 @@
 import React, {DetailedHTMLProps, HTMLAttributes, InputHTMLAttributes, useState} from 'react'
 import s from './SuperEditableSpan.module.css'
-import SuperInputText from '../inputText/SuperInputText';
+import {gradType} from "../../../redux/tableReducer";
+import {InputFromGrade} from "../inputText/InputFromGrade";
 
-
-// тип пропсов обычного инпута
-type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
-// тип пропсов обычного спана
-type DefaultSpanPropsType = DetailedHTMLProps<HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>
-
-type SuperEditableSpanType = DefaultInputPropsType & {
-    onChangeText: (value: string) => void
-    onEnter?: () => void
-    error?: string
-    spanClassName?: string
-    title: string
-    spanProps?: DefaultSpanPropsType // пропсы для спана
-}
-
-const SuperEditableSpan: React.FC<SuperEditableSpanType> = (
+export const EditableSpanFromGrades: React.FC<SuperEditableSpanType> = (
     {
-        autoFocus,
-        title,
-        onBlur,
-        onEnter,
+        autoFocus, item, onBlur,
+        onEnter, onChangeText,
         spanProps,
-        onChangeText,
+
 
         ...restProps
     }
 ) => {
     const [editMode, setEditMode] = useState<boolean>(false)
-    const [newName, setNewName] = useState<string>(title)
+    const [newGrade, setNewGrade] = useState<string | number>(item)
     const [error, setError] = useState<string>('')
 
     const {children, onDoubleClick, ...restSpanProps} = spanProps || {}
 
     const onEnterCallback = () => {
-        if (newName.trim() === "") {
-            setError("name is required")
-        } else {
+        if (newGrade !== "н" || 2 || 3 || 4 || 5 || '.') {
             setEditMode(false)
             onEnter && onEnter()
-            onChangeText(newName)
+            onChangeText(newGrade)
+        } else {
+            setError("только н , . , 2, 3, 4, 5")
         }
     }
     const onBlurCallback = (e: React.FocusEvent<HTMLInputElement>) => {
-        if (newName.trim() === "") {
-            setError("name is required")
-        } else {
+        if (newGrade === "н" || 2 || 3 || 4 || 5 || '.') {
             setEditMode(false)
             onBlur && onBlur(e)
-            onChangeText(newName)
+            onChangeText(newGrade)
+        } else {
+            setError("только н , . , 2, 3, 4, 5")
+            console.log('blur')
         }
     }
     const onDoubleClickCallBack = (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
@@ -59,7 +44,8 @@ const SuperEditableSpan: React.FC<SuperEditableSpanType> = (
     }
 
     const resetError = () => {
-        if (newName.trim() === "") {
+        if (newGrade !== "н" || 2 || 3 || 4|| 5 || '.') {
+            console.log('Set-Error')
             setError("")
         }
     }
@@ -67,12 +53,12 @@ const SuperEditableSpan: React.FC<SuperEditableSpanType> = (
         <>
             {editMode
                 ? (
-                    <SuperInputText
+                    <InputFromGrade
                         autoFocus // пропсу с булевым значением не обязательно указывать true
                         onBlur={onBlurCallback}
                         onEnter={onEnterCallback}
-                        onChangeText={setNewName}
-                        name={newName}
+                        onChangeText={setNewGrade}
+                        grade={newGrade}
                         resetError={resetError}
                         error={error}
                         {...restProps}
@@ -85,12 +71,22 @@ const SuperEditableSpan: React.FC<SuperEditableSpanType> = (
                         {...restSpanProps}
                     >
                         {/*если нет захардкодженного текста для спана, то значение инпута*/}
-                        {title}
+                        {item}
                     </span>
                 )
             }
         </>
     )
 }
+//types
+type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
+type DefaultSpanPropsType = DetailedHTMLProps<HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>
 
-export default SuperEditableSpan
+type SuperEditableSpanType = DefaultInputPropsType & {
+    onChangeText: (value: string | number) => void
+    onEnter?: () => void
+    error?: string
+    spanClassName?: string
+    item: gradType
+    spanProps?: DefaultSpanPropsType
+}

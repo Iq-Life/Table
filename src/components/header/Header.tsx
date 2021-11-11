@@ -18,14 +18,14 @@ import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import {NavLink} from "react-router-dom";
-import s from "./Header.module.css";
+import "./Header.css";
 
 
 const drawerWidth = 240;
 
-const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })<{
+const Main = styled('main', {shouldForwardProp: (prop) => prop !== 'open'})<{
     open?: boolean;
-}>(({ theme, open }) => ({
+}>(({theme, open}) => ({
     flexGrow: 1,
     padding: theme.spacing(0),
     transition: theme.transitions.create('margin', {
@@ -48,7 +48,7 @@ interface AppBarProps extends MuiAppBarProps {
 
 const AppBar = styled(MuiAppBar, {
     shouldForwardProp: (prop) => prop !== 'open',
-})<AppBarProps>(({ theme, open }) => ({
+})<AppBarProps>(({theme, open}) => ({
     transition: theme.transitions.create(['margin', 'width'], {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
@@ -63,9 +63,10 @@ const AppBar = styled(MuiAppBar, {
     }),
 }));
 
-const DrawerHeader = styled('div')(({ theme }) => ({
+const DrawerHeader = styled('div')(({theme}) => ({
     display: 'flex',
     alignItems: 'center',
+    minHeight: '20px',
     padding: theme.spacing(0, 1),
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
@@ -85,68 +86,70 @@ export const Header: React.FC = () => {
     };
 
     return (
-        <Box sx={{ display: 'flex'}}>
-            <AppBar position="static" sx={{ flexGrow: 1}} open={open}>
-                <Toolbar sx={{minHeight: '30px'}}>
-                    <Typography variant="h6" noWrap sx={{ flexGrow: 1}} component="div">
-                        Persistent drawer
-                    </Typography>
-                    <IconButton
-                        color="inherit"
-                        aria-label="open drawer"
-                        edge="end"
-                        onClick={handleDrawerOpen}
-                        sx={{ ...(open && { display: 'none' }) }}
-                    >
-                        <MenuIcon />
-                    </IconButton>
-                </Toolbar>
-            </AppBar>
-            <Main open={open}/>
-            <Drawer
-                sx={{
-                    width: drawerWidth,
-                    flexShrink: 0,
-                    '& .MuiDrawer-paper': {
+        <div className='wrap'>
+            <Box sx={{display: 'flex'}}>
+                <AppBar position="relative" sx={{flexGrow: 1}} open={open}>
+                    <Toolbar sx={{minHeight: '30px'}}>
+                        <Typography variant="h6" noWrap sx={{flexGrow: 1}} component="div">
+                            Persistent drawer
+                        </Typography>
+                        <IconButton
+                            color="inherit"
+                            aria-label="open drawer"
+                            edge="end"
+                            onClick={handleDrawerOpen}
+                            sx={{...(open && {display: 'none'})}}
+                        >
+                            <MenuIcon/>
+                        </IconButton>
+                    </Toolbar>
+                </AppBar>
+                <Main open={open}/>
+                <Drawer
+                    sx={{
                         width: drawerWidth,
-                    },
-                }}
-                variant="persistent"
-                anchor="right"
-                open={open}
-            >
-                <DrawerHeader>
-                    <IconButton onClick={handleDrawerClose}>
-                        {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-                    </IconButton>
-                </DrawerHeader>
-                <Divider />
-                <List>
-                    <NavLink to={"/page-not-found"} color="inherit" className={s.link}>
-                    {['Teachers', 'Students'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>
-                                {index % 2 === 0 ? <AccountCircleIcon /> : <AccountCircleIcon />}
-                            </ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItem>
-                    ))}
-                    </NavLink>
-                </List>
-                <Divider />
-                <List>
-                    <NavLink to={"/page-not-found"} color="inherit" className={s.link}>
-                    {['Lessons', 'Exams'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>
-                                {index % 2 === 0 ? <MenuBookIcon /> : <LocalLibraryIcon />}
-                            </ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItem>
-                    ))}
-                    </NavLink>
-                </List>
-            </Drawer>
-        </Box>
+                        flexShrink: 0,
+                        '& .MuiDrawer-paper': {
+                            width: drawerWidth,
+                        },
+                    }}
+                    variant="persistent"
+                    anchor="right"
+                    open={open}
+                >
+                    <DrawerHeader>
+                        <IconButton onClick={handleDrawerClose}>
+                            {theme.direction === 'rtl' ? <ChevronLeftIcon/> : <ChevronRightIcon/>}
+                        </IconButton>
+                    </DrawerHeader>
+                    <Divider/>
+                    <List>
+                        <NavLink to={"/page-not-found"} color="inherit" className='link'>
+                            {['Teachers', 'Students'].map((text, index) => (
+                                <ListItem button key={text}>
+                                    <ListItemIcon>
+                                        {index % 2 === 0 ? <AccountCircleIcon/> : <AccountCircleIcon/>}
+                                    </ListItemIcon>
+                                    <ListItemText primary={text}/>
+                                </ListItem>
+                            ))}
+                        </NavLink>
+                    </List>
+                    <Divider/>
+                    <List>
+                        <NavLink to={"/page-not-found"} color="inherit" className='link'>
+                            {['Lessons', 'Exams'].map((text, index) => (
+                                <ListItem button key={text}>
+                                    <ListItemIcon>
+                                        {index % 2 === 0 ? <MenuBookIcon/> : <LocalLibraryIcon/>}
+                                    </ListItemIcon>
+                                    <ListItemText primary={text}/>
+                                </ListItem>
+                            ))}
+                        </NavLink>
+                    </List>
+                </Drawer>
+            </Box>
+        </div>
     );
 }

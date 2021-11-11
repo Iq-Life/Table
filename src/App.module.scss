@@ -1,19 +1,22 @@
-.App{
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  .header {
+    height: 45px;
+  }
+
+  .body {
     display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    .header{
-        height: 45px;
-    }
-    .body{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex: 1 0 auto;
-        color: white;
-    }
-    .footer{
-        flex: 0 0 auto;
-    }
+    justify-content: center;
+    align-items: center;
+    flex: 1 0 auto;
+    color: white;
+  }
+
+  .footer {
+    flex: 0 0 auto;
+  }
 }
 

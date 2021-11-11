@@ -1,5 +1,6 @@
 import React, {ChangeEvent, DetailedHTMLProps, InputHTMLAttributes, KeyboardEvent} from 'react'
-import s from './SuperInputText.module.css'
+import s from './InputFromGrade.module.css'
+import {gradType} from "../../../redux/tableReducer";
 
 // тип пропсов обычного инпута
 type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
@@ -7,21 +8,21 @@ type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElem
 // здесь мы говорим что у нашего инпута будут такие же пропсы как у обычного инпута
 // (чтоб не писать value: string, onChange: ...; они уже все описаны в DefaultInputPropsType)
 type SuperInputTextPropsType = DefaultInputPropsType & { // и + ещё пропсы которых нет в стандартном инпуте
-    onChangeText?: (value: string) => void
+    onChangeText?: (value: string|number) => void
     onEnter?: () => void
     error?: string
     resetError: () => void
     spanClassName?: string
-    name:string
+    grade?:string|number
 }
 
-const SuperInputText: React.FC<SuperInputTextPropsType> = (
+export const InputFromGrade: React.FC<SuperInputTextPropsType> = (
     {
-        type, name,// достаём и игнорируем чтоб нельзя было задать другой тип инпута
+        type,// достаём и игнорируем чтоб нельзя было задать другой тип инпута
         onChange, onChangeText,
         onKeyPress, onEnter,
         error, spanClassName,
-        resetError,
+        resetError,grade,
 
         ...restProps// все остальные пропсы попадут в объект restProps
     }
@@ -46,7 +47,7 @@ const SuperInputText: React.FC<SuperInputTextPropsType> = (
                 onChange={onChangeCallback}
                 onKeyPress={onKeyPressCallback}
                 className={finalInputClassName}
-                value={name}
+                value={grade}
                 onFocus={resetError}
                 {...restProps}
             />
@@ -54,5 +55,3 @@ const SuperInputText: React.FC<SuperInputTextPropsType> = (
         </div>
     )
 }
-
-export default SuperInputText

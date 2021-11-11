@@ -1,30 +1,39 @@
-import React from 'react';
-import s from './Table.module.scss'
+import React, {useState} from 'react';
+import style from './Table.module.scss'
 import {
-    changeFirstNameAC,
+    calculationOfGradesAC,
+    changeFirstNameAC, changeGradeAC,
     changeLastNameAC,
-    sortFNameDecAC, sortFNameIncAC, sortLNameDecAC, sortLNameIncAC,
+    gradType,
+    sortFNameDecAC,
+    sortFNameIncAC,
+    sortLNameDecAC,
+    sortLNameIncAC,
     StudentType
 } from "../../redux/tableReducer";
-import SuperEditableSpan from "../others/span/SuperEditableSpan";
 import {useDispatch, useSelector} from "react-redux";
 import {AppStoreType} from "../../redux/Redux-store";
 import {ButtonBar} from "./buttonBar/ButtonBar";
+import {EditableSpanForName} from "../others/span/EditableSpanForName";
+import {EditableSpanFromGrades} from "../others/span/EditableSpanFromGrades";
+import {v1} from "uuid";
 
-const classArr = ['Математика', 'Физика', 'Информатика']
+const lessonsArr: string[] = ['Maths', 'Physics', 'ComputerScience']
 
 export const Table: React.FC = () => {
+
     const dispatch = useDispatch()
     const students = useSelector<AppStoreType, StudentType[]>(state => state.StudentsReducer)
+    const [lessons, setLessons] = useState<string>(lessonsArr[0])
 
-//change first/last name
+//change first and last name
     const changeFirstname = (id: string, fName: string) => {
         dispatch(changeFirstNameAC(id, fName))
     }
     const changeLastname = (id: string, lName: string) => {
         dispatch(changeLastNameAC(id, lName))
     }
-//sort First and Last Name
+//sort first and last Name
     const sortFNameDec = () => {
         dispatch(sortFNameDecAC())
     }
@@ -37,40 +46,60 @@ export const Table: React.FC = () => {
     const sortLNameInc = () => {
         dispatch(sortLNameIncAC())
     }
+//change grade
+    const changeGrade = (idStudent: string, lessons: string, newGrade: gradType) => {
+        dispatch(changeGradeAC(idStudent, lessons, newGrade))
+    }
+//calculation of grades
+    const passed = () => {
+        dispatch(calculationOfGradesAC(lessons))
+    }
 
-    const finalPeople = students.map((p: StudentType) => (
-        <div key={p.id} className={s.rowTable}>
-            <div className={s.firstName}>
-                <SuperEditableSpan title={p.firstName} onChangeText={(newName) => changeFirstname(p.id, newName)}/>
+
+    const finalPeople = students.map((student: StudentType) => (
+        <div key={student.id} className={style.rowTable}>
+            <div className={style.firstName}>
+                <EditableSpanForName title={student.firstName} onChangeText={(newName) => changeFirstname(student.id, newName)}/>
             </div>
-            <div className={s.lastName}>
-                <SuperEditableSpan title={p.lastName} onChangeText={(newName) => changeLastname(p.id, newName)}/>
+            <div className={style.lastName}>
+                <EditableSpanForName title={student.lastName} onChangeText={(newName) => changeLastname(student.id, newName)}/>
             </div>
-            <div className={s.lesson}>{p.lesson}</div>
-            <div className={s.grades}>{p.grades}</div>
-            <div>{p.finalAssessment}</div>
+            <div className={style.lesson}>
+                {lessons  === 'Maths' ? 'Математика' : lessons === 'Physics' ? 'Физика' : 'Информатика'}
+            </div>
+            <div className={style.grades}>
+                {student.grades.map((grade) =>
+                    grade[lessons].map(item =>
+                        <div className={style.oneGrade}>
+                            <EditableSpanFromGrades item={item} onChangeText={(newGrade) => changeGrade(student.id, lessons, newGrade)}/>
+                        </div>)
+                )}</div>
+            <div className={style.finalAssessment}>{student.finalAssessment === null ? ' ' :
+                student.finalAssessment === true ? 'зачёт' : 'нет'}</div>
         </div>
     ))
 
     return (
-        <div className={s.table}>
+        <div className={style.table}>
             <div>
-                <div className={s.header}>
-                    <div className={s.firstName}>Имя</div>
-                    <div className={s.lastName}>Фамилия</div>
-                    <div className={s.lesson}>Предмет</div>
-                    <div className={s.grades}>Оценки/посещаемость</div>
-                    <div className={s.finalAssessment}>Зачёт</div>
+                <div className={style.header}>
+                    <div className={style.firstName}>Имя</div>
+                    <div className={style.lastName}>Фамилия</div>
+                    <div className={style.lesson}>Предмет</div>
+                    <div className={style.grades}>Оценки/посещаемость</div>
+                    <div className={style.finalAssessment}>Зачёт</div>
                 </div>
             </div>
-            <div className={s.bodyTable}>
+            <div className={style.bodyTable}>
                 {finalPeople}
             </div>
             <ButtonBar sortFNameDec={sortFNameDec}
                        sortFNameInc={sortFNameInc}
                        sortLNameDec={sortLNameDec}
                        sortLNameInc={sortLNameInc}
-                       classArr={classArr}
+                       lessonsArr={lessonsArr}
+                       setLessons={setLessons}
+                       calculationOfGrades={passed}
             />
         </div>
     )

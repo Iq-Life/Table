@@ -12,45 +12,77 @@ let startState: Array<StudentType> = []
 beforeEach(() => {
     startState = [
         {
-            id: "1", firstName: 'Иван', lastName: 'Фирстов', lesson: "Математика",
-            grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
+            id: '1', firstName: 'Иван', lastName: 'Фирстов', lesson: null,
+            grades: [{
+                Maths: ['.', 'н', 3, 4, 'н', 4, 'н', 3, 5, '.', '.', 'н', 4, 4, 5],
+                Physics: ['.', '.', 3, 4, '.', 4, 'н', 4, 5, '.', '.', 5, '.', '.', 5],
+                ComputerScience: [4, '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, '.', 5, 5]
+            }], finalAssessment: null
         },
         {
-            id: "2", firstName: 'Лиза', lastName: 'Фирстов', lesson: "Математика",
-            grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
+            id: '2', firstName: 'Олег', lastName: 'Куплинов', lesson: null,
+            grades: [{
+                Maths: ['.', '.', 3, 3, 3, 4, 'н', 2, 5, '.', '.', 5, '.', 5, 5],
+                Physics: [3, '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, '.', 5, 5],
+                ComputerScience: [4, '.', 3, 4, 3, 4, 'н', 2, 5, '.', 'н', 5, 5, '.', 5]
+            }], finalAssessment: null
         },
         {
-            id: "3", firstName: 'Кирилл', lastName: 'Фирстов', lesson: "Математика",
-            grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
+            id: '3', firstName: 'Дмитрий', lastName: 'Дадарчук', lesson: null,
+            grades: [{
+                Maths: [4, '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5],
+                Physics: [2, '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 4, 5],
+                ComputerScience: [3, '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5]
+            }], finalAssessment: null
         },
         {
-            id: "4", firstName: 'Илья', lastName: 'Фирстов', lesson: "Математика",
-            grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
+            id: '4', firstName: 'Павел', lastName: 'Вавилин', lesson: null,
+            grades: [{
+                Maths: [3, '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5],
+                Physics: [2, '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 3, 5, 5],
+                ComputerScience: [3, '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5]
+            }], finalAssessment: null
         },
         {
-            id: "5", firstName: 'Александр', lastName: 'Акимов', lesson: "Математика",
-            grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
+            id: '5', firstName: 'Лиза', lastName: 'Подопригора', lesson: null,
+            grades: [{
+                Maths: ['.', '.', 3, '.', 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5],
+                Physics: ['.', '.', 3, 4, '.', 4, 'н', 2, 5, '.', '.', 5, 4, 5, 5],
+                ComputerScience: [3, '.', 3, 4, 3, 4, 'н', 2, 'н', '.', '.', 5, 5, 5, 5]
+            }], finalAssessment: null
         },
         {
-            id: "6", firstName: 'Павел', lastName: 'Фирстов', lesson: "Математика",
-            grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
+            id: '6', firstName: 'Евгения', lastName: 'Кудряшова', lesson: null,
+            grades: [{
+                Maths: ['.', '.', 3, 4, 'н', 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5],
+                Physics: [3, '.', 3, 4, '.', 4, 'н', 2, 5, '.', 'н', 5, 5, 4, 5],
+                ComputerScience: [3, '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5]
+            }], finalAssessment: null
         },
         {
-            id: "7", firstName: 'Дмитрий', lastName: 'Фирстов', lesson: "Математика",
-            grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
+            id: '7', firstName: 'Кирилл', lastName: 'Вавилин', lesson: null,
+            grades: [{
+                Maths: ['.', '.', 3, 4, 3, 4, 'н', 5, 5, '.', '.', 5, 5, '.', 5],
+                Physics: ['.', '.', 3, 4, 3, '.', 'н', 4, 5, '.', '.', 5, 5, 5, 3],
+                ComputerScience: ['.', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, '.']
+            }], finalAssessment: null
         },
         {
-            id: "8", firstName: 'Евгений', lastName: 'Фирстов', lesson: "Математика",
-            grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
+            id: '8', firstName: 'Александра', lastName: 'Комарова', lesson: null,
+            grades: [{
+                Maths: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 4],
+                Physics: [2, '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, '.'],
+                ComputerScience: [3, '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, '.']
+            }], finalAssessment: null
         },
         {
-            id: "9", firstName: 'Дмитрий', lastName: 'Юдин', lesson: "Математика",
-            grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
+            id: '9', firstName: 'Иван', lastName: 'Бакалейщиков', lesson: null,
+            grades: [{
+                Maths: ['.', '.', '.', 4, 3, 4, 3, 2, 5, '.', '.', 5, 5, 5, '.'],
+                Physics: [2, '.', 3, 4, 3, '.', 'н', 2, 5, '.', '.', 5, 5, 5, '.'],
+                ComputerScience: [3, '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, '.']
+            }], finalAssessment: null
         },
-        {
-            id: "10", firstName: 'Валерия', lastName: 'Фирстов', lesson: "Математика",
-            grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5
-        }
     ]
 })
 
@@ -64,13 +96,17 @@ test('should be update first name', () => {
 })
 test('should be add student in array', () => {
     const newStudent: StudentType = {id: "11", firstName: 'Валера', lastName: 'Куплинов', lesson: "Математика",
-        grades: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5], finalAssessment: 5}
+        grades: [
+            {Maths: ['н', 5, 3, 4, 5, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5]},
+            {Physics: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5]},
+            {ComputerScience: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5]}
+        ], finalAssessment: null}
 
     const action = addStudent(newStudent)
 
     const endState = StudentsReducer(startState, action)
 
-    expect(endState.length).toBe(11)
+    expect(endState.length).toBe(10)
 })
 test('should be delete student in array', () => {
 
@@ -78,7 +114,7 @@ test('should be delete student in array', () => {
 
     const endState = StudentsReducer(startState, action)
 
-    expect(endState.length).toBe(9)
+    expect(endState.length).toBe(8)
 })
 test('sort firstName an array from a to z', () => {
 
@@ -86,8 +122,8 @@ test('sort firstName an array from a to z', () => {
 
     const endState = StudentsReducer(startState, action)
 
-    expect(endState[0].firstName).toBe('Александр')
-    expect(endState[9].firstName).toBe('Павел')
+    expect(endState[0].firstName).toBe('Александра')
+    expect(endState[8].firstName).toBe('Павел')
 })
 test('sort firstName an array from z to a', () => {
 
@@ -95,8 +131,8 @@ test('sort firstName an array from z to a', () => {
 
     const endState = StudentsReducer(startState, action)
 
-    expect(endState[0].firstName).toBe('Александр')
-    expect(endState[9].firstName).toBe('Павел')
+    expect(endState[8].firstName).toBe('Александра')
+    expect(endState[0].firstName).toBe('Павел')
 })
 test('sort lastName an array from a to z', () => {
 
@@ -104,8 +140,8 @@ test('sort lastName an array from a to z', () => {
 
     const endState = StudentsReducer(startState, action)
 
-    expect(endState[0].lastName).toBe('Акимов')
-    expect(endState[9].lastName).toBe('Юдин')
+    expect(endState[8].lastName).toBe('Фирстов')
+    expect(endState[0].lastName).toBe('Бакалейщиков')
 })
 test('sort lastName an array from z to a', () => {
 
@@ -113,6 +149,6 @@ test('sort lastName an array from z to a', () => {
 
     const endState = StudentsReducer(startState, action)
 
-    expect(endState[9].lastName).toBe('Акимов')
-    expect(endState[0].lastName).toBe('Юдин')
+    expect(endState[8].lastName).toBe('Бакалейщиков')
+    expect(endState[0].lastName).toBe('Фирстов')
 })
