@@ -1,6 +1,5 @@
 import React, {DetailedHTMLProps, HTMLAttributes, InputHTMLAttributes, useState} from 'react'
-import s from './SuperEditableSpan.module.css'
-import {gradType} from "../../../redux/tableReducer";
+import style from './EditableSpanFromGrade.module.css'
 import {InputFromGrade} from "../inputText/InputFromGrade";
 
 export const EditableSpanFromGrades: React.FC<SuperEditableSpanType> = (
@@ -19,8 +18,13 @@ export const EditableSpanFromGrades: React.FC<SuperEditableSpanType> = (
 
     const {children, onDoubleClick, ...restSpanProps} = spanProps || {}
 
+    const condition = (newGrade === "н") || (newGrade === String(2)) ||
+        (newGrade === String(3)) || (newGrade === String(4)) ||
+        (newGrade === String(5)) || (newGrade ==='.')
+
     const onEnterCallback = () => {
-        if (newGrade !== "н" || 2 || 3 || 4 || 5 || '.') {
+        if (condition) {
+
             setEditMode(false)
             onEnter && onEnter()
             onChangeText(newGrade)
@@ -28,8 +32,9 @@ export const EditableSpanFromGrades: React.FC<SuperEditableSpanType> = (
             setError("только н , . , 2, 3, 4, 5")
         }
     }
+
     const onBlurCallback = (e: React.FocusEvent<HTMLInputElement>) => {
-        if (newGrade === "н" || 2 || 3 || 4 || 5 || '.') {
+        if (condition) {
             setEditMode(false)
             onBlur && onBlur(e)
             onChangeText(newGrade)
@@ -38,13 +43,14 @@ export const EditableSpanFromGrades: React.FC<SuperEditableSpanType> = (
             console.log('blur')
         }
     }
+
     const onDoubleClickCallBack = (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
         setEditMode(true)
         onDoubleClick && onDoubleClick(e)
     }
 
     const resetError = () => {
-        if (newGrade !== "н" || 2 || 3 || 4|| 5 || '.') {
+        if (!condition) {
             console.log('Set-Error')
             setError("")
         }
@@ -54,7 +60,7 @@ export const EditableSpanFromGrades: React.FC<SuperEditableSpanType> = (
             {editMode
                 ? (
                     <InputFromGrade
-                        autoFocus // пропсу с булевым значением не обязательно указывать true
+                        autoFocus
                         onBlur={onBlurCallback}
                         onEnter={onEnterCallback}
                         onChangeText={setNewGrade}
@@ -66,11 +72,10 @@ export const EditableSpanFromGrades: React.FC<SuperEditableSpanType> = (
                 ) : (
                     <span
                         onDoubleClick={onDoubleClickCallBack}
-                        className={s.span}
+                        className={style.spanGrade}
 
                         {...restSpanProps}
                     >
-                        {/*если нет захардкодженного текста для спана, то значение инпута*/}
                         {item}
                     </span>
                 )
@@ -87,6 +92,6 @@ type SuperEditableSpanType = DefaultInputPropsType & {
     onEnter?: () => void
     error?: string
     spanClassName?: string
-    item: gradType
+    item: string|number
     spanProps?: DefaultSpanPropsType
 }

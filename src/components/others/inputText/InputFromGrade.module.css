@@ -4,14 +4,16 @@
 }
 .superInput {
     border-radius: 5px;
-    width: 10px;
+    width: 15px;
+    height: 15px;
 }
 
 .errorInput {
     outline: red;
     border-color: red;
     border-radius: 5px;
-    width: 10px;
+    width: 20px;
+    height: 20px;
 }
 .superInput:focus {
     outline: #348cb2;

@@ -3,13 +3,13 @@
   align-items: center;
   margin-top: 5px;
 
-  .buttonsFSort {
+  .divButFSort {
     display: flex;
     flex-basis: 14%;
     padding-left: 25px;
   }
 
-  .buttonsLSort {
+  .divButLSort {
     display: flex;
     flex-basis: 13%;
     justify-content: center;
@@ -21,10 +21,26 @@
     justify-content: flex-end;
   }
 
+  .divAdd {
+    display: flex;
+    flex-basis: 20%;
+    justify-content: flex-end;
+
+    .buttonAdd {
+      background-color: #1976d2;
+      color: white;
+      border-radius: 0 0 5px 5px;
+      background-size: .65em auto, 100%;
+      &:hover{
+        color: #1976d2;
+        background-color: white;
+      }
+    }
+  }
+
   .divCalculation {
     display: flex;
-    flex-basis: 50%;
-
+    flex-basis: 30%;
     justify-content: flex-end;
 
     .butCalculation {
@@ -32,6 +48,10 @@
       color: white;
       border-radius: 0 0 5px 5px;
       background-size: .65em auto, 100%;
+      &:hover{
+        color: #1976d2;
+        background-color: white;
+      }
     }
   }
 }
@@ -45,6 +65,10 @@
   border-radius: 0 0 0 7px;
   color: white;
   margin-right: 2px;
+  &:hover{
+    color: #1976d2;
+    background-color: white;
+  }
 }
 
 .buttonInc {
@@ -55,4 +79,8 @@
   border-radius: 0 0 7px 0;
   background-color: rgb(51, 133, 229);
   color: white;
+  &:hover{
+    color: #1976d2;
+    background-color: white;
+  }
 }

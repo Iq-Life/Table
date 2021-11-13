@@ -1,0 +1,9 @@
+.spanGrade{
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    border: rgba(255, 255, 255, 0.3) 1px solid;
+    width: 20px;
+    height: 20px;
+
+}

@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
 import style from './Table.module.scss'
 import {
+    addStudentAC,
     calculationOfGradesAC,
-    changeFirstNameAC, changeGradeAC,
-    changeLastNameAC,
-    gradType,
+    changeFirstNameAC,
+    changeGradeAC,
+    changeLastNameAC, removeStudentAC,
     sortFNameDecAC,
     sortFNameIncAC,
     sortLNameDecAC,
@@ -14,11 +15,10 @@ import {
 import {useDispatch, useSelector} from "react-redux";
 import {AppStoreType} from "../../redux/Redux-store";
 import {ButtonBar} from "./buttonBar/ButtonBar";
-import {EditableSpanForName} from "../others/span/EditableSpanForName";
-import {EditableSpanFromGrades} from "../others/span/EditableSpanFromGrades";
-import {v1} from "uuid";
+import {EditableSpanForName} from "../others/editableSpan/EditableSpanForName";
+import {EditableSpanFromGrades} from "../others/editableSpan/EditableSpanFromGrades";
 
-const lessonsArr: string[] = ['Maths', 'Physics', 'ComputerScience']
+const lessonsArr: string[] = ['maths', 'physics', 'computerScience']
 
 export const Table: React.FC = () => {
 
@@ -26,6 +26,13 @@ export const Table: React.FC = () => {
     const students = useSelector<AppStoreType, StudentType[]>(state => state.StudentsReducer)
     const [lessons, setLessons] = useState<string>(lessonsArr[0])
 
+//add and remove student
+    const addStudent = () => {
+        dispatch(addStudentAC())
+    }
+    const removeStudent = (idStudent: string) => {
+      dispatch(removeStudentAC(idStudent))
+    }
 //change first and last name
     const changeFirstname = (id: string, fName: string) => {
         dispatch(changeFirstNameAC(id, fName))
@@ -47,8 +54,8 @@ export const Table: React.FC = () => {
         dispatch(sortLNameIncAC())
     }
 //change grade
-    const changeGrade = (idStudent: string, lessons: string, newGrade: gradType) => {
-        dispatch(changeGradeAC(idStudent, lessons, newGrade))
+    const changeGrade = (idStudent: string, idGrade:string, lessons: string, newGrade: string|number) => {
+        dispatch(changeGradeAC(idStudent, idGrade, lessons, newGrade))
     }
 //calculation of grades
     const passed = () => {
@@ -58,6 +65,7 @@ export const Table: React.FC = () => {
 
     const finalPeople = students.map((student: StudentType) => (
         <div key={student.id} className={style.rowTable}>
+            <button className={style.buttonRemove} onClick={()=>{removeStudent(student.id)}}>X</button>
             <div className={style.firstName}>
                 <EditableSpanForName title={student.firstName} onChangeText={(newName) => changeFirstname(student.id, newName)}/>
             </div>
@@ -65,15 +73,15 @@ export const Table: React.FC = () => {
                 <EditableSpanForName title={student.lastName} onChangeText={(newName) => changeLastname(student.id, newName)}/>
             </div>
             <div className={style.lesson}>
-                {lessons  === 'Maths' ? 'Математика' : lessons === 'Physics' ? 'Физика' : 'Информатика'}
+                {lessons  === 'maths' ? 'Математика' : lessons === 'physics' ? 'Физика' : 'Информатика'}
             </div>
             <div className={style.grades}>
-                {student.grades.map((grade) =>
-                    grade[lessons].map(item =>
-                        <div className={style.oneGrade}>
-                            <EditableSpanFromGrades item={item} onChangeText={(newGrade) => changeGrade(student.id, lessons, newGrade)}/>
+                {student.grades[lessons].map(grade =>
+                        <div className={style.oneGrade} key={grade.id}>
+                            <EditableSpanFromGrades item={grade.value} onChangeText={(newGrade) =>
+                                changeGrade(student.id, grade.id, lessons, newGrade)}/>
                         </div>)
-                )}</div>
+                }</div>
             <div className={style.finalAssessment}>{student.finalAssessment === null ? ' ' :
                 student.finalAssessment === true ? 'зачёт' : 'нет'}</div>
         </div>
@@ -100,6 +108,7 @@ export const Table: React.FC = () => {
                        lessonsArr={lessonsArr}
                        setLessons={setLessons}
                        calculationOfGrades={passed}
+                       addStudent={addStudent}
             />
         </div>
     )

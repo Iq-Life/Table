@@ -6,7 +6,7 @@
   border-radius: 10px;
   background: rgba(0, 0, 0, 0.7);
   color: white;
-  height: 600px;
+  height: 700px;
   width: 90%;
   margin-top: 15px;
 
@@ -18,17 +18,18 @@
     background: #1976d2;
 
     .firstName {
-      flex-basis: 15%;
+      padding-left: 25px;
+      flex-basis: 17%;
     }
 
     .lastName {
-      flex-basis: 14%;
+      flex-basis: 15%;
     }
 
     .lesson {
       display: flex;
       justify-content: flex-end;
-      flex-basis: 14%;
+      flex-basis: 13%;
     }
 
     .grades {
@@ -39,33 +40,51 @@
 
     .finalAssessment {
       display: flex;
-      justify-content: center;
       flex-basis: 7%;
     }
   }
 
   .bodyTable {
-
     margin: 0 10px;
+    padding: 5px;
     display: flex;
     flex-direction: column;
     border-radius: 0 0 10px 10px;
     background: rgba(0, 120, 255, 0.3);
     overflow: auto;
-    height: 535px;
+    height: 89%;
 
     .rowTable {
       display: flex;
       justify-content: center;
       min-height: 45px;
 
+      .buttonRemove {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: darkred;
+        color: white;
+        width: 20px;
+        height: 20px;
+        border: #1976d2 3px solid;
+        border-radius: 50%;
+        font-size: 10px;
+        &:focus{
+          color: red;
+        }
+        &:hover{
+          border-color: #348cb2;
+        }
+      }
+
       .firstName {
-        padding-left: 22px;
-        flex-basis: 17%;
+        padding-left: 5px;
+        flex-basis: 20%;
       }
 
       .lastName {
-        flex-basis: 18%;
+        flex-basis: 20%;
       }
 
       .lesson {
@@ -83,9 +102,13 @@
         margin-right: 5px;
 
         .oneGrade {
-          display: flex;
+          margin: 0;
+          padding: 0;
+          /*display: flex;
           justify-content: center;
-
+          border: rgba(255, 255, 255, 0.3) 1px solid;
+          width: 20px;
+          height: 20px;*/
         }
       }
 

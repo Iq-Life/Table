@@ -1,91 +1,129 @@
 import {
-    addStudent,
-    changeFirstNameAC,
-    removeStudent,
+    addStudentAC, calculationOfGradesAC,
+    changeFirstNameAC, grades,
+    removeStudentAC,
     sortFNameDecAC, sortFNameIncAC, sortLNameDecAC, sortLNameIncAC,
     StudentsReducer,
     StudentType
 } from "./tableReducer";
+import {v1} from "uuid";
 
-let startState: Array<StudentType> = []
+let startState: Array<StudentType>
 
 beforeEach(() => {
     startState = [
         {
             id: '1', firstName: 'Иван', lastName: 'Фирстов', lesson: null,
-            grades: [{
-                Maths: ['.', 'н', 3, 4, 'н', 4, 'н', 3, 5, '.', '.', 'н', 4, 4, 5],
-                Physics: ['.', '.', 3, 4, '.', 4, 'н', 4, 5, '.', '.', 5, '.', '.', 5],
-                ComputerScience: [4, '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, '.', 5, 5]
-            }], finalAssessment: null
+            grades: {
+                'maths': [{id: v1(), value: 5}, {id: v1(), value: 5}, {id: v1(), value: 5}, {id: v1(), value: '.'},
+                    {id: v1(), value: 5}, {id: v1(), value: 5}, {id: v1(), value: 5}, {id: v1(), value: '.'},
+                    {id: v1(), value: 4}, {id: v1(), value: 5}, {id: v1(), value: 5}, {id: v1(), value: '.'},
+                    {id: v1(), value: 5}, {id: v1(), value: 5}, {id: v1(), value: 5}],
+                'physics': [{id: v1(), value: 4}, {id: v1(), value: '.'}, {id: v1(), value: '.'}, {
+                    id: v1(),
+                    value: '.'
+                },
+                    {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
+                    {id: v1(), value: '.'}, {id: v1(), value: 3}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
+                    {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'}],
+                'computerScience': [{id: v1(), value: 5}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}, {
+                    id: v1(),
+                    value: 'н'
+                },
+                    {id: v1(), value: 3}, {id: v1(), value: '.'}, {id: v1(), value: 5}, {id: v1(), value: '.'},
+                    {id: v1(), value: 5}, {id: v1(), value: '.'}, {id: v1(), value: 4}, {id: v1(), value: 3},
+                    {id: v1(), value: 4}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}]
+            }, finalAssessment: null
         },
         {
             id: '2', firstName: 'Олег', lastName: 'Куплинов', lesson: null,
-            grades: [{
-                Maths: ['.', '.', 3, 3, 3, 4, 'н', 2, 5, '.', '.', 5, '.', 5, 5],
-                Physics: [3, '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, '.', 5, 5],
-                ComputerScience: [4, '.', 3, 4, 3, 4, 'н', 2, 5, '.', 'н', 5, 5, '.', 5]
-            }], finalAssessment: null
+            grades: {
+                'maths': [{id: v1(), value: 5}, {id: v1(), value: 5}, {id: v1(), value: 5}, {id: v1(), value: 5},
+                    {id: v1(), value: 'н'}, {id: v1(), value: 5}, {id: v1(), value: 5}, {id: v1(), value: 5},
+                    {id: v1(), value: 'н'}, {id: v1(), value: 5}, {id: v1(), value: 5}, {id: v1(), value: 5},
+                    {id: v1(), value: 'н'}, {id: v1(), value: 5}, {id: v1(), value: 5}],
+                'physics': [{id: v1(), value: 4}, {id: v1(), value: '.'}, {id: v1(), value: '.'}, {
+                    id: v1(),
+                    value: '.'
+                },
+                    {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
+                    {id: v1(), value: '.'}, {id: v1(), value: 3}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
+                    {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'}],
+                'computerScience': [{id: v1(), value: 5}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}, {
+                    id: v1(),
+                    value: 'н'
+                },
+                    {id: v1(), value: 3}, {id: v1(), value: '.'}, {id: v1(), value: 5}, {id: v1(), value: '.'},
+                    {id: v1(), value: 5}, {id: v1(), value: '.'}, {id: v1(), value: 4}, {id: v1(), value: 3},
+                    {id: v1(), value: 4}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}]
+            }, finalAssessment: null
         },
         {
             id: '3', firstName: 'Дмитрий', lastName: 'Дадарчук', lesson: null,
-            grades: [{
-                Maths: [4, '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5],
-                Physics: [2, '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 4, 5],
-                ComputerScience: [3, '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5]
-            }], finalAssessment: null
+            grades: {
+                'maths': [{id: v1(), value: 5}, {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
+                    {id: v1(), value: 5}, {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
+                    {id: v1(), value: 4}, {id: v1(), value: 5}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
+                    {id: v1(), value: 5}, {id: v1(), value: '.'}, {id: v1(), value: '.'}],
+                'physics': [{id: v1(), value: 4}, {id: v1(), value: '.'}, {id: v1(), value: '.'}, {
+                    id: v1(),
+                    value: '.'
+                },
+                    {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
+                    {id: v1(), value: '.'}, {id: v1(), value: 3}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
+                    {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'}],
+                'computerScience': [{id: v1(), value: 5}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}, {
+                    id: v1(),
+                    value: 'н'
+                },
+                    {id: v1(), value: 3}, {id: v1(), value: '.'}, {id: v1(), value: 5}, {id: v1(), value: '.'},
+                    {id: v1(), value: 5}, {id: v1(), value: '.'}, {id: v1(), value: 4}, {id: v1(), value: 3},
+                    {id: v1(), value: 4}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}]
+            }, finalAssessment: null
         },
         {
             id: '4', firstName: 'Павел', lastName: 'Вавилин', lesson: null,
-            grades: [{
-                Maths: [3, '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5],
-                Physics: [2, '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 3, 5, 5],
-                ComputerScience: [3, '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5]
-            }], finalAssessment: null
+            grades: grades, finalAssessment: null
         },
         {
             id: '5', firstName: 'Лиза', lastName: 'Подопригора', lesson: null,
-            grades: [{
-                Maths: ['.', '.', 3, '.', 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5],
-                Physics: ['.', '.', 3, 4, '.', 4, 'н', 2, 5, '.', '.', 5, 4, 5, 5],
-                ComputerScience: [3, '.', 3, 4, 3, 4, 'н', 2, 'н', '.', '.', 5, 5, 5, 5]
-            }], finalAssessment: null
+            grades: grades, finalAssessment: null
         },
         {
             id: '6', firstName: 'Евгения', lastName: 'Кудряшова', lesson: null,
-            grades: [{
-                Maths: ['.', '.', 3, 4, 'н', 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5],
-                Physics: [3, '.', 3, 4, '.', 4, 'н', 2, 5, '.', 'н', 5, 5, 4, 5],
-                ComputerScience: [3, '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5]
-            }], finalAssessment: null
+            grades: grades, finalAssessment: null
         },
         {
             id: '7', firstName: 'Кирилл', lastName: 'Вавилин', lesson: null,
-            grades: [{
-                Maths: ['.', '.', 3, 4, 3, 4, 'н', 5, 5, '.', '.', 5, 5, '.', 5],
-                Physics: ['.', '.', 3, 4, 3, '.', 'н', 4, 5, '.', '.', 5, 5, 5, 3],
-                ComputerScience: ['.', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, '.']
-            }], finalAssessment: null
+            grades: grades, finalAssessment: null
         },
         {
             id: '8', firstName: 'Александра', lastName: 'Комарова', lesson: null,
-            grades: [{
-                Maths: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 4],
-                Physics: [2, '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, '.'],
-                ComputerScience: [3, '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, '.']
-            }], finalAssessment: null
+            grades: grades, finalAssessment: null
         },
         {
             id: '9', firstName: 'Иван', lastName: 'Бакалейщиков', lesson: null,
-            grades: [{
-                Maths: ['.', '.', '.', 4, 3, 4, 3, 2, 5, '.', '.', 5, 5, 5, '.'],
-                Physics: [2, '.', 3, 4, 3, '.', 'н', 2, 5, '.', '.', 5, 5, 5, '.'],
-                ComputerScience: [3, '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, '.']
-            }], finalAssessment: null
+            grades: grades, finalAssessment: null
         },
     ]
 })
 
+test('should be add student in array', () => {
+
+    const action = addStudentAC()
+
+    const endState = StudentsReducer(startState, action)
+
+    expect(endState.length).toBe(10)
+})
+test('should be delete student from array', () => {
+
+    const action = removeStudentAC("5")
+
+    const endState = StudentsReducer(startState, action)
+
+    expect(endState.length).toBe(8)
+})
 test('should be update first name', () => {
 
     const action = changeFirstNameAC('1', "Vlad")
@@ -93,28 +131,6 @@ test('should be update first name', () => {
     const endState = StudentsReducer(startState, action)
 
     expect(endState[0].firstName).toBe("Vlad")
-})
-test('should be add student in array', () => {
-    const newStudent: StudentType = {id: "11", firstName: 'Валера', lastName: 'Куплинов', lesson: "Математика",
-        grades: [
-            {Maths: ['н', 5, 3, 4, 5, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5]},
-            {Physics: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5]},
-            {ComputerScience: ['н', '.', 3, 4, 3, 4, 'н', 2, 5, '.', '.', 5, 5, 5, 5]}
-        ], finalAssessment: null}
-
-    const action = addStudent(newStudent)
-
-    const endState = StudentsReducer(startState, action)
-
-    expect(endState.length).toBe(10)
-})
-test('should be delete student in array', () => {
-
-    const action = removeStudent("5")
-
-    const endState = StudentsReducer(startState, action)
-
-    expect(endState.length).toBe(8)
 })
 test('sort firstName an array from a to z', () => {
 
@@ -151,4 +167,14 @@ test('sort lastName an array from z to a', () => {
 
     expect(endState[8].lastName).toBe('Бакалейщиков')
     expect(endState[0].lastName).toBe('Фирстов')
+})
+test('calculate the GPA should be > 4 and "н" should be < 10% from number of lessons', () => {
+
+    const action = calculationOfGradesAC('maths')
+
+    const endState = StudentsReducer(startState, action)
+
+    expect(endState[0].finalAssessment).toBe(true)
+    expect(endState[1].finalAssessment).toBe(false)
+    expect(endState[2].finalAssessment).toBe(true)
 })

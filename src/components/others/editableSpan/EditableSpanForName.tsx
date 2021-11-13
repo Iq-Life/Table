@@ -1,5 +1,5 @@
 import React, {DetailedHTMLProps, HTMLAttributes, InputHTMLAttributes, useState} from 'react'
-import style from './SuperEditableSpan.module.css'
+import style from './EditableSpanFromGrade.module.css'
 import {InputForName} from "../inputText/InputForName";
 
 export const EditableSpanForName: React.FC<SuperEditableSpanType> = (
@@ -17,7 +17,7 @@ export const EditableSpanForName: React.FC<SuperEditableSpanType> = (
 
     const onEnterCallback = () => {
         if (newName.trim() === "") {
-            setError("name is required")
+            setError("Ввидите имя или фамилию")
         } else {
             setEditMode(false)
             onChangeText(newName)
@@ -25,7 +25,7 @@ export const EditableSpanForName: React.FC<SuperEditableSpanType> = (
     }
     const onBlurCallback = (e: React.FocusEvent<HTMLInputElement>) => {
         if (newName.trim() === "") {
-            setError("name is required")
+            setError("Ввидите имя или фамилию")
         } else {
             setEditMode(false)
             onBlur && onBlur(e)
