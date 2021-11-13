@@ -17,7 +17,7 @@ export const SuperSelect: React.FC<SuperSelectPropsType> = (
 
     const onChangeCallback = (e: ChangeEvent<HTMLSelectElement>) => {
         onChange && onChange(e)
-        onChangeOption && onChangeOption(e.currentTarget.value)
+        onChangeOption(e.currentTarget.value)
     }
 
     return (
@@ -29,7 +29,7 @@ export const SuperSelect: React.FC<SuperSelectPropsType> = (
 //types
 type DefaultSelectPropsType = DetailedHTMLProps<SelectHTMLAttributes<HTMLSelectElement>, HTMLSelectElement>
 type SuperSelectPropsType = DefaultSelectPropsType & {
-    options?: string[]
-    onChangeOption?: (option: string) => void
+    options: string[]
+    onChangeOption: (option: string) => void
 
 }

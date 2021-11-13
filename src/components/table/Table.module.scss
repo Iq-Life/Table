@@ -17,28 +17,28 @@
     border-radius: 10px 10px 0 0;
     background: #1976d2;
 
-    .firstName {
+    .firstNameHeader {
       padding-left: 25px;
       flex-basis: 17%;
     }
 
-    .lastName {
+    .lastNameHeader {
       flex-basis: 15%;
     }
 
-    .lesson {
+    .lessonHeader {
       display: flex;
       justify-content: flex-end;
       flex-basis: 13%;
     }
 
-    .grades {
+    .gradesHeader {
       display: flex;
       justify-content: center;
       flex-basis: 45%;
     }
 
-    .finalAssessment {
+    .finalAssessmentHeader {
       display: flex;
       flex-basis: 7%;
     }
@@ -70,30 +70,32 @@
         border: #1976d2 3px solid;
         border-radius: 50%;
         font-size: 10px;
-        &:focus{
+
+        &:focus {
           color: red;
         }
-        &:hover{
+
+        &:hover {
           border-color: #348cb2;
         }
       }
 
-      .firstName {
+      .firstNameBody {
         padding-left: 5px;
         flex-basis: 20%;
       }
 
-      .lastName {
+      .lastNameBody {
         flex-basis: 20%;
       }
 
-      .lesson {
+      .lessonBody {
         display: flex;
         justify-content: center;
         flex-basis: 18%;
       }
 
-      .grades {
+      .gradesBody {
         position: relative;
         display: flex;
         justify-content: space-around;
@@ -104,15 +106,10 @@
         .oneGrade {
           margin: 0;
           padding: 0;
-          /*display: flex;
-          justify-content: center;
-          border: rgba(255, 255, 255, 0.3) 1px solid;
-          width: 20px;
-          height: 20px;*/
         }
       }
 
-      .finalAssessment {
+      .finalAssessmentBody {
         display: flex;
         justify-content: center;
         border-left: antiquewhite 1px inset;

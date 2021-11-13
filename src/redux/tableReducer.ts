@@ -1,117 +1,487 @@
 import {v1} from "uuid";
 
-export const grades: gradesType = {
-    'maths': [{id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
-        {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
-        {id: v1(), value: 4}, {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
-        {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'}],
-    'physics': [{id: v1(), value: 4}, {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
-        {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
-        {id: v1(), value: '.'}, {id: v1(), value: 3}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
-        {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'}],
-    'computerScience': [{id: v1(), value: 5}, {id: v1(), value: 5}, {id: v1(), value: '.'}, {id: v1(), value: 'н'},
-        {id: v1(), value: 5}, {id: v1(), value: 5}, {id: v1(), value: 5}, {id: v1(), value: '.'},
-        {id: v1(), value: 5}, {id: v1(), value: 5}, {id: v1(), value: 4}, {id: v1(), value: 3},
-        {id: v1(), value: 5}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}]
-}
-
-
 export let initialPeople: Array<StudentType> = [
     {
         id: v1(), firstName: 'Иван', lastName: 'Фирстов', lesson: null,
-        grades: grades, finalAssessment: null
+        grades: {
+            'maths': [
+                {id: v1(), value: '.'}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
+                {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: 'н'}, {id: v1(), value: '.'},
+                {id: v1(), value: 4}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
+                {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'}],
+            'physics': [
+                {id: v1(), value: 4}, {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
+                {id: v1(), value: 5}, {id: v1(), value: '.'}, {id: v1(), value: 3}, {id: v1(), value: '.'},
+                {id: v1(), value: '.'}, {id: v1(), value: 3}, {id: v1(), value: 4}, {id: v1(), value: '.'},
+                {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'}],
+            'computerScience': [
+                {id: v1(), value: 5}, {id: v1(), value: 5}, {id: v1(), value: '.'}, {id: v1(), value: 'н'},
+                {id: v1(), value: 5}, {id: v1(), value: 4}, {id: v1(), value: 5}, {id: v1(), value: '.'},
+                {id: v1(), value: 4}, {id: v1(), value: 5}, {id: v1(), value: 4}, {id: v1(), value: 3},
+                {id: v1(), value: 5}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}]
+        }, finalAssessment: null
     },
     {
         id: v1(), firstName: 'Олег', lastName: 'Куплинов', lesson: null,
-        grades: grades, finalAssessment: null
+        grades: {
+            'maths': [
+                {id: v1(), value: 'н'}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
+                {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
+                {id: v1(), value: 4}, {id: v1(), value: '.'}, {id: v1(), value: 'н'}, {id: v1(), value: '.'},
+                {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'}],
+            'physics': [{id: v1(), value: 4}, {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
+                {id: v1(), value: '.'}, {id: v1(), value: 4}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
+                {id: v1(), value: 'н'}, {id: v1(), value: '.'}, {id: v1(), value: 3}, {id: v1(), value: '.'},
+                {id: v1(), value: '.'}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}],
+            'computerScience': [{id: v1(), value: 5}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}, {
+                id: v1(),
+                value: 'н'
+            },
+                {id: v1(), value: 3}, {id: v1(), value: 'н'}, {id: v1(), value: 'н'}, {id: v1(), value: '.'},
+                {id: v1(), value: 4}, {id: v1(), value: 3}, {id: v1(), value: 4}, {id: v1(), value: 3},
+                {id: v1(), value: 'н'}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}]
+        }, finalAssessment: null
     },
     {
         id: v1(), firstName: 'Дмитрий', lastName: 'Дадарчук', lesson: null,
-        grades: grades, finalAssessment: null
+        grades: {
+            'maths': [
+                {id: v1(), value: 'н'}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
+                {id: v1(), value: '.'}, {id: v1(), value: 4}, {id: v1(), value: 4}, {id: v1(), value: '.'},
+                {id: v1(), value: 4}, {id: v1(), value: '.'}, {id: v1(), value: 'н'}, {id: v1(), value: 4},
+                {id: v1(), value: 'н'}, {id: v1(), value: 'н'}, {id: v1(), value: 4}],
+            'physics': [
+                {id: v1(), value: 4}, {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
+                {id: v1(), value: '.'}, {id: v1(), value: 4}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
+                {id: v1(), value: 'н'}, {id: v1(), value: '.'}, {id: v1(), value: 3}, {id: v1(), value: '.'},
+                {id: v1(), value: 'н'}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}],
+            'computerScience': [
+                {id: v1(), value: '.'}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
+                {id: v1(), value: 4}, {id: v1(), value: 'н'}, {id: v1(), value: 'н'}, {id: v1(), value: '.'},
+                {id: v1(), value: 4}, {id: v1(), value: 4}, {id: v1(), value: 4}, {id: v1(), value: 3},
+                {id: v1(), value: 'н'}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}]
+        }, finalAssessment: null
     },
     {
         id: v1(), firstName: 'Павел', lastName: 'Вавилин', lesson: null,
-        grades: grades, finalAssessment: null
+        grades: {
+            'maths': [
+                {id: v1(), value: '.'}, {id: v1(), value: 'н'}, {id: v1(), value: 3}, {id: v1(), value: 3},
+                {id: v1(), value: '.'}, {id: v1(), value: 4}, {id: v1(), value: 4}, {id: v1(), value: '.'},
+                {id: v1(), value: 4}, {id: v1(), value: 3}, {id: v1(), value: 'н'}, {id: v1(), value: 4},
+                {id: v1(), value: 2}, {id: v1(), value: 'н'}, {id: v1(), value: 4}],
+            'physics': [
+                {id: v1(), value: 4}, {id: v1(), value: '.'}, {id: v1(), value: 5}, {id: v1(), value: '.'},
+                {id: v1(), value: '.'}, {id: v1(), value: 4}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
+                {id: v1(), value: 'н'}, {id: v1(), value: 5}, {id: v1(), value: 3}, {id: v1(), value: '.'},
+                {id: v1(), value: 'н'}, {id: v1(), value: 5}, {id: v1(), value: '.'}],
+            'computerScience': [
+                {id: v1(), value: '.'}, {id: v1(), value: 5}, {id: v1(), value: 5}, {id: v1(), value: '.'},
+                {id: v1(), value: 4}, {id: v1(), value: 5}, {id: v1(), value: 4}, {id: v1(), value: 4},
+                {id: v1(), value: 4}, {id: v1(), value: 4}, {id: v1(), value: 4}, {id: v1(), value: 3},
+                {id: v1(), value: 'н'}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}]
+        }, finalAssessment: null
     },
     {
         id: v1(), firstName: 'Лиза', lastName: 'Подопригора', lesson: null,
-        grades: grades, finalAssessment: null
+        grades: {
+            'maths': [
+                {id: v1(), value: '.'}, {id: v1(), value: 'н'}, {id: v1(), value: 3}, {id: v1(), value: 3},
+                {id: v1(), value: '4'}, {id: v1(), value: 4}, {id: v1(), value: 4}, {id: v1(), value: '.'},
+                {id: v1(), value: 4}, {id: v1(), value: 3}, {id: v1(), value: 'н'}, {id: v1(), value: 4},
+                {id: v1(), value: 2}, {id: v1(), value: 'н'}, {id: v1(), value: 4}],
+            'physics': [
+                {id: v1(), value: 4}, {id: v1(), value: '.'}, {id: v1(), value: 5}, {id: v1(), value: '.'},
+                {id: v1(), value: '.'}, {id: v1(), value: 4}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
+                {id: v1(), value: 'н'}, {id: v1(), value: 3}, {id: v1(), value: 3}, {id: v1(), value: '.'},
+                {id: v1(), value: 'н'}, {id: v1(), value: 5}, {id: v1(), value: '.'}],
+            'computerScience': [
+                {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
+                {id: v1(), value: '.'}, {id: v1(), value: 3}, {id: v1(), value: '.'}, {id: v1(), value: 4},
+                {id: v1(), value: 4}, {id: v1(), value: 4}, {id: v1(), value: '.'}, {id: v1(), value: 3},
+                {id: v1(), value: 'н'}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}]
+        }, finalAssessment: null
     },
     {
         id: v1(), firstName: 'Евгения', lastName: 'Кудряшова', lesson: null,
-        grades: grades, finalAssessment: null
+        grades: {
+            'maths': [
+                {id: v1(), value: '.'}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}, {id: v1(), value: 3},
+                {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
+                {id: v1(), value: 4}, {id: v1(), value: 'н'}, {id: v1(), value: 'н'}, {id: v1(), value: 4},
+                {id: v1(), value: 2}, {id: v1(), value: 'н'}, {id: v1(), value: 4}],
+            'physics': [
+                {id: v1(), value: '.'}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
+                {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: 'н'}, {id: v1(), value: '.'},
+                {id: v1(), value: 'н'}, {id: v1(), value: '.'}, {id: v1(), value: 3}, {id: v1(), value: '.'},
+                {id: v1(), value: 'н'}, {id: v1(), value: '.'}, {id: v1(), value: '.'}],
+            'computerScience': [
+                {id: v1(), value: '.'}, {id: v1(), value: 'н'}, {id: v1(), value: 5}, {id: v1(), value: '.'},
+                {id: v1(), value: 4}, {id: v1(), value: '.'}, {id: v1(), value: 3}, {id: v1(), value: 4},
+                {id: v1(), value: 'н'}, {id: v1(), value: '.'}, {id: v1(), value: 2}, {id: v1(), value: 3},
+                {id: v1(), value: 'н'}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}]
+        }, finalAssessment: null
     },
     {
         id: v1(), firstName: 'Кирилл', lastName: 'Вавилин', lesson: null,
-        grades: grades, finalAssessment: null
+        grades: {
+            'maths': [
+                {id: v1(), value: 5}, {id: v1(), value: 4}, {id: v1(), value: 4}, {id: v1(), value: 3},
+                {id: v1(), value: 5}, {id: v1(), value: 5}, {id: v1(), value: 5}, {id: v1(), value: '.'},
+                {id: v1(), value: 4}, {id: v1(), value: 3}, {id: v1(), value: 4}, {id: v1(), value: 4},
+                {id: v1(), value: 4}, {id: v1(), value: 5}, {id: v1(), value: 4}],
+            'physics': [
+                {id: v1(), value: 5}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}, {id: v1(), value: 5},
+                {id: v1(), value: 4}, {id: v1(), value: '.'}, {id: v1(), value: 'н'}, {id: v1(), value: 4},
+                {id: v1(), value: 4}, {id: v1(), value: '.'}, {id: v1(), value: 3}, {id: v1(), value: 3},
+                {id: v1(), value: 3}, {id: v1(), value: 5}, {id: v1(), value: '.'}],
+            'computerScience': [
+                {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: 5}, {id: v1(), value: '.'},
+                {id: v1(), value: 4}, {id: v1(), value: 5}, {id: v1(), value: 3}, {id: v1(), value: 4},
+                {id: v1(), value: 'н'}, {id: v1(), value: 3}, {id: v1(), value: 5}, {id: v1(), value: 3},
+                {id: v1(), value: 'н'}, {id: v1(), value: 3}, {id: v1(), value: 4}]
+        }, finalAssessment: null
     },
     {
         id: v1(), firstName: 'Александра', lastName: 'Комарова', lesson: null,
-        grades: grades, finalAssessment: null
+        grades: {
+            'maths': [
+                {id: v1(), value: '.'}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
+                {id: v1(), value: '.'}, {id: v1(), value: 4}, {id: v1(), value: 4}, {id: v1(), value: '.'},
+                {id: v1(), value: 4}, {id: v1(), value: '.'}, {id: v1(), value: 'н'}, {id: v1(), value: 4},
+                {id: v1(), value: 'н'}, {id: v1(), value: 'н'}, {id: v1(), value: 4}],
+            'physics': [
+                {id: v1(), value: 'н'}, {id: v1(), value: '.'}, {id: v1(), value: 'н'}, {id: v1(), value: '.'},
+                {id: v1(), value: '.'}, {id: v1(), value: 4}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
+                {id: v1(), value: 'н'}, {id: v1(), value: '.'}, {id: v1(), value: 'н'}, {id: v1(), value: '.'},
+                {id: v1(), value: 'н'}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}],
+            'computerScience': [
+                {id: v1(), value: 4}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
+                {id: v1(), value: 4}, {id: v1(), value: 'н'}, {id: v1(), value: 4}, {id: v1(), value: '.'},
+                {id: v1(), value: 4}, {id: v1(), value: 4}, {id: v1(), value: 4}, {id: v1(), value: 3},
+                {id: v1(), value: 'н'}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}]
+        }, finalAssessment: null
     },
     {
         id: v1(), firstName: 'Иван', lastName: 'Бакалейщиков', lesson: null,
-        grades: grades, finalAssessment: null
+        grades: {
+            'maths': [
+                {id: v1(), value: '.'}, {id: v1(), value: 3}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
+                {id: v1(), value: '.'}, {id: v1(), value: 4}, {id: v1(), value: 'н'}, {id: v1(), value: '.'},
+                {id: v1(), value: 4}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
+                {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'}],
+            'physics': [
+                {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
+                {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: 3}, {id: v1(), value: '.'},
+                {id: v1(), value: '.'}, {id: v1(), value: 3}, {id: v1(), value: 4}, {id: v1(), value: '.'},
+                {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'}],
+            'computerScience': [
+                {id: v1(), value: '.'}, {id: v1(), value: 5}, {id: v1(), value: 'н'}, {id: v1(), value: 'н'},
+                {id: v1(), value: 5}, {id: v1(), value: '.'}, {id: v1(), value: 2}, {id: v1(), value: '.'},
+                {id: v1(), value: '.'}, {id: v1(), value: 5}, {id: v1(), value: 4}, {id: v1(), value: 3},
+                {id: v1(), value: 5}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}]
+        }, finalAssessment: null
     },
     {
         id: v1(), firstName: 'Анастасия', lastName: 'Фирстова', lesson: null,
-        grades: grades, finalAssessment: null
+        grades: {
+            'maths': [
+                {id: v1(), value: '.'}, {id: v1(), value: 3}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
+                {id: v1(), value: 'н'}, {id: v1(), value: 3}, {id: v1(), value: 'н'}, {id: v1(), value: '.'},
+                {id: v1(), value: 4}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
+                {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'}],
+            'physics': [
+                {id: v1(), value: 'н'}, {id: v1(), value: '.'}, {id: v1(), value: 2}, {id: v1(), value: '.'},
+                {id: v1(), value: 4}, {id: v1(), value: 3}, {id: v1(), value: 3}, {id: v1(), value: '.'},
+                {id: v1(), value: '.'}, {id: v1(), value: 3}, {id: v1(), value: 4}, {id: v1(), value: '.'},
+                {id: v1(), value: 5}, {id: v1(), value: '.'}, {id: v1(), value: '.'}],
+            'computerScience': [
+                {id: v1(), value: '.'}, {id: v1(), value: 4}, {id: v1(), value: 'н'}, {id: v1(), value: 'н'},
+                {id: v1(), value: 3}, {id: v1(), value: 'н'}, {id: v1(), value: 2}, {id: v1(), value: '.'},
+                {id: v1(), value: '.'}, {id: v1(), value: 3}, {id: v1(), value: 4}, {id: v1(), value: 3},
+                {id: v1(), value: 4}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}]
+        }, finalAssessment: null
     },
     {
         id: v1(), firstName: 'Глеб', lastName: 'Радионов', lesson: null,
-        grades: grades, finalAssessment: null
+        grades: {
+            'maths': [
+                {id: v1(), value: '.'}, {id: v1(), value: 3}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
+                {id: v1(), value: 'н'}, {id: v1(), value: 4}, {id: v1(), value: 'н'}, {id: v1(), value: '.'},
+                {id: v1(), value: 4}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
+                {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'}],
+            'physics': [
+                {id: v1(), value: 'н'}, {id: v1(), value: 'н'}, {id: v1(), value: 'н'}, {id: v1(), value: 'н'},
+                {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: 3}, {id: v1(), value: 'н'},
+                {id: v1(), value: 'н'}, {id: v1(), value: 3}, {id: v1(), value: 3}, {id: v1(), value: '.'},
+                {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'}],
+            'computerScience': [
+                {id: v1(), value: 'н'}, {id: v1(), value: 5}, {id: v1(), value: 'н'}, {id: v1(), value: 'н'},
+                {id: v1(), value: 'н'}, {id: v1(), value: '.'}, {id: v1(), value: 2}, {id: v1(), value: '.'},
+                {id: v1(), value: '.'}, {id: v1(), value: 'н'}, {id: v1(), value: 4}, {id: v1(), value: 3},
+                {id: v1(), value: 'н'}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}]
+        }, finalAssessment: null
     },
     {
         id: v1(), firstName: 'Валерия', lastName: 'Тарасова', lesson: null,
-        grades: grades, finalAssessment: null
+        grades: {
+            'maths': [
+                {id: v1(), value: 5}, {id: v1(), value: 'н'}, {id: v1(), value: 3}, {id: v1(), value: '.'},
+                {id: v1(), value: 4}, {id: v1(), value: 3}, {id: v1(), value: 5}, {id: v1(), value: '.'},
+                {id: v1(), value: 4}, {id: v1(), value: '.'}, {id: v1(), value: 'н'}, {id: v1(), value: '.'},
+                {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'}],
+            'physics': [{id: v1(), value: 4}, {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
+                {id: v1(), value: 5}, {id: v1(), value: 4}, {id: v1(), value: 4}, {id: v1(), value: '.'},
+                {id: v1(), value: 4}, {id: v1(), value: 5}, {id: v1(), value: 3}, {id: v1(), value: '.'},
+                {id: v1(), value: '.'}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}],
+            'computerScience': [{id: v1(), value: 5}, {id: v1(), value: 5}, {id: v1(), value: '.'}, {
+                id: v1(),
+                value: 5
+            },
+                {id: v1(), value: 4}, {id: v1(), value: 4}, {id: v1(), value: 4}, {id: v1(), value: '.'},
+                {id: v1(), value: 4}, {id: v1(), value: 5}, {id: v1(), value: 4}, {id: v1(), value: 3},
+                {id: v1(), value: 'н'}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}]
+        }, finalAssessment: null
     },
     {
         id: v1(), firstName: 'Ганзель', lastName: 'Фирстов', lesson: null,
-        grades: grades, finalAssessment: null
+        grades: {
+            'maths': [
+                {id: v1(), value: '.'}, {id: v1(), value: 'н'}, {id: v1(), value: 'н'}, {id: v1(), value: 3},
+                {id: v1(), value: '.'}, {id: v1(), value: 4}, {id: v1(), value: 'н'}, {id: v1(), value: '.'},
+                {id: v1(), value: 'н'}, {id: v1(), value: 3}, {id: v1(), value: 'н'}, {id: v1(), value: 4},
+                {id: v1(), value: 2}, {id: v1(), value: 'н'}, {id: v1(), value: 4}],
+            'physics': [
+                {id: v1(), value: 'н'}, {id: v1(), value: '.'}, {id: v1(), value: 5}, {id: v1(), value: '.'},
+                {id: v1(), value: '.'}, {id: v1(), value: 4}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
+                {id: v1(), value: 'н'}, {id: v1(), value: 3}, {id: v1(), value: 3}, {id: v1(), value: '.'},
+                {id: v1(), value: 'н'}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}],
+            'computerScience': [
+                {id: v1(), value: 'н'}, {id: v1(), value: 5}, {id: v1(), value: 3}, {id: v1(), value: '.'},
+                {id: v1(), value: 4}, {id: v1(), value: 3}, {id: v1(), value: 4}, {id: v1(), value: 4},
+                {id: v1(), value: 4}, {id: v1(), value: 3}, {id: v1(), value: 4}, {id: v1(), value: 3},
+                {id: v1(), value: 'н'}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}]
+        }, finalAssessment: null
     },
     {
         id: v1(), firstName: 'Илья', lastName: 'Вавилин', lesson: null,
-        grades: grades, finalAssessment: null
+        grades: {
+            'maths': [
+                {id: v1(), value: '.'}, {id: v1(), value: 5}, {id: v1(), value: 3}, {id: v1(), value: 3},
+                {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: 5}, {id: v1(), value: '.'},
+                {id: v1(), value: 4}, {id: v1(), value: 5}, {id: v1(), value: 'н'}, {id: v1(), value: 4},
+                {id: v1(), value: 2}, {id: v1(), value: 'н'}, {id: v1(), value: 4}],
+            'physics': [
+                {id: v1(), value: 4}, {id: v1(), value: '.'}, {id: v1(), value: 5}, {id: v1(), value: '.'},
+                {id: v1(), value: '.'}, {id: v1(), value: 4}, {id: v1(), value: 4}, {id: v1(), value: '.'},
+                {id: v1(), value: 5}, {id: v1(), value: 5}, {id: v1(), value: 3}, {id: v1(), value: '.'},
+                {id: v1(), value: 'н'}, {id: v1(), value: 5}, {id: v1(), value: '.'}],
+            'computerScience': [
+                {id: v1(), value: '.'}, {id: v1(), value: 5}, {id: v1(), value: 5}, {id: v1(), value: '.'},
+                {id: v1(), value: 4}, {id: v1(), value: 5}, {id: v1(), value: 4}, {id: v1(), value: 4},
+                {id: v1(), value: 4}, {id: v1(), value: 4}, {id: v1(), value: 4}, {id: v1(), value: 3},
+                {id: v1(), value: 'н'}, {id: v1(), value: '.'}, {id: v1(), value: '.'}]
+        }, finalAssessment: null
     },
     {
         id: v1(), firstName: 'Анна', lastName: 'Ермошина', lesson: null,
-        grades: grades, finalAssessment: null
+        grades: {
+            'maths': [
+                {id: v1(), value: '.'}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}, {id: v1(), value: 3},
+                {id: v1(), value: '.'}, {id: v1(), value: 4}, {id: v1(), value: 4}, {id: v1(), value: '.'},
+                {id: v1(), value: 4}, {id: v1(), value: 3}, {id: v1(), value: 'н'}, {id: v1(), value: 4},
+                {id: v1(), value: 2}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}],
+            'physics': [
+                {id: v1(), value: 4}, {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
+                {id: v1(), value: '.'}, {id: v1(), value: 4}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
+                {id: v1(), value: 'н'}, {id: v1(), value: '.'}, {id: v1(), value: 3}, {id: v1(), value: '.'},
+                {id: v1(), value: 'н'}, {id: v1(), value: 5}, {id: v1(), value: '.'}],
+            'computerScience': [
+                {id: v1(), value: '.'}, {id: v1(), value: 5}, {id: v1(), value: 5}, {id: v1(), value: '.'},
+                {id: v1(), value: 4}, {id: v1(), value: 5}, {id: v1(), value: '.'}, {id: v1(), value: 4},
+                {id: v1(), value: 4}, {id: v1(), value: '.'}, {id: v1(), value: 4}, {id: v1(), value: 3},
+                {id: v1(), value: 'н'}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}]
+        }, finalAssessment: null
     },
     {
         id: v1(), firstName: 'Богдан', lastName: 'Римов', lesson: null,
-        grades: grades, finalAssessment: null
+        grades: {
+            'maths': [
+                {id: v1(), value: 'н'}, {id: v1(), value: 'н'}, {id: v1(), value: 3}, {id: v1(), value: 3},
+                {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: 4}, {id: v1(), value: '.'},
+                {id: v1(), value: 4}, {id: v1(), value: '.'}, {id: v1(), value: 'н'}, {id: v1(), value: 4},
+                {id: v1(), value: '.'}, {id: v1(), value: 'н'}, {id: v1(), value: 4}],
+            'physics': [
+                {id: v1(), value: 4}, {id: v1(), value: '.'}, {id: v1(), value: 5}, {id: v1(), value: '.'},
+                {id: v1(), value: '.'}, {id: v1(), value: 4}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
+                {id: v1(), value: 'н'}, {id: v1(), value: 'н'}, {id: v1(), value: 3}, {id: v1(), value: '.'},
+                {id: v1(), value: 'н'}, {id: v1(), value: '.'}, {id: v1(), value: '.'}],
+            'computerScience': [
+                {id: v1(), value: 'н'}, {id: v1(), value: '.'}, {id: v1(), value: 5}, {id: v1(), value: '.'},
+                {id: v1(), value: 4}, {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: 4},
+                {id: v1(), value: 4}, {id: v1(), value: 4}, {id: v1(), value: 4}, {id: v1(), value: 3},
+                {id: v1(), value: 'н'}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}]
+        }, finalAssessment: null
     },
     {
         id: v1(), firstName: 'Рудольф', lastName: 'Адольфовинов', lesson: null,
-        grades: grades, finalAssessment: null
+        grades: {
+            'maths': [
+                {id: v1(), value: 'н'}, {id: v1(), value: 'н'}, {id: v1(), value: 'н'}, {id: v1(), value: '.'},
+                {id: v1(), value: 'н'}, {id: v1(), value: 'н'}, {id: v1(), value: 'н'}, {id: v1(), value: '.'},
+                {id: v1(), value: 4}, {id: v1(), value: 'н'}, {id: v1(), value: 2}, {id: v1(), value: '.'},
+                {id: v1(), value: '.'}, {id: v1(), value: 3}, {id: v1(), value: 'н'}],
+            'physics': [
+                {id: v1(), value: 4}, {id: v1(), value: 'н'}, {id: v1(), value: 'н'}, {id: v1(), value: '.'},
+                {id: v1(), value: 2}, {id: v1(), value: 'н'}, {id: v1(), value: 3}, {id: v1(), value: '.'},
+                {id: v1(), value: 'н'}, {id: v1(), value: 3}, {id: v1(), value: 2}, {id: v1(), value: '.'},
+                {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'}],
+            'computerScience': [
+                {id: v1(), value: 'н'}, {id: v1(), value: 5}, {id: v1(), value: '.'}, {id: v1(), value: 'н'},
+                {id: v1(), value: 'н'}, {id: v1(), value: 'н'}, {id: v1(), value: 5}, {id: v1(), value: '.'},
+                {id: v1(), value: 'н'}, {id: v1(), value: 5}, {id: v1(), value: 4}, {id: v1(), value: 3},
+                {id: v1(), value: 'н'}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}]
+        }, finalAssessment: null
     },
     {
         id: v1(), firstName: 'Павел', lastName: 'Кураев', lesson: null,
-        grades: grades, finalAssessment: null
+        grades: {
+            'maths': [
+                {id: v1(), value: '.'}, {id: v1(), value: 'н'}, {id: v1(), value: 3}, {id: v1(), value: 3},
+                {id: v1(), value: '.'}, {id: v1(), value: 'н'}, {id: v1(), value: 4}, {id: v1(), value: '.'},
+                {id: v1(), value: 'н'}, {id: v1(), value: 3}, {id: v1(), value: 'н'}, {id: v1(), value: 4},
+                {id: v1(), value: 2}, {id: v1(), value: 'н'}, {id: v1(), value: 4}],
+            'physics': [
+                {id: v1(), value: 4}, {id: v1(), value: '.'}, {id: v1(), value: 5}, {id: v1(), value: '.'},
+                {id: v1(), value: '.'}, {id: v1(), value: 4}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
+                {id: v1(), value: 'н'}, {id: v1(), value: 'н'}, {id: v1(), value: 3}, {id: v1(), value: '.'},
+                {id: v1(), value: 'н'}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}],
+            'computerScience': [
+                {id: v1(), value: '.'}, {id: v1(), value: 5}, {id: v1(), value: 'н'}, {id: v1(), value: '.'},
+                {id: v1(), value: 4}, {id: v1(), value: 5}, {id: v1(), value: 'н'}, {id: v1(), value: 4},
+                {id: v1(), value: 4}, {id: v1(), value: 4}, {id: v1(), value: 4}, {id: v1(), value: 3},
+                {id: v1(), value: 'н'}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}]
+        }, finalAssessment: null
     },
     {
         id: v1(), firstName: 'Сергей', lastName: 'Запределькин', lesson: null,
-        grades: grades, finalAssessment: null
+        grades: {
+            'maths': [
+                {id: v1(), value: '.'}, {id: v1(), value: 'н'}, {id: v1(), value: 3}, {id: v1(), value: 3},
+                {id: v1(), value: '.'}, {id: v1(), value: 4}, {id: v1(), value: 4}, {id: v1(), value: '.'},
+                {id: v1(), value: 'н'}, {id: v1(), value: 3}, {id: v1(), value: 'н'}, {id: v1(), value: 4},
+                {id: v1(), value: 'н'}, {id: v1(), value: 'н'}, {id: v1(), value: 'н'}],
+            'physics': [
+                {id: v1(), value: 4}, {id: v1(), value: '.'}, {id: v1(), value: 'н'}, {id: v1(), value: '.'},
+                {id: v1(), value: '.'}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
+                {id: v1(), value: 'н'}, {id: v1(), value: 'н'}, {id: v1(), value: 3}, {id: v1(), value: '.'},
+                {id: v1(), value: 'н'}, {id: v1(), value: 5}, {id: v1(), value: '.'}],
+            'computerScience': [
+                {id: v1(), value: '.'}, {id: v1(), value: 5}, {id: v1(), value: 5}, {id: v1(), value: '.'},
+                {id: v1(), value: 4}, {id: v1(), value: 5}, {id: v1(), value: 'н'}, {id: v1(), value: 4},
+                {id: v1(), value: 4}, {id: v1(), value: 4}, {id: v1(), value: 'н'}, {id: v1(), value: 3},
+                {id: v1(), value: 'н'}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}]
+        }, finalAssessment: null
     },
     {
         id: v1(), firstName: 'Сергей', lastName: 'Мамонов', lesson: null,
-        grades: grades, finalAssessment: null
+        grades: {
+            'maths': [
+                {id: v1(), value: '.'}, {id: v1(), value: 'н'}, {id: v1(), value: 3}, {id: v1(), value: 3},
+                {id: v1(), value: '.'}, {id: v1(), value: 4}, {id: v1(), value: 4}, {id: v1(), value: '.'},
+                {id: v1(), value: 'н'}, {id: v1(), value: 3}, {id: v1(), value: 'н'}, {id: v1(), value: 4},
+                {id: v1(), value: 2}, {id: v1(), value: 'н'}, {id: v1(), value: 4}],
+            'physics': [
+                {id: v1(), value: 4}, {id: v1(), value: '.'}, {id: v1(), value: 'н'}, {id: v1(), value: '.'},
+                {id: v1(), value: '.'}, {id: v1(), value: 4}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
+                {id: v1(), value: 'н'}, {id: v1(), value: 'н'}, {id: v1(), value: 3}, {id: v1(), value: '.'},
+                {id: v1(), value: 'н'}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}],
+            'computerScience': [
+                {id: v1(), value: '.'}, {id: v1(), value: 5}, {id: v1(), value: 5}, {id: v1(), value: '.'},
+                {id: v1(), value: 4}, {id: v1(), value: 'н'}, {id: v1(), value: 'н'}, {id: v1(), value: 4},
+                {id: v1(), value: 4}, {id: v1(), value: 'н'}, {id: v1(), value: 4}, {id: v1(), value: 3},
+                {id: v1(), value: 'н'}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}]
+        }, finalAssessment: null
     },
     {
         id: v1(), firstName: 'Александр', lastName: 'Киркоров', lesson: null,
-        grades: grades, finalAssessment: null
+        grades: {
+            'maths': [
+                {id: v1(), value: '.'}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
+                {id: v1(), value: 'н'}, {id: v1(), value: '.'}, {id: v1(), value: 'н'}, {id: v1(), value: '.'},
+                {id: v1(), value: 4}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
+                {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'}],
+            'physics': [
+                {id: v1(), value: 4}, {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
+                {id: v1(), value: 5}, {id: v1(), value: '.'}, {id: v1(), value: 'н'}, {id: v1(), value: '.'},
+                {id: v1(), value: '.'}, {id: v1(), value: 3}, {id: v1(), value: 4}, {id: v1(), value: '.'},
+                {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'}],
+            'computerScience': [
+                {id: v1(), value: 5}, {id: v1(), value: 5}, {id: v1(), value: '.'}, {id: v1(), value: 'н'},
+                {id: v1(), value: 'н'}, {id: v1(), value: 'н'}, {id: v1(), value: 5}, {id: v1(), value: '.'},
+                {id: v1(), value: 'н'}, {id: v1(), value: 5}, {id: v1(), value: 4}, {id: v1(), value: 3},
+                {id: v1(), value: 5}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}]
+        }, finalAssessment: null
     },
     {
         id: v1(), firstName: 'Евгения', lastName: 'Бирова', lesson: null,
-        grades: grades, finalAssessment: null
+        grades: {
+            'maths': [
+                {id: v1(), value: '.'}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}, {id: v1(), value: 3},
+                {id: v1(), value: 'н'}, {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
+                {id: v1(), value: 4}, {id: v1(), value: 'н'}, {id: v1(), value: 'н'}, {id: v1(), value: 4},
+                {id: v1(), value: 2}, {id: v1(), value: 'н'}, {id: v1(), value: 4}],
+            'physics': [
+                {id: v1(), value: 3}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
+                {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: 'н'}, {id: v1(), value: '.'},
+                {id: v1(), value: 'н'}, {id: v1(), value: '.'}, {id: v1(), value: 3}, {id: v1(), value: '.'},
+                {id: v1(), value: 'н'}, {id: v1(), value: '.'}, {id: v1(), value: '.'}],
+            'computerScience': [
+                {id: v1(), value: 4}, {id: v1(), value: 'н'}, {id: v1(), value: 5}, {id: v1(), value: '.'},
+                {id: v1(), value: 4}, {id: v1(), value: '.'}, {id: v1(), value: 3}, {id: v1(), value: 4},
+                {id: v1(), value: 'н'}, {id: v1(), value: '.'}, {id: v1(), value: 2}, {id: v1(), value: 3},
+                {id: v1(), value: 'н'}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}]
+        }, finalAssessment: null
     },
     {
         id: v1(), firstName: 'Роман', lastName: 'Кудрявцев', lesson: null,
-        grades: grades, finalAssessment: null
+        grades: {
+            'maths': [
+                {id: v1(), value: '.'}, {id: v1(), value: 'н'}, {id: v1(), value: 3}, {id: v1(), value: 3},
+                {id: v1(), value: 'н'}, {id: v1(), value: 4}, {id: v1(), value: 4}, {id: v1(), value: '.'},
+                {id: v1(), value: 4}, {id: v1(), value: 3}, {id: v1(), value: 'н'}, {id: v1(), value: 4},
+                {id: v1(), value: 2}, {id: v1(), value: 'н'}, {id: v1(), value: 4}],
+            'physics': [
+                {id: v1(), value: 4}, {id: v1(), value: '.'}, {id: v1(), value: 5}, {id: v1(), value: '.'},
+                {id: v1(), value: '.'}, {id: v1(), value: 4}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
+                {id: v1(), value: '.'}, {id: v1(), value: 5}, {id: v1(), value: 3}, {id: v1(), value: '.'},
+                {id: v1(), value: 'н'}, {id: v1(), value: 5}, {id: v1(), value: '.'}],
+            'computerScience': [
+                {id: v1(), value: '.'}, {id: v1(), value: 5}, {id: v1(), value: 5}, {id: v1(), value: '.'},
+                {id: v1(), value: 3}, {id: v1(), value: 5}, {id: v1(), value: 4}, {id: v1(), value: 4},
+                {id: v1(), value: 4}, {id: v1(), value: 4}, {id: v1(), value: 4}, {id: v1(), value: 3},
+                {id: v1(), value: 'н'}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}]
+        }, finalAssessment: null
     },
     {
         id: v1(), firstName: 'Юлия', lastName: 'Ахламонова', lesson: null,
-        grades: grades, finalAssessment: null
+        grades: {
+            'maths': [
+                {id: v1(), value: 'н'}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
+                {id: v1(), value: 5}, {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
+                {id: v1(), value: 4}, {id: v1(), value: '.'}, {id: v1(), value: 'н'}, {id: v1(), value: '.'},
+                {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'}],
+            'physics': [
+                {id: v1(), value: 4}, {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
+                {id: v1(), value: 4}, {id: v1(), value: 4}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
+                {id: v1(), value: 'н'}, {id: v1(), value: '.'}, {id: v1(), value: 3}, {id: v1(), value: '.'},
+                {id: v1(), value: '.'}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}],
+            'computerScience': [
+                {id: v1(), value: 5}, {id: v1(), value: 5}, {id: v1(), value: '.'}, {id: v1(), value: 'н'},
+                {id: v1(), value: 3}, {id: v1(), value: 'н'}, {id: v1(), value: 'н'}, {id: v1(), value: '.'},
+                {id: v1(), value: 4}, {id: v1(), value: 3}, {id: v1(), value: 4}, {id: v1(), value: 3},
+                {id: v1(), value: 'н'}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}]
+        }, finalAssessment: null
     }
 ]
 
@@ -157,11 +527,15 @@ export const StudentsReducer = (state = initialPeople, action: ActionTypes): Stu
         }
         case "CHANGE_GRADE": {
             return state.map(student => student.id === action.idStudent
-                ? {...student, grades: {[action.lessons]: [...student.grades[action.lessons].map(
+                ? {
+                    ...student, grades: {
+                        [action.lessons]: [...student.grades[action.lessons].map(
                             (grade) => grade.id === action.idGrade
                                 ? {...grade, value: action.newGrade}
                                 : grade
-                        )],}}
+                        )],
+                    }
+                }
                 : student
             )
         }
@@ -175,9 +549,9 @@ export const StudentsReducer = (state = initialPeople, action: ActionTypes): Stu
                     const arrNumber = searchForNumber!.map(Number)
                     const averageScore = arrNumber.reduce((a, b) => a + b) / arrNumber.length
                     const missedClasses: Array<string> | null = arrGrades.join().match(/[н]/g)
-                    if (missedClasses){
-                        const tenPercentForNCount = Math.floor((10 * arrGrades.length) / 100)
-                        const passed = missedClasses && averageScore > 4 && missedClasses.length < tenPercentForNCount
+                    if (missedClasses) {
+                        const tenPercentForNCount = Math.ceil((10 * arrGrades.length) / 100)
+                        const passed = averageScore > 4 && missedClasses.length <= tenPercentForNCount
                         student.finalAssessment = passed
                     } else {
                         const passed = averageScore > 4
@@ -190,6 +564,11 @@ export const StudentsReducer = (state = initialPeople, action: ActionTypes): Stu
                 return student
             })
         }
+        case "RESETTING_FINAL_ASSESSMENT" : {
+                return state.map((student)=> {
+                    student.finalAssessment = null
+                    return student})
+            }
         default:
             return state
     }
@@ -225,14 +604,53 @@ export const changeGradeAC = (idStudent: string, idGrade: string, lessons: strin
 export const calculationOfGradesAC = (lessons: string) => {
     return {type: "CALCULATION_OF_GRADES", lessons} as const
 }
-
-
+export const resettingFinalAssessmentAC = () => {
+    return {type: "RESETTING_FINAL_ASSESSMENT", } as const
+}
+//thanks
+/*export const getStudents = (): ThunksType =>
+    async (dispatch) => {
+        let data = await studentsAPI.getStudents()
+        dispatch(setStudents(data))
+    }
+export const getStudentsGrades = (studentId: number, lessons: string): ThunksType =>
+    async (dispatch) => {
+        let data = await studentsAPI.getGrades(userId: number, lessons: string)
+        dispatch(setStudentsGrades(data))
+    }
+export const updateGrade = (studentId: number, gradeId, lessons: string): ThunksType =>
+    async (dispatch) => {
+        let data = await studentsAPI.updateGrade(studentId, gradeId, lessons)
+        if (data.resultCode === ResultCodeEnum.Success) {
+            dispatch(setStatusProfile(status))
+        } else {
+            alert(data.messages[0])
+        }
+    }
+export const savePhoto = (photos: File): ThunksType =>
+    async (dispatch) => {
+        let response = await profileAPI.savePhoto(photos)
+        if (response.resultCode === ResultCodeEnum.Success) {
+            dispatch(savePhotoSuccess(response.data))
+        }
+    }
+export const saveProfile = (profile: UserProfile): ThunksType =>
+    async (dispatch) => {
+        let data = await profileAPI.saveProfile(profile)
+        if (data.resultCode === ResultCodeEnum.Success) {
+            dispatch(saveProfileSuccess(profile))
+        } else {
+            dispatch(stopSubmit("edit-profile", {_error: data.messages[0]}))
+            return Promise.reject(data.messages[0])
+        }
+    }*/
 //types
 type ActionTypes = ReturnType<typeof addStudentAC> | ReturnType<typeof removeStudentAC> |
     ReturnType<typeof changeFirstNameAC> | ReturnType<typeof changeLastNameAC> |
     ReturnType<typeof sortFNameDecAC> | ReturnType<typeof sortLNameDecAC> |
     ReturnType<typeof sortFNameIncAC> | ReturnType<typeof sortLNameIncAC> |
-    ReturnType<typeof changeGradeAC> | ReturnType<typeof calculationOfGradesAC>
+    ReturnType<typeof changeGradeAC> | ReturnType<typeof calculationOfGradesAC>|
+    ReturnType<typeof resettingFinalAssessmentAC>
 
 export type StudentType = {
     id: string

@@ -1,16 +1,9 @@
 import React, {useState} from 'react';
 import style from './Table.module.scss'
 import {
-    addStudentAC,
-    calculationOfGradesAC,
-    changeFirstNameAC,
-    changeGradeAC,
-    changeLastNameAC, removeStudentAC,
-    sortFNameDecAC,
-    sortFNameIncAC,
-    sortLNameDecAC,
-    sortLNameIncAC,
-    StudentType
+    addStudentAC, calculationOfGradesAC, changeFirstNameAC, changeGradeAC,
+    changeLastNameAC, removeStudentAC, resettingFinalAssessmentAC, sortFNameDecAC, sortFNameIncAC,
+    sortLNameDecAC, sortLNameIncAC, StudentType
 } from "../../redux/tableReducer";
 import {useDispatch, useSelector} from "react-redux";
 import {AppStoreType} from "../../redux/Redux-store";
@@ -31,7 +24,7 @@ export const Table: React.FC = () => {
         dispatch(addStudentAC())
     }
     const removeStudent = (idStudent: string) => {
-      dispatch(removeStudentAC(idStudent))
+        dispatch(removeStudentAC(idStudent))
     }
 //change first and last name
     const changeFirstname = (id: string, fName: string) => {
@@ -39,6 +32,10 @@ export const Table: React.FC = () => {
     }
     const changeLastname = (id: string, lName: string) => {
         dispatch(changeLastNameAC(id, lName))
+    }
+//change grade
+    const changeGrade = (idStudent: string, idGrade: string, lessons: string, newGrade: string | number) => {
+        dispatch(changeGradeAC(idStudent, idGrade, lessons, newGrade))
     }
 //sort first and last Name
     const sortFNameDec = () => {
@@ -53,37 +50,43 @@ export const Table: React.FC = () => {
     const sortLNameInc = () => {
         dispatch(sortLNameIncAC())
     }
-//change grade
-    const changeGrade = (idStudent: string, idGrade:string, lessons: string, newGrade: string|number) => {
-        dispatch(changeGradeAC(idStudent, idGrade, lessons, newGrade))
-    }
 //calculation of grades
     const passed = () => {
         dispatch(calculationOfGradesAC(lessons))
     }
+//set lessons and resetting finalAssessment
+    const setLessonAndResettingFinalAssessment = (value:string) =>{
+        setLessons(value)
+        dispatch(resettingFinalAssessmentAC())
+    }
 
-
-    const finalPeople = students.map((student: StudentType) => (
+    let finalPeople = students.map((student: StudentType) => (
         <div key={student.id} className={style.rowTable}>
-            <button className={style.buttonRemove} onClick={()=>{removeStudent(student.id)}}>X</button>
-            <div className={style.firstName}>
-                <EditableSpanForName title={student.firstName} onChangeText={(newName) => changeFirstname(student.id, newName)}/>
+            <button className={style.buttonRemove} onClick={() => {removeStudent(student.id)}}>
+                X
+            </button>
+            <div className={style.firstNameBody}>
+                <EditableSpanForName title={student.firstName}
+                                     onChangeText={(newName) => changeFirstname(student.id, newName)}/>
             </div>
-            <div className={style.lastName}>
-                <EditableSpanForName title={student.lastName} onChangeText={(newName) => changeLastname(student.id, newName)}/>
+            <div className={style.lastNameBody}>
+                <EditableSpanForName title={student.lastName}
+                                     onChangeText={(newName) => changeLastname(student.id, newName)}/>
             </div>
-            <div className={style.lesson}>
-                {lessons  === 'maths' ? 'Математика' : lessons === 'physics' ? 'Физика' : 'Информатика'}
+            <div className={style.lessonBody}>
+                {lessons === 'maths' ? 'Математика' : lessons === 'physics' ? 'Физика' : 'Информатика'}
             </div>
-            <div className={style.grades}>
+            <div className={style.gradesBody}>
                 {student.grades[lessons].map(grade =>
-                        <div className={style.oneGrade} key={grade.id}>
-                            <EditableSpanFromGrades item={grade.value} onChangeText={(newGrade) =>
-                                changeGrade(student.id, grade.id, lessons, newGrade)}/>
-                        </div>)
-                }</div>
-            <div className={style.finalAssessment}>{student.finalAssessment === null ? ' ' :
-                student.finalAssessment === true ? 'зачёт' : 'нет'}</div>
+                    <div className={style.oneGrade} key={grade.id}>
+                        <EditableSpanFromGrades item={grade.value} onChangeText={(newGrade) =>
+                            changeGrade(student.id, grade.id, lessons, newGrade)}/>
+                    </div>
+                )}
+            </div>
+            <div className={style.finalAssessmentBody}>{student.finalAssessment === null ? ' ' :
+                student.finalAssessment === true ? 'зачёт' : 'нет'}
+            </div>
         </div>
     ))
 
@@ -91,11 +94,11 @@ export const Table: React.FC = () => {
         <div className={style.table}>
             <div>
                 <div className={style.header}>
-                    <div className={style.firstName}>Имя</div>
-                    <div className={style.lastName}>Фамилия</div>
-                    <div className={style.lesson}>Предмет</div>
-                    <div className={style.grades}>Оценки/посещаемость</div>
-                    <div className={style.finalAssessment}>Зачёт</div>
+                    <div className={style.firstNameHeader}>Имя</div>
+                    <div className={style.lastNameHeader}>Фамилия</div>
+                    <div className={style.lessonHeader}>Предмет</div>
+                    <div className={style.gradesHeader}>Оценки/посещаемость</div>
+                    <div className={style.finalAssessmentHeader}>Зачёт</div>
                 </div>
             </div>
             <div className={style.bodyTable}>
@@ -106,7 +109,7 @@ export const Table: React.FC = () => {
                        sortLNameDec={sortLNameDec}
                        sortLNameInc={sortLNameInc}
                        lessonsArr={lessonsArr}
-                       setLessons={setLessons}
+                       setLessons={setLessonAndResettingFinalAssessment}
                        calculationOfGrades={passed}
                        addStudent={addStudent}
             />
