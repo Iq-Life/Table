@@ -3,9 +3,9 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import {NavLink} from "react-router-dom";
-import s from './Footer.module.css'
+import style from './Footer.module.css'
 
-export const Footer: React.FC = () => {
+export const Footer: React.FC = React.memo(() => {
     return (
         <Box bgcolor="text.secondary" color="white">
             <Container>
@@ -14,7 +14,7 @@ export const Footer: React.FC = () => {
                         <Box>
                             <NavLink to={"/page-not-found"}
                                      color="inherit"
-                                     className={s.link}>
+                                     className={style.link}>
                                 Help
                             </NavLink>
                         </Box>
@@ -23,7 +23,7 @@ export const Footer: React.FC = () => {
                         <Box>
                             <NavLink to={"/page-not-found"}
                                      color="inherit"
-                                     className={s.link}>
+                                     className={style.link}>
                                 Account
                             </NavLink>
                         </Box>
@@ -32,7 +32,7 @@ export const Footer: React.FC = () => {
                         <Box>
                             <NavLink to={"/page-not-found"}
                                      color="inherit"
-                                     className={s.link}>
+                                     className={style.link}>
                                 Backup
                             </NavLink>
                         </Box>
@@ -44,4 +44,4 @@ export const Footer: React.FC = () => {
             </Container>
         </Box>
     )
-}
+})

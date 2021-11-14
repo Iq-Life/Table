@@ -1,10 +1,6 @@
 import {
-    addStudentAC, calculationOfGradesAC,
-    changeFirstNameAC, grades,
-    removeStudentAC,
-    sortFNameDecAC, sortFNameIncAC, sortLNameDecAC, sortLNameIncAC,
-    StudentsReducer,
-    StudentType
+    addStudentAC, calculationOfGradesAC, changeFirstNameAC, removeStudentAC, sortFNameDecAC,
+    sortFNameIncAC, sortLNameDecAC, sortLNameIncAC, StudentsReducer, StudentType
 } from "./tableReducer";
 import {v1} from "uuid";
 
@@ -19,17 +15,11 @@ beforeEach(() => {
                     {id: v1(), value: 5}, {id: v1(), value: 5}, {id: v1(), value: 5}, {id: v1(), value: '.'},
                     {id: v1(), value: 4}, {id: v1(), value: 5}, {id: v1(), value: 5}, {id: v1(), value: '.'},
                     {id: v1(), value: 5}, {id: v1(), value: 5}, {id: v1(), value: 5}],
-                'physics': [{id: v1(), value: 4}, {id: v1(), value: '.'}, {id: v1(), value: '.'}, {
-                    id: v1(),
-                    value: '.'
-                },
+                'physics': [{id: v1(), value: 4}, {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
                     {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
                     {id: v1(), value: '.'}, {id: v1(), value: 3}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
                     {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'}],
-                'computerScience': [{id: v1(), value: 5}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}, {
-                    id: v1(),
-                    value: 'н'
-                },
+                'computerScience': [{id: v1(), value: 5}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}, {id: v1(), value: 'н'},
                     {id: v1(), value: 3}, {id: v1(), value: '.'}, {id: v1(), value: 5}, {id: v1(), value: '.'},
                     {id: v1(), value: 5}, {id: v1(), value: '.'}, {id: v1(), value: 4}, {id: v1(), value: 3},
                     {id: v1(), value: 4}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}]
@@ -80,31 +70,7 @@ beforeEach(() => {
                     {id: v1(), value: 5}, {id: v1(), value: '.'}, {id: v1(), value: 4}, {id: v1(), value: 3},
                     {id: v1(), value: 4}, {id: v1(), value: 'н'}, {id: v1(), value: '.'}]
             }, finalAssessment: null
-        },
-        {
-            id: '4', firstName: 'Павел', lastName: 'Вавилин', lesson: null,
-            grades: grades, finalAssessment: null
-        },
-        {
-            id: '5', firstName: 'Лиза', lastName: 'Подопригора', lesson: null,
-            grades: grades, finalAssessment: null
-        },
-        {
-            id: '6', firstName: 'Евгения', lastName: 'Кудряшова', lesson: null,
-            grades: grades, finalAssessment: null
-        },
-        {
-            id: '7', firstName: 'Кирилл', lastName: 'Вавилин', lesson: null,
-            grades: grades, finalAssessment: null
-        },
-        {
-            id: '8', firstName: 'Александра', lastName: 'Комарова', lesson: null,
-            grades: grades, finalAssessment: null
-        },
-        {
-            id: '9', firstName: 'Иван', lastName: 'Бакалейщиков', lesson: null,
-            grades: grades, finalAssessment: null
-        },
+        }
     ]
 })
 
@@ -114,15 +80,15 @@ test('should be add student in array', () => {
 
     const endState = StudentsReducer(startState, action)
 
-    expect(endState.length).toBe(10)
+    expect(endState.length).toBe(4)
 })
 test('should be delete student from array', () => {
 
-    const action = removeStudentAC("5")
+    const action = removeStudentAC("1")
 
     const endState = StudentsReducer(startState, action)
 
-    expect(endState.length).toBe(8)
+    expect(endState.length).toBe(2)
 })
 test('should be update first name', () => {
 
@@ -138,8 +104,8 @@ test('sort firstName an array from a to z', () => {
 
     const endState = StudentsReducer(startState, action)
 
-    expect(endState[0].firstName).toBe('Александра')
-    expect(endState[8].firstName).toBe('Павел')
+    expect(endState[0].firstName).toBe('Дмитрий')
+    expect(endState[2].firstName).toBe('Олег')
 })
 test('sort firstName an array from z to a', () => {
 
@@ -147,8 +113,8 @@ test('sort firstName an array from z to a', () => {
 
     const endState = StudentsReducer(startState, action)
 
-    expect(endState[8].firstName).toBe('Александра')
-    expect(endState[0].firstName).toBe('Павел')
+    expect(endState[1].firstName).toBe('Иван')
+    expect(endState[0].firstName).toBe('Олег')
 })
 test('sort lastName an array from a to z', () => {
 
@@ -156,8 +122,8 @@ test('sort lastName an array from a to z', () => {
 
     const endState = StudentsReducer(startState, action)
 
-    expect(endState[8].lastName).toBe('Фирстов')
-    expect(endState[0].lastName).toBe('Бакалейщиков')
+    expect(endState[1].lastName).toBe('Куплинов')
+    expect(endState[0].lastName).toBe('Дадарчук')
 })
 test('sort lastName an array from z to a', () => {
 
@@ -165,10 +131,10 @@ test('sort lastName an array from z to a', () => {
 
     const endState = StudentsReducer(startState, action)
 
-    expect(endState[8].lastName).toBe('Бакалейщиков')
+    expect(endState[2].lastName).toBe('Дадарчук')
     expect(endState[0].lastName).toBe('Фирстов')
 })
-test('calculate the GPA should be > 4 and "н" should be < 10% from number of lessons', () => {
+test('calculate the GPA should be > 4 and "н" should be <= 10% from number of lessons', () => {
 
     const action = calculationOfGradesAC('maths')
 

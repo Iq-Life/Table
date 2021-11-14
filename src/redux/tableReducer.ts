@@ -528,13 +528,15 @@ export const StudentsReducer = (state = initialPeople, action: ActionTypes): Stu
         case "CHANGE_GRADE": {
             return state.map(student => student.id === action.idStudent
                 ? {
-                    ...student, grades: {
-                        [action.lessons]: [...student.grades[action.lessons].map(
-                            (grade) => grade.id === action.idGrade
-                                ? {...grade, value: action.newGrade}
-                                : grade
-                        )],
-                    }
+                    ...student, grades:
+                        {
+                            ...student.grades, [action.lessons]:
+                                [...student.grades[action.lessons].map(
+                                    (grade) => grade.id === action.idGrade
+                                        ? {...grade, value: action.newGrade}
+                                        : grade
+                                )],
+                        }
                 }
                 : student
             )
@@ -565,10 +567,11 @@ export const StudentsReducer = (state = initialPeople, action: ActionTypes): Stu
             })
         }
         case "RESETTING_FINAL_ASSESSMENT" : {
-                return state.map((student)=> {
-                    student.finalAssessment = null
-                    return student})
-            }
+            return state.map((student) => {
+                student.finalAssessment = null
+                return student
+            })
+        }
         default:
             return state
     }
@@ -605,51 +608,45 @@ export const calculationOfGradesAC = (lessons: string) => {
     return {type: "CALCULATION_OF_GRADES", lessons} as const
 }
 export const resettingFinalAssessmentAC = () => {
-    return {type: "RESETTING_FINAL_ASSESSMENT", } as const
+    return {type: "RESETTING_FINAL_ASSESSMENT",} as const
 }
 //thanks
-/*export const getStudents = (): ThunksType =>
+/*
+export const getStudents = (): ThunksType =>
     async (dispatch) => {
         let data = await studentsAPI.getStudents()
-        dispatch(setStudents(data))
+        if (data.resultCode === 0) {
+            dispatch(setStudents(data))
+        } else {
+            alert(data.error.message)
+        }
     }
 export const getStudentsGrades = (studentId: number, lessons: string): ThunksType =>
     async (dispatch) => {
-        let data = await studentsAPI.getGrades(userId: number, lessons: string)
-        dispatch(setStudentsGrades(data))
+        let data = await studentsAPI.getGrades(studentId: number, lessons: string)
+        if (data.resultCode === 0) {
+            dispatch(setStudentsGrades(data))
+        } else {
+            alert(data.error.message)
+        }
+
     }
 export const updateGrade = (studentId: number, gradeId, lessons: string): ThunksType =>
     async (dispatch) => {
         let data = await studentsAPI.updateGrade(studentId, gradeId, lessons)
-        if (data.resultCode === ResultCodeEnum.Success) {
+        if (data.resultCode === 0) {
             dispatch(setStatusProfile(status))
         } else {
-            alert(data.messages[0])
+            alert(data.error.messages)
         }
     }
-export const savePhoto = (photos: File): ThunksType =>
-    async (dispatch) => {
-        let response = await profileAPI.savePhoto(photos)
-        if (response.resultCode === ResultCodeEnum.Success) {
-            dispatch(savePhotoSuccess(response.data))
-        }
-    }
-export const saveProfile = (profile: UserProfile): ThunksType =>
-    async (dispatch) => {
-        let data = await profileAPI.saveProfile(profile)
-        if (data.resultCode === ResultCodeEnum.Success) {
-            dispatch(saveProfileSuccess(profile))
-        } else {
-            dispatch(stopSubmit("edit-profile", {_error: data.messages[0]}))
-            return Promise.reject(data.messages[0])
-        }
-    }*/
+*/
 //types
 type ActionTypes = ReturnType<typeof addStudentAC> | ReturnType<typeof removeStudentAC> |
     ReturnType<typeof changeFirstNameAC> | ReturnType<typeof changeLastNameAC> |
     ReturnType<typeof sortFNameDecAC> | ReturnType<typeof sortLNameDecAC> |
     ReturnType<typeof sortFNameIncAC> | ReturnType<typeof sortLNameIncAC> |
-    ReturnType<typeof changeGradeAC> | ReturnType<typeof calculationOfGradesAC>|
+    ReturnType<typeof changeGradeAC> | ReturnType<typeof calculationOfGradesAC> |
     ReturnType<typeof resettingFinalAssessmentAC>
 
 export type StudentType = {
@@ -660,7 +657,7 @@ export type StudentType = {
     grades: gradesType
     finalAssessment: null | boolean
 }
-export type keyLessons = 'Математика' | 'Физика' | 'Информатика'
+/*export type keyLessons = 'Математика' | 'Физика' | 'Информатика'*/
 
 export type gradeType = {
     id: string;

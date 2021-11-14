@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import style from './Table.module.scss'
 import {
-    addStudentAC, calculationOfGradesAC, changeFirstNameAC, changeGradeAC,
-    changeLastNameAC, removeStudentAC, resettingFinalAssessmentAC, sortFNameDecAC, sortFNameIncAC,
-    sortLNameDecAC, sortLNameIncAC, StudentType
+    addStudentAC, calculationOfGradesAC, changeFirstNameAC, changeGradeAC, changeLastNameAC,
+    removeStudentAC, resettingFinalAssessmentAC, sortFNameDecAC, sortFNameIncAC, sortLNameDecAC,
+    sortLNameIncAC, StudentType
 } from "../../redux/tableReducer";
 import {useDispatch, useSelector} from "react-redux";
 import {AppStoreType} from "../../redux/Redux-store";
@@ -13,7 +13,7 @@ import {EditableSpanFromGrades} from "../others/editableSpan/EditableSpanFromGra
 
 const lessonsArr: string[] = ['maths', 'physics', 'computerScience']
 
-export const Table: React.FC = () => {
+export const Table: React.FC = React.memo(() => {
 
     const dispatch = useDispatch()
     const students = useSelector<AppStoreType, StudentType[]>(state => state.StudentsReducer)
@@ -55,14 +55,16 @@ export const Table: React.FC = () => {
         dispatch(calculationOfGradesAC(lessons))
     }
 //set lessons and resetting finalAssessment
-    const setLessonAndResettingFinalAssessment = (value:string) =>{
+    const setLessonAndResettingFinalAssessment = (value: string) => {
         setLessons(value)
         dispatch(resettingFinalAssessmentAC())
     }
 
-    let finalPeople = students.map((student: StudentType) => (
+    const finalPeople = students.map((student: StudentType) => (
         <div key={student.id} className={style.rowTable}>
-            <button className={style.buttonRemove} onClick={() => {removeStudent(student.id)}}>
+            <button className={style.buttonRemove} onClick={() => {
+                removeStudent(student.id)
+            }}>
                 X
             </button>
             <div className={style.firstNameBody}>
@@ -76,6 +78,7 @@ export const Table: React.FC = () => {
             <div className={style.lessonBody}>
                 {lessons === 'maths' ? 'Математика' : lessons === 'physics' ? 'Физика' : 'Информатика'}
             </div>
+
             <div className={style.gradesBody}>
                 {student.grades[lessons].map(grade =>
                     <div className={style.oneGrade} key={grade.id}>
@@ -85,7 +88,7 @@ export const Table: React.FC = () => {
                 )}
             </div>
             <div className={style.finalAssessmentBody}>{student.finalAssessment === null ? ' ' :
-                student.finalAssessment === true ? 'зачёт' : 'нет'}
+                student.finalAssessment ? 'зачёт' : 'нет'}
             </div>
         </div>
     ))
@@ -115,4 +118,4 @@ export const Table: React.FC = () => {
             />
         </div>
     )
-}
+})

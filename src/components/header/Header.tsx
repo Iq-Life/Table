@@ -73,7 +73,7 @@ const DrawerHeader = styled('div')(({theme}) => ({
     justifyContent: 'flex-start',
 }));
 
-export const Header: React.FC = () => {
+export const Header: React.FC = React.memo(() => {
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
 
@@ -152,4 +152,4 @@ export const Header: React.FC = () => {
             </Box>
         </div>
     );
-}
+})

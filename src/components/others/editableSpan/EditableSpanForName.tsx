@@ -1,8 +1,8 @@
-import React, {DetailedHTMLProps, HTMLAttributes, InputHTMLAttributes, useState} from 'react'
+import React, {DetailedHTMLProps, HTMLAttributes, InputHTMLAttributes, useCallback, useState} from 'react'
 import style from './EditableSpanFromGrade.module.css'
-import {InputForName} from "../inputText/InputForName";
+import {InputForName} from "./inputText/InputForName";
 
-export const EditableSpanForName: React.FC<SuperEditableSpanType> = (
+export const EditableSpanForName: React.FC<SuperEditableSpanType> = React.memo((
     {
         title, onBlur,
         spanProps,
@@ -15,15 +15,16 @@ export const EditableSpanForName: React.FC<SuperEditableSpanType> = (
 
     const {onDoubleClick} = spanProps || {}
 
-    const onEnterCallback = () => {
+    const onEnterCallback = useCallback(() => {
         if (newName.trim() === "") {
             setError("Ввидите имя или фамилию")
         } else {
             setEditMode(false)
             onChangeText(newName)
         }
-    }
-    const onBlurCallback = (e: React.FocusEvent<HTMLInputElement>) => {
+    },[newName, onChangeText])
+
+    const onBlurCallback = useCallback((e: React.FocusEvent<HTMLInputElement>) => {
         if (newName.trim() === "") {
             setError("Ввидите имя или фамилию")
         } else {
@@ -31,17 +32,19 @@ export const EditableSpanForName: React.FC<SuperEditableSpanType> = (
             onBlur && onBlur(e)
             onChangeText(newName)
         }
-    }
-    const onDoubleClickCallBack = (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
+    },[newName, onChangeText, onBlur])
+
+    const onDoubleClickCallBack = useCallback((e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
         setEditMode(true)
         onDoubleClick && onDoubleClick(e)
-    }
+    },[onDoubleClick])
 
-    const resetError = () => {
+    const resetError = useCallback(() => {
         if (newName.trim() === "") {
             setError("")
         }
-    }
+    },[newName])
+
     return (
         <>
             {editMode
@@ -63,15 +66,15 @@ export const EditableSpanForName: React.FC<SuperEditableSpanType> = (
             }
         </>
     )
-}
+})
 //types
 type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
 type DefaultSpanPropsType = DetailedHTMLProps<HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>
 
 type SuperEditableSpanType = DefaultInputPropsType & {
     onChangeText: (value: string) => void
-    spanClassName?: string
     title: string
+    spanClassName?: string
     spanProps?: DefaultSpanPropsType
 }
 

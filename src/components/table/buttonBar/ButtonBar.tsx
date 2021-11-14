@@ -2,7 +2,7 @@ import React from 'react';
 import style from "./buttonBar.module.scss";
 import {SuperSelect} from "../../others/select/SuperSelect";
 
-export const ButtonBar: React.FC<ButtonBarType> = (
+export const ButtonBar: React.FC<ButtonBarType> = React.memo((
     {
         sortFNameInc, sortFNameDec, sortLNameDec,addStudent,
         sortLNameInc, setLessons, calculationOfGrades,
@@ -36,8 +36,7 @@ export const ButtonBar: React.FC<ButtonBarType> = (
             </div>
         </div>
     )
-}
-
+})
 //types
 type ButtonBarType = {
     sortFNameInc: () => void

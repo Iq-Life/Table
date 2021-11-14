@@ -1,20 +1,29 @@
-import React, {ChangeEvent, DetailedHTMLProps, InputHTMLAttributes, KeyboardEvent} from 'react'
-import style from './SuperInputText.module.css'
+import React, {ChangeEvent, DetailedHTMLProps, InputHTMLAttributes, KeyboardEvent, useCallback} from 'react'
+import style from './InputFromGrade.module.scss'
 
-export const InputForName: React.FC<SuperInputTextPropsType> = (
+
+
+
+export const InputFromGrade: React.FC<SuperInputTextPropsType> = React.memo( (
     {
-        type, onChange, onChangeText,
-        onEnter, error, resetError, name,
+        type, onChange, onChangeText, onKeyPress,
+        onEnter, error, grade,
 
         ...restProps
     }
 ) => {
-    const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
+
+    const onChangeCallback = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         onChange && onChange(e)
         onChangeText && onChangeText(e.currentTarget.value)
-    }
-    const onKeyPressCallback = (e: KeyboardEvent<HTMLInputElement>) => {
+    },[onChangeText, onChange])
+
+    const onKeyPressCallback = useCallback((e: KeyboardEvent<HTMLInputElement>) => {
+        onKeyPress && onKeyPress(e)
         onEnter && e.key === 'Enter' && onEnter()
+    },[onEnter, onKeyPress])
+    const onFocus = (e:ChangeEvent<HTMLInputElement>) => {
+        e.target.select()
     }
 
     const finalInputClassName = error ? `${style.errorInput}` : `${style.superInput}`
@@ -26,22 +35,19 @@ export const InputForName: React.FC<SuperInputTextPropsType> = (
                 onChange={onChangeCallback}
                 onKeyPress={onKeyPressCallback}
                 className={finalInputClassName}
-                value={name}
-                onFocus={resetError}
+                value={grade}
+                onFocus={onFocus}
                 {...restProps}
             />
             {error && <span className={style.errorSpan}>{error}</span>}
         </div>
     )
-}
-
-
+})
+//type
 type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
-
 type SuperInputTextPropsType = DefaultInputPropsType & {
-    onChangeText: (value: string) => void
+    onChangeText: (value: string|number) => void
     onEnter: () => void
     error: string
-    resetError: () => void
-    name:string
+    grade:string|number
 }

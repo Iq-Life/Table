@@ -1,0 +1,32 @@
+.divInputSpan {
+  display: flex;
+  flex-direction: column;
+}
+
+.superInput {
+  border-radius: 5px;
+  width: 17px;
+  height: 17px;
+
+  &:focus {
+    outline: #348cb2;
+    border-color: #348cb2;
+    border-radius: 3px;
+  }
+}
+
+.errorInput {
+  outline: red;
+  border-color: red;
+  border-radius: 5px;
+  width: 20px;
+  height: 20px;
+}
+
+.errorSpan {
+  position: absolute;
+  top: 0;
+  left: 90px;
+  margin-top: 20px;
+  color: red;
+}
