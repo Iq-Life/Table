@@ -22,7 +22,7 @@ import "./Header.css";
 
 
 const drawerWidth = 240;
-
+//styled components
 const Main = styled('main', {shouldForwardProp: (prop) => prop !== 'open'})<{
     open?: boolean;
 }>(({theme, open}) => ({
@@ -41,11 +41,6 @@ const Main = styled('main', {shouldForwardProp: (prop) => prop !== 'open'})<{
         marginRight: 0,
     }),
 }));
-
-interface AppBarProps extends MuiAppBarProps {
-    open?: boolean;
-}
-
 const AppBar = styled(MuiAppBar, {
     shouldForwardProp: (prop) => prop !== 'open',
 })<AppBarProps>(({theme, open}) => ({
@@ -62,7 +57,6 @@ const AppBar = styled(MuiAppBar, {
         marginRight: drawerWidth,
     }),
 }));
-
 const DrawerHeader = styled('div')(({theme}) => ({
     display: 'flex',
     alignItems: 'center',
@@ -72,6 +66,10 @@ const DrawerHeader = styled('div')(({theme}) => ({
     ...theme.mixins.toolbar,
     justifyContent: 'flex-start',
 }));
+
+interface AppBarProps extends MuiAppBarProps {
+    open?: boolean;
+}
 
 export const Header: React.FC = React.memo(() => {
     const theme = useTheme();
