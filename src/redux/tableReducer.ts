@@ -635,7 +635,7 @@ export const updateGrade = (studentId: number, gradeId, lessons: string): Thunks
     async (dispatch) => {
         let data = await studentsAPI.updateGrade(studentId, gradeId, lessons)
         if (data.resultCode === 0) {
-            dispatch(setStatusProfile(status))
+            dispatch(changeGradeAC(data))
         } else {
             alert(data.error.messages)
         }
