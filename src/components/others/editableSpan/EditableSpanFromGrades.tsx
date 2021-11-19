@@ -17,7 +17,7 @@ export const EditableSpanFromGrades: React.FC<SuperEditableSpanType> = React.mem
     const [newGrade, setNewGrade] = useState<string | number>(item)
     const [error, setError] = useState<string>('')
 
-    const {children, onDoubleClick, ...restSpanProps} = spanProps || {}
+    const {onDoubleClick, ...restSpanProps} = spanProps || {}
 
     const condition = (newGrade === "н") || (newGrade === String(2)) ||
         (newGrade === String(3)) || (newGrade === String(4)) ||

@@ -5,28 +5,15 @@ the classroom. It will also easily help to calculate which of the students will 
 to the formula (average score > 4 and the share of missed classes for a disrespectful reason <=10%)
 ____
 
-# Getting Started with Create React App
-I used TypeScript on the project, so you will need it in extensions.\
-You can use the command:
+# Getting started with the application
+I used TypeScript on the project.\
+Clone the application and write the following commands in it:
 
-### `yarn create react-app my-app --template typescript`
-### or
-### `npx create-react-app my-app --template typescript`
-
-You can read the instructions here
-[create react-app](https://github.com/facebook/create-react-app).
-
-For a better layout of the code in CSS files, I used SASS
-
-### `yarn add sass`
-### or
-### `npm i sass`
+### `yarn install`
 
 After that you can start the project
 
 ### `yarn start`
-### or
-### `npm start`
 ____
 
 ## In this project I used libraries such as:
