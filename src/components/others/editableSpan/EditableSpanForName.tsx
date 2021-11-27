@@ -1,5 +1,4 @@
 import React, {DetailedHTMLProps, HTMLAttributes, InputHTMLAttributes, useCallback, useState} from 'react'
-import style from './EditableSpanFromGrade.module.css'
 import {InputForName} from "./inputText/InputForName";
 
 export const EditableSpanForName: React.FC<SuperEditableSpanType> = React.memo((
@@ -54,12 +53,12 @@ export const EditableSpanForName: React.FC<SuperEditableSpanType> = React.memo((
                         onBlur={onBlurCallback}
                         onEnter={onEnterCallback}
                         onChangeText={setNewName}
-                        name={newName}
+                        text={newName}
                         resetError={resetError}
                         error={error}
                     />
                 ) : (
-                    <span onDoubleClick={onDoubleClickCallBack} className={style.span}>
+                    <span onDoubleClick={onDoubleClickCallBack}>
                         {title}
                     </span>
                 )

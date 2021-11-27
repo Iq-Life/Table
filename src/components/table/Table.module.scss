@@ -13,9 +13,19 @@
   .header {
     display: flex;
     justify-content: center;
-    margin: 6px 10px;
+    margin: 6px 10px 0 10px;
     border-radius: 10px 10px 0 0;
     background: #1976d2;
+
+    .butMagnifier {
+      background: none;
+      border-top-left-radius: 10px;
+
+      & img {
+        width: 15px;
+        height: 15px;
+      }
+    }
 
     .firstNameHeader {
       padding-left: 25px;

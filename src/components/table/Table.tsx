@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import style from './Table.module.scss'
 import {
     addStudentAC, calculationOfGradesAC, changeFirstNameAC, changeGradeAC, changeLastNameAC,
@@ -10,6 +10,9 @@ import {AppStoreType} from "../../redux/Redux-store";
 import {ButtonBar} from "./buttonBar/ButtonBar";
 import {EditableSpanForName} from "../others/editableSpan/EditableSpanForName";
 import {EditableSpanFromGrades} from "../others/editableSpan/EditableSpanFromGrades";
+import magnifier from '../../icon/loupe_icon.png'
+import {InputForName} from "../others/editableSpan/inputText/InputForName";
+
 
 const lessonsArr: string[] = ['maths', 'physics', 'computerScience']
 
@@ -18,6 +21,8 @@ export const Table: React.FC = React.memo(() => {
     const dispatch = useDispatch()
     const students = useSelector<AppStoreType, StudentType[]>(state => state.StudentsReducer)
     const [lessons, setLessons] = useState<string>(lessonsArr[0])
+    const [toggle, setToggle] = useState<boolean>(false)
+    const [text, setText] = useState<string>('')
 
 //add and remove student
     const addStudent = () => {
@@ -60,7 +65,16 @@ export const Table: React.FC = React.memo(() => {
         dispatch(resettingFinalAssessmentAC())
     }
 
-    const finalPeople = students.map((student: StudentType) => (
+    const changeToggle = () => {
+        setToggle(!toggle)
+    }
+
+  const filterName = students.filter( student => text ?
+          (student.firstName + student.lastName).toLowerCase().includes(text.toLowerCase())
+  : student
+  )
+
+    const finalPeople = filterName.map((student: StudentType) => (
         <div key={student.id} className={style.rowTable}>
             <button className={style.buttonRemove} onClick={() => {
                 removeStudent(student.id)
@@ -97,6 +111,9 @@ export const Table: React.FC = React.memo(() => {
         <div className={style.table}>
             <div>
                 <div className={style.header}>
+                    <button className={style.butMagnifier} onClick={() => changeToggle()}>
+                        <img src={magnifier} alt={'magnifier'}/>
+                    </button>
                     <div className={style.firstNameHeader}>Имя</div>
                     <div className={style.lastNameHeader}>Фамилия</div>
                     <div className={style.lessonHeader}>Предмет</div>
@@ -104,6 +121,11 @@ export const Table: React.FC = React.memo(() => {
                     <div className={style.finalAssessmentHeader}>Зачёт</div>
                 </div>
             </div>
+            {toggle ?
+                <div style={{marginLeft: "40px"}}>
+                    <InputForName text={text} onChangeText={setText}/>
+                </div>
+                : ''}
             <div className={style.bodyTable}>
                 {finalPeople}
             </div>

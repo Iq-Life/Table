@@ -4,7 +4,7 @@ import style from './InputForName.module.scss'
 export const InputForName: React.FC<SuperInputTextPropsType> = React.memo((
     {
         type, onChange, onChangeText,
-        onEnter, error, resetError, name,
+        onEnter, error, resetError, text,
 
         ...restProps
     }
@@ -16,7 +16,7 @@ export const InputForName: React.FC<SuperInputTextPropsType> = React.memo((
     }, [onChangeText, onChange])
 
     const onKeyPressCallback = useCallback((e: KeyboardEvent<HTMLInputElement>) => {
-        e.key === 'Enter' && onEnter()
+        onEnter && e.key === 'Enter' && onEnter()
     }, [onEnter])
 
     const finalInputClassName = error ? `${style.errorInput}` : `${style.superInput}`
@@ -28,7 +28,7 @@ export const InputForName: React.FC<SuperInputTextPropsType> = React.memo((
                 type={'text'}
                 onChange={onChangeCallback}
                 onKeyPress={onKeyPressCallback}
-                value={name}
+                value={text}
                 onFocus={resetError}
                 {...restProps}
             />
@@ -40,8 +40,8 @@ export const InputForName: React.FC<SuperInputTextPropsType> = React.memo((
 type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
 type SuperInputTextPropsType = DefaultInputPropsType & {
     onChangeText: (value: string) => void
-    onEnter: () => void
-    error: string
-    resetError: () => void
-    name: string
+    onEnter?: () => void
+    error?: string
+    resetError?: () => void
+    text: string
 }

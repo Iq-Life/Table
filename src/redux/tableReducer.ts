@@ -496,7 +496,7 @@ export const StudentsReducer = (state = initialPeople, action: ActionTypes): Stu
                 {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
                 {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'}]
             return [{
-                id: v1(), firstName: 'enter first name', lastName: 'enter last name', lesson: null,
+                id: v1(), firstName: 'Введите имя', lastName: 'Введите фамилию', lesson: null,
                 grades: {
                     'maths': blankGrade,
                     'physics': blankGrade,
@@ -657,8 +657,6 @@ export type StudentType = {
     grades: gradesType
     finalAssessment: null | boolean
 }
-/*export type keyLessons = 'Математика' | 'Физика' | 'Информатика'*/
-
 export type gradeType = {
     id: string;
     value: number | string;
