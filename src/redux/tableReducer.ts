@@ -1,4 +1,5 @@
 import {v1} from "uuid";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
 export let initialPeople: Array<StudentType> = [
     {
@@ -485,64 +486,77 @@ export let initialPeople: Array<StudentType> = [
     }
 ]
 
-export const StudentsReducer = (state = initialPeople, action: ActionTypes): StudentType[] => {
-    switch (action.type) {
-        case "ADD_STUDENT" : {
-            const blankGrade = [{id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'}, {
-                id: v1(),
-                value: '.'
-            },
-                {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
-                {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'},
-                {id: v1(), value: '.'}, {id: v1(), value: '.'}, {id: v1(), value: '.'}]
-            return [{
+
+export const slice = createSlice({
+    name: 'Students',
+    initialState: initialPeople,
+    reducers: {
+        addStudentAC: (state) => {
+            const blankGrade = []
+            for (let i = 1; i < 16 ; i++ ) { blankGrade.push({id: v1(), value: '.'})}
+            state.unshift({
                 id: v1(), firstName: 'Введите имя', lastName: 'Введите фамилию', lesson: null,
                 grades: {
                     'maths': blankGrade,
                     'physics': blankGrade,
                     'computerScience': blankGrade
                 }, finalAssessment: null
-            }, ...state]
+            })
         }
-        case "REMOVE_STUDENT" : {
-            return state.filter((student) => student.id !== action.idStudent)
-        }
-        case "CHANGE_FIRST_NAME": {
-            return state.map((student) => student.id === action.id ? {...student, firstName: action.value} : student)
-        }
-        case "CHANGE_LAST_NAME": {
-            return state.map((student) => student.id === action.id ? {...student, lastName: action.value} : student)
-        }
-        case "SORT_FIRST_NAME_DEC": {
-            return [...state].sort((studentA, studentB) => studentA.firstName.localeCompare(studentB.firstName))
-        }
-        case "SORT_LAST_NAME_DEC": {
-            return [...state].sort((studentA, studentB) => studentA.lastName.localeCompare(studentB.lastName))
-        }
-        case "SORT_FIRST_NAME_INC": {
-            return [...state].sort((studentA, studentB) => studentB.firstName.localeCompare(studentA.firstName))
-        }
-        case "SORT_LAST_NAME_INC": {
-            return [...state].sort((studentA, studentB) => studentB.lastName.localeCompare(studentA.lastName))
-        }
-        case "CHANGE_GRADE": {
-            return state.map(student => student.id === action.idStudent
-                ? {
-                    ...student, grades:
-                        {
-                            ...student.grades, [action.lessons]:
-                                [...student.grades[action.lessons].map(
-                                    (grade) => grade.id === action.idGrade
-                                        ? {...grade, value: action.newGrade}
-                                        : grade
-                                )],
-                        }
+        ,
+        removeStudentAC: (state, action: PayloadAction<{idStudent: string}>) => {
+          const  indexStudent = state.findIndex( student => student.id === action.payload.idStudent)
+            delete state[indexStudent]
+        },
+        changeFirstNameAC: (state, action: PayloadAction<{id: string, value: string}>) => {
+            const  indexStudent = state.findIndex( student => student.id === action.payload.id)
+            state[indexStudent].firstName = action.payload.value
+            /*state.map((student) => student.id === action.id ? {...student, firstName: action.value} : student)*/
+        },
+        changeLastNameAC: (state, action: PayloadAction<{id: string, value: string}>) => {
+            const  indexStudent = state.findIndex( student => student.id === action.payload.id)
+            state[indexStudent].lastName = action.payload.value
+        },
+        sortFNameDecAC: (state) => {
+           state.sort((studentA, studentB) => studentA.firstName.localeCompare(studentB.firstName))
+        },
+        sortLNameDecAC: (state) => {
+            state.sort((studentA, studentB) => studentA.lastName.localeCompare(studentB.lastName))
+        },
+        sortFNameIncAC: (state) => {
+            state.sort((studentA, studentB) => studentB.firstName.localeCompare(studentA.firstName))
+        },
+        sortLNameIncAC: (state) => {
+            state.sort((studentA, studentB) => studentB.lastName.localeCompare(studentA.lastName))
+        },
+        changeGradeAC: (state, action: PayloadAction<{idStudent: string, idGrade: string, lessons: string, newGrade: string | number}>) => {
+            const indexStudent = state.findIndex( student => student.id === action.payload.idStudent)
+            const indexGrade = state[indexStudent].grades[action.payload.lessons].findIndex(grade => grade.id === action.payload.idGrade)
+            state[indexStudent].grades[action.payload.lessons][indexGrade].value = action.payload.newGrade
+        },
+        calculationOfGradesAC: (state, action: PayloadAction<{lessons: string}>) => {
+            state.forEach((student) => {
+
+                const arrGrades = student.grades[action.payload.lessons].map((grade) => grade.value)
+                let searchForNumber = arrGrades.join().match(/\d+/g)
+
+                if (searchForNumber) {
+                    const arrNumber = searchForNumber!.map(Number)
+                    const averageScore = arrNumber.reduce((a, b) => a + b) / arrNumber.length
+                    const missedClasses: Array<string> | null = arrGrades.join().match(/[н]/g)
+                    if (missedClasses) {
+                        const tenPercentForNCount = Math.ceil((10 * arrGrades.length) / 100)
+                        const passed = averageScore > 4 && missedClasses.length <= tenPercentForNCount
+                        student.finalAssessment = passed
+                    } else {
+                        const passed = averageScore > 4
+                        student.finalAssessment = passed
+                    }
+                } else {
+                    student.finalAssessment = false
                 }
-                : student
-            )
-        }
-        case "CALCULATION_OF_GRADES" : {
-            return state.map((student) => {
+            })
+            /*return state.map((student) => {
                 const arrGrades = student.grades[action.lessons].map(
                     (grade) => grade.value)
                 let searchForNumber = arrGrades.join().match(/\d+/g)
@@ -564,52 +578,18 @@ export const StudentsReducer = (state = initialPeople, action: ActionTypes): Stu
                 }
 
                 return student
-            })
+            })*/
+        },
+        resettingFinalAssessmentAC: (state) => {
+            state.forEach( student => student.finalAssessment = null)
         }
-        case "RESETTING_FINAL_ASSESSMENT" : {
-            return state.map((student) => {
-                student.finalAssessment = null
-                return student
-            })
-        }
-        default:
-            return state
     }
-}
-//actions
-export const addStudentAC = () => {
-    return {type: "ADD_STUDENT"} as const
-}
-export const removeStudentAC = (idStudent: string) => {
-    return {type: "REMOVE_STUDENT", idStudent} as const
-}
-export const changeFirstNameAC = (id: string, value: string) => {
-    return {type: "CHANGE_FIRST_NAME", id, value} as const
-}
-export const changeLastNameAC = (id: string, value: string) => {
-    return {type: "CHANGE_LAST_NAME", id, value} as const
-}
-export const sortFNameDecAC = () => {
-    return {type: "SORT_FIRST_NAME_DEC"} as const
-}
-export const sortLNameDecAC = () => {
-    return {type: "SORT_LAST_NAME_DEC"} as const
-}
-export const sortFNameIncAC = () => {
-    return {type: "SORT_FIRST_NAME_INC"} as const
-}
-export const sortLNameIncAC = () => {
-    return {type: "SORT_LAST_NAME_INC"} as const
-}
-export const changeGradeAC = (idStudent: string, idGrade: string, lessons: string, newGrade: string | number) => {
-    return {type: "CHANGE_GRADE", idStudent, idGrade, lessons, newGrade} as const
-}
-export const calculationOfGradesAC = (lessons: string) => {
-    return {type: "CALCULATION_OF_GRADES", lessons} as const
-}
-export const resettingFinalAssessmentAC = () => {
-    return {type: "RESETTING_FINAL_ASSESSMENT",} as const
-}
+})
+
+export const StudentsReducer = slice.reducer
+export const {addStudentAC, removeStudentAC, changeFirstNameAC, changeLastNameAC, sortFNameDecAC, sortLNameDecAC,
+    sortFNameIncAC, sortLNameIncAC, changeGradeAC, calculationOfGradesAC, resettingFinalAssessmentAC} = slice.actions
+
 //thanks
 /*
 export const getStudents = (): ThunksType =>
@@ -642,12 +622,14 @@ export const updateGrade = (studentId: number, gradeId, lessons: string): Thunks
     }
 */
 //types
+/*
 type ActionTypes = ReturnType<typeof addStudentAC> | ReturnType<typeof removeStudentAC> |
     ReturnType<typeof changeFirstNameAC> | ReturnType<typeof changeLastNameAC> |
     ReturnType<typeof sortFNameDecAC> | ReturnType<typeof sortLNameDecAC> |
     ReturnType<typeof sortFNameIncAC> | ReturnType<typeof sortLNameIncAC> |
     ReturnType<typeof changeGradeAC> | ReturnType<typeof calculationOfGradesAC> |
     ReturnType<typeof resettingFinalAssessmentAC>
+*/
 
 export type StudentType = {
     id: string

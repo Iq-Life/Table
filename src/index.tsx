@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import store from "./redux/Redux-store";
+import store from "./redux/redux-store";
 import {Provider} from "react-redux";
 import {HashRouter} from "react-router-dom";
 import {RoutesApp} from "./routes/RoutesApp";

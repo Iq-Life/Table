@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {useState} from 'react';
 import style from './Table.module.scss'
 import {
     addStudentAC, calculationOfGradesAC, changeFirstNameAC, changeGradeAC, changeLastNameAC,
@@ -6,7 +6,7 @@ import {
     sortLNameIncAC, StudentType
 } from "../../redux/tableReducer";
 import {useDispatch, useSelector} from "react-redux";
-import {AppStoreType} from "../../redux/Redux-store";
+import {AppStoreType} from "../../redux/redux-store";
 import {ButtonBar} from "./buttonBar/ButtonBar";
 import {EditableSpanForName} from "../others/editableSpan/EditableSpanForName";
 import {EditableSpanFromGrades} from "../others/editableSpan/EditableSpanFromGrades";
@@ -29,18 +29,18 @@ export const Table: React.FC = React.memo(() => {
         dispatch(addStudentAC())
     }
     const removeStudent = (idStudent: string) => {
-        dispatch(removeStudentAC(idStudent))
+        dispatch(removeStudentAC({idStudent}))
     }
 //change first and last name
     const changeFirstname = (id: string, fName: string) => {
-        dispatch(changeFirstNameAC(id, fName))
+        dispatch(changeFirstNameAC({id, value: fName}))
     }
     const changeLastname = (id: string, lName: string) => {
-        dispatch(changeLastNameAC(id, lName))
+        dispatch(changeLastNameAC({id, value: lName}))
     }
 //change grade
     const changeGrade = (idStudent: string, idGrade: string, lessons: string, newGrade: string | number) => {
-        dispatch(changeGradeAC(idStudent, idGrade, lessons, newGrade))
+        dispatch(changeGradeAC({idStudent, idGrade, lessons, newGrade}))
     }
 //sort first and last Name
     const sortFNameDec = () => {
@@ -57,7 +57,7 @@ export const Table: React.FC = React.memo(() => {
     }
 //calculation of grades
     const passed = () => {
-        dispatch(calculationOfGradesAC(lessons))
+        dispatch(calculationOfGradesAC({lessons}))
     }
 //set lessons and resetting finalAssessment
     const setLessonAndResettingFinalAssessment = (value: string) => {
@@ -67,14 +67,15 @@ export const Table: React.FC = React.memo(() => {
 
     const changeToggle = () => {
         setToggle(!toggle)
+        if (toggle) setText('')
     }
 
-  const filterName = students.filter( student => text ?
+  const filterByName = students.filter( student => text ?
           (student.firstName + student.lastName).toLowerCase().includes(text.toLowerCase())
   : student
   )
 
-    const finalPeople = filterName.map((student: StudentType) => (
+    const finalPeople = filterByName.map((student: StudentType) => (
         <div key={student.id} className={style.rowTable}>
             <button className={style.buttonRemove} onClick={() => {
                 removeStudent(student.id)
