@@ -1,0 +1,113 @@
+.header {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+  border-radius: 10px 10px 0 0;
+  /*background: #1976d2;*/
+
+  .butSettings {
+    display: flex;
+    align-items: center;
+    background: none;
+    border-top-left-radius: 10px;
+
+    & img {
+      width: 15px;
+      height: 15px;
+    }
+    &:hover {
+      color: #1976d2;
+      background-color: white;
+    }
+  }
+
+  .firstNameHeader {
+    display: flex;
+    background: #1976d2;
+    border-radius: 10px;
+    margin-left: 25px;
+    box-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3;
+
+  }
+
+  .lastNameHeader {
+    flex-basis: 15%;
+  }
+
+  .lessonHeader {
+    display: flex;
+    justify-content: flex-end;
+    flex-basis: 13%;
+  }
+
+  .gradesHeader {
+    display: flex;
+    justify-content: center;
+    flex-basis: 45%;
+  }
+
+  .finalAssessmentHeader {
+    display: flex;
+    flex-basis: 7%;
+  }
+
+  .divButFSort {
+    display: flex;
+
+  }
+
+  .divButLSort {
+    display: flex;
+
+  }
+  .butFinalAssessment {
+    display: flex;
+    align-items: center;
+    background: none;
+    border-top-right-radius: 10px;
+
+    & img {
+      width: 15px;
+      height: 15px;
+    }
+    &:hover {
+      color: #1976d2;
+      background-color: white;
+    }
+  }
+}
+
+
+.buttonDec {
+  background-color: transparent;
+  background-image: url("../../../icon/arrow-down.png");
+  background-position: right .4em top 50%, 0 0;
+  background-repeat: no-repeat, repeat;
+  background-size: .65em auto, 100%;
+  border-radius:  7px 0 0 7px;
+  color: white;
+  margin-right: 2px;
+  border: none;
+
+  &:hover {
+    color: #1976d2;
+    background-color: white;
+  }
+}
+
+.buttonInc {
+  background-image: url("../../../icon/arrow-up.png");
+  background-position: right .4em top 50%, 0 0;
+  background-repeat: no-repeat, repeat;
+  background-size: .65em auto, 100%;
+  border-radius: 0 7px 7px 0;
+  background-color: transparent;
+  color: white;
+  border: none;
+
+  &:hover {
+    color: #1976d2;
+    background-color: white;
+  }
+}
+

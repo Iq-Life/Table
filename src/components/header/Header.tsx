@@ -89,7 +89,7 @@ export const Header: React.FC = React.memo(() => {
                 <AppBar position="relative" sx={{flexGrow: 1}} open={open}>
                     <Toolbar sx={{minHeight: '30px'}}>
                         <Typography variant="h6" noWrap sx={{flexGrow: 1}} component="div">
-                            Persistent drawer
+                            Teacher's journal
                         </Typography>
                         <IconButton
                             color="inherit"

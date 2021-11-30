@@ -1,0 +1,63 @@
+.buttonBar {
+  display: flex;
+  align-items: center;
+  margin-left: 13px;
+
+  .selectLessons {
+    display: flex;
+
+  }
+
+  .divAdd {
+    display: flex;
+
+    .buttonAdd {
+      border: 3px white double;
+      background-color: #1976d2;
+      color: white;
+      background-size: .65em auto, 100%;
+      border-radius: 10px;
+
+      &:hover {
+        color: #1976d2;
+        background-color: white;
+        border: 3px #1976d2 double;
+      }
+      &:active{
+        color: white;
+        background-color: #1976d2;
+      }
+    }
+  }
+  .searchInput{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+
+
+    & img {
+      width: 15px;
+      height: 15px;
+
+    }
+  }
+  .divCalculation {
+    display: flex;
+    flex-basis: 27%;
+    justify-content: flex-end;
+
+    .butCalculation {
+      background-color: #1976d2;
+      color: white;
+
+      background-size: .65em auto, 100%;
+
+      &:hover {
+        color: #1976d2;
+        background-color: white;
+      }
+    }
+  }
+}
+
+

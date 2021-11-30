@@ -18,6 +18,7 @@ ____
 
 ## In this project I used libraries such as:
 * Redux
+* redux toolkit
 * react-redux
 * react-router-dom
 * uuid

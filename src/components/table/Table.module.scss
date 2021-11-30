@@ -8,61 +8,16 @@
   color: white;
   height: 700px;
   width: 90%;
-  margin-top: 15px;
-
-  .header {
-    display: flex;
-    justify-content: center;
-    margin: 6px 10px 0 10px;
-    border-radius: 10px 10px 0 0;
-    background: #1976d2;
-
-    .butMagnifier {
-      background: none;
-      border-top-left-radius: 10px;
-
-      & img {
-        width: 15px;
-        height: 15px;
-      }
-    }
-
-    .firstNameHeader {
-      padding-left: 25px;
-      flex-basis: 17%;
-    }
-
-    .lastNameHeader {
-      flex-basis: 15%;
-    }
-
-    .lessonHeader {
-      display: flex;
-      justify-content: flex-end;
-      flex-basis: 13%;
-    }
-
-    .gradesHeader {
-      display: flex;
-      justify-content: center;
-      flex-basis: 45%;
-    }
-
-    .finalAssessmentHeader {
-      display: flex;
-      flex-basis: 7%;
-    }
-  }
+  margin: 15px 0;
 
   .bodyTable {
-    margin: 0 10px;
+    margin: 0 10px 10px 10px;
     padding: 5px;
     display: flex;
     flex-direction: column;
     border-radius: 0 0 10px 10px;
     background: rgba(0, 120, 255, 0.3);
     overflow: auto;
-    height: 89%;
 
     .rowTable {
       display: flex;

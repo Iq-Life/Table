@@ -502,8 +502,7 @@ export const slice = createSlice({
                     'computerScience': blankGrade
                 }, finalAssessment: null
             })
-        }
-        ,
+        },
         removeStudentAC: (state, action: PayloadAction<{idStudent: string}>) => {
           const  indexStudent = state.findIndex( student => student.id === action.payload.idStudent)
             delete state[indexStudent]
@@ -556,29 +555,6 @@ export const slice = createSlice({
                     student.finalAssessment = false
                 }
             })
-            /*return state.map((student) => {
-                const arrGrades = student.grades[action.lessons].map(
-                    (grade) => grade.value)
-                let searchForNumber = arrGrades.join().match(/\d+/g)
-
-                if (searchForNumber) {
-                    const arrNumber = searchForNumber!.map(Number)
-                    const averageScore = arrNumber.reduce((a, b) => a + b) / arrNumber.length
-                    const missedClasses: Array<string> | null = arrGrades.join().match(/[н]/g)
-                    if (missedClasses) {
-                        const tenPercentForNCount = Math.ceil((10 * arrGrades.length) / 100)
-                        const passed = averageScore > 4 && missedClasses.length <= tenPercentForNCount
-                        student.finalAssessment = passed
-                    } else {
-                        const passed = averageScore > 4
-                        student.finalAssessment = passed
-                    }
-                } else {
-                    student.finalAssessment = false
-                }
-
-                return student
-            })*/
         },
         resettingFinalAssessmentAC: (state) => {
             state.forEach( student => student.finalAssessment = null)
@@ -589,47 +565,6 @@ export const slice = createSlice({
 export const StudentsReducer = slice.reducer
 export const {addStudentAC, removeStudentAC, changeFirstNameAC, changeLastNameAC, sortFNameDecAC, sortLNameDecAC,
     sortFNameIncAC, sortLNameIncAC, changeGradeAC, calculationOfGradesAC, resettingFinalAssessmentAC} = slice.actions
-
-//thanks
-/*
-export const getStudents = (): ThunksType =>
-    async (dispatch) => {
-        let data = await studentsAPI.getStudents()
-        if (data.resultCode === 0) {
-            dispatch(setStudents(data))
-        } else {
-            alert(data.error.message)
-        }
-    }
-export const getStudentsGrades = (studentId: number, lessons: string): ThunksType =>
-    async (dispatch) => {
-        let data = await studentsAPI.getGrades(studentId: number, lessons: string)
-        if (data.resultCode === 0) {
-            dispatch(setStudentsGrades(data))
-        } else {
-            alert(data.error.message)
-        }
-
-    }
-export const updateGrade = (studentId: number, gradeId, lessons: string): ThunksType =>
-    async (dispatch) => {
-        let data = await studentsAPI.updateGrade(studentId, gradeId, lessons)
-        if (data.resultCode === 0) {
-            dispatch(changeGradeAC(data))
-        } else {
-            alert(data.error.messages)
-        }
-    }
-*/
-//types
-/*
-type ActionTypes = ReturnType<typeof addStudentAC> | ReturnType<typeof removeStudentAC> |
-    ReturnType<typeof changeFirstNameAC> | ReturnType<typeof changeLastNameAC> |
-    ReturnType<typeof sortFNameDecAC> | ReturnType<typeof sortLNameDecAC> |
-    ReturnType<typeof sortFNameIncAC> | ReturnType<typeof sortLNameIncAC> |
-    ReturnType<typeof changeGradeAC> | ReturnType<typeof calculationOfGradesAC> |
-    ReturnType<typeof resettingFinalAssessmentAC>
-*/
 
 export type StudentType = {
     id: string

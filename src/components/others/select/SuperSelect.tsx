@@ -10,7 +10,9 @@ export const SuperSelect: React.FC<SuperSelectPropsType> = React.memo((
 ) => {
 
     const mappedOptions = options ? options.map((x, y) => (
-        <option className={style.option} key={x + '-' + y} value={x}>{x}</option>
+        <option className={style.option} key={x + '-' + y} value={x}>
+            {x === 'maths' ? 'Математика' : x === 'physics' ? 'Физика' : 'Информатика'}
+        </option>
     )) : []
 
     const onChangeCallback = useCallback((e: ChangeEvent<HTMLSelectElement>) => {

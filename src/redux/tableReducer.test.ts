@@ -84,7 +84,7 @@ test('should be add student in array', () => {
 })
 test('should be delete student from array', () => {
 
-    const action = removeStudentAC("1")
+    const action = removeStudentAC({idStudent: '1'})
 
     const endState = StudentsReducer(startState, action)
 
@@ -92,7 +92,7 @@ test('should be delete student from array', () => {
 })
 test('should be update first name', () => {
 
-    const action = changeFirstNameAC('1', "Vlad")
+    const action = changeFirstNameAC({id: '1',value: "Vlad"})
 
     const endState = StudentsReducer(startState, action)
 
@@ -136,7 +136,7 @@ test('sort lastName an array from z to a', () => {
 })
 test('calculate the GPA should be > 4 and "н" should be <= 10% from number of lessons', () => {
 
-    const action = calculationOfGradesAC('maths')
+    const action = calculationOfGradesAC({lessons: 'maths'})
 
     const endState = StudentsReducer(startState, action)
 

@@ -7,12 +7,10 @@ import {
 } from "../../redux/tableReducer";
 import {useDispatch, useSelector} from "react-redux";
 import {AppStoreType} from "../../redux/redux-store";
+import {TableHeader} from "./tableHeader/TableHeader";
 import {ButtonBar} from "./buttonBar/ButtonBar";
 import {EditableSpanForName} from "../others/editableSpan/EditableSpanForName";
 import {EditableSpanFromGrades} from "../others/editableSpan/EditableSpanFromGrades";
-import magnifier from '../../icon/loupe_icon.png'
-import {InputForName} from "../others/editableSpan/inputText/InputForName";
-
 
 const lessonsArr: string[] = ['maths', 'physics', 'computerScience']
 
@@ -65,11 +63,6 @@ export const Table: React.FC = React.memo(() => {
         dispatch(resettingFinalAssessmentAC())
     }
 
-    const changeToggle = () => {
-        setToggle(!toggle)
-        if (toggle) setText('')
-    }
-
   const filterByName = students.filter( student => text ?
           (student.firstName + student.lastName).toLowerCase().includes(text.toLowerCase())
   : student
@@ -110,35 +103,49 @@ export const Table: React.FC = React.memo(() => {
 
     return (
         <div className={style.table}>
-            <div>
+            <TableHeader toggle={toggle}
+                         setText={setText}
+                         setToggle={setToggle}
+                         calculationOfGrades={passed}
+                         sortFNameDec={sortFNameDec}
+                         sortFNameInc={sortFNameInc}
+                         sortLNameDec={sortLNameDec}
+                         sortLNameInc={sortLNameInc}
+                         lessonsArr={lessonsArr}
+                         setLessons={setLessonAndResettingFinalAssessment}
+            />
+            {/*<div>
                 <div className={style.header}>
                     <button className={style.butMagnifier} onClick={() => changeToggle()}>
-                        <img src={magnifier} alt={'magnifier'}/>
+                        <img src={settings} alt={'settings'}/>
                     </button>
-                    <div className={style.firstNameHeader}>Имя</div>
+                    <div className={style.firstNameHeader}>
+                        <button className={style.buttonDec} onClick={() => sortFNameDec()}>_</button>
+                        Имя
+                        <button className={style.buttonInc} onClick={() => sortFNameInc()}>_</button></div>
                     <div className={style.lastNameHeader}>Фамилия</div>
                     <div className={style.lessonHeader}>Предмет</div>
                     <div className={style.gradesHeader}>Оценки/посещаемость</div>
                     <div className={style.finalAssessmentHeader}>Зачёт</div>
                 </div>
-            </div>
+            </div>*/}
             {toggle ?
-                <div style={{marginLeft: "40px"}}>
-                    <InputForName text={text} onChangeText={setText}/>
-                </div>
+                <ButtonBar sortFNameDec={sortFNameDec}
+                           sortFNameInc={sortFNameInc}
+                           sortLNameDec={sortLNameDec}
+                           sortLNameInc={sortLNameInc}
+                           lessonsArr={lessonsArr}
+                           setLessons={setLessonAndResettingFinalAssessment}
+                           calculationOfGrades={passed}
+                           addStudent={addStudent}
+                           text={text}
+                           setText={()=>setText}
+                />
                 : ''}
             <div className={style.bodyTable}>
                 {finalPeople}
             </div>
-            <ButtonBar sortFNameDec={sortFNameDec}
-                       sortFNameInc={sortFNameInc}
-                       sortLNameDec={sortLNameDec}
-                       sortLNameInc={sortLNameInc}
-                       lessonsArr={lessonsArr}
-                       setLessons={setLessonAndResettingFinalAssessment}
-                       calculationOfGrades={passed}
-                       addStudent={addStudent}
-            />
+
         </div>
     )
 })
