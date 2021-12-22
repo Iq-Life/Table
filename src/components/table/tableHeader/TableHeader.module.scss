@@ -1,13 +1,14 @@
 .header {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 30px minmax(auto, 220px) minmax(auto, 270px) 1fr 1fr 55px 30px;
+  grid-template-rows: 24px;
+  align-items: center;
+  justify-items: start;
   margin: 10px;
   border-radius: 10px 10px 0 0;
-  /*background: #1976d2;*/
+  background: #1976d2;
 
   .butSettings {
-    display: flex;
-    align-items: center;
     background: none;
     border-top-left-radius: 10px;
 
@@ -15,6 +16,7 @@
       width: 15px;
       height: 15px;
     }
+
     &:hover {
       color: #1976d2;
       background-color: white;
@@ -22,46 +24,10 @@
   }
 
   .firstNameHeader {
-    display: flex;
-    background: #1976d2;
-    border-radius: 10px;
-    margin-left: 25px;
-    box-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3;
-
+    padding-left: 10px;
   }
 
-  .lastNameHeader {
-    flex-basis: 15%;
-  }
-
-  .lessonHeader {
-    display: flex;
-    justify-content: flex-end;
-    flex-basis: 13%;
-  }
-
-  .gradesHeader {
-    display: flex;
-    justify-content: center;
-    flex-basis: 45%;
-  }
-
-  .finalAssessmentHeader {
-    display: flex;
-    flex-basis: 7%;
-  }
-
-  .divButFSort {
-    display: flex;
-
-  }
-
-  .divButLSort {
-    display: flex;
-
-  }
   .butFinalAssessment {
-    display: flex;
     align-items: center;
     background: none;
     border-top-right-radius: 10px;
@@ -70,6 +36,7 @@
       width: 15px;
       height: 15px;
     }
+
     &:hover {
       color: #1976d2;
       background-color: white;
@@ -84,14 +51,17 @@
   background-position: right .4em top 50%, 0 0;
   background-repeat: no-repeat, repeat;
   background-size: .65em auto, 100%;
-  border-radius:  7px 0 0 7px;
+  border-radius: 7px 0 0 7px;
   color: white;
   margin-right: 2px;
   border: none;
 
   &:hover {
-    color: #1976d2;
-    background-color: white;
+    cursor: pointer;
+  }
+
+  &:active {
+    background-size: .85em auto, 100%;
   }
 }
 
@@ -106,8 +76,11 @@
   border: none;
 
   &:hover {
-    color: #1976d2;
-    background-color: white;
+    cursor: pointer;
+  }
+
+  &:active {
+    background-size: .85em auto, 100%;
   }
 }
 

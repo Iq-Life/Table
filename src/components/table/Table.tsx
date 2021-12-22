@@ -114,29 +114,8 @@ export const Table: React.FC = React.memo(() => {
                          lessonsArr={lessonsArr}
                          setLessons={setLessonAndResettingFinalAssessment}
             />
-            {/*<div>
-                <div className={style.header}>
-                    <button className={style.butMagnifier} onClick={() => changeToggle()}>
-                        <img src={settings} alt={'settings'}/>
-                    </button>
-                    <div className={style.firstNameHeader}>
-                        <button className={style.buttonDec} onClick={() => sortFNameDec()}>_</button>
-                        Имя
-                        <button className={style.buttonInc} onClick={() => sortFNameInc()}>_</button></div>
-                    <div className={style.lastNameHeader}>Фамилия</div>
-                    <div className={style.lessonHeader}>Предмет</div>
-                    <div className={style.gradesHeader}>Оценки/посещаемость</div>
-                    <div className={style.finalAssessmentHeader}>Зачёт</div>
-                </div>
-            </div>*/}
             {toggle ?
-                <ButtonBar sortFNameDec={sortFNameDec}
-                           sortFNameInc={sortFNameInc}
-                           sortLNameDec={sortLNameDec}
-                           sortLNameInc={sortLNameInc}
-                           lessonsArr={lessonsArr}
-                           setLessons={setLessonAndResettingFinalAssessment}
-                           calculationOfGrades={passed}
+                <ButtonBar
                            addStudent={addStudent}
                            text={text}
                            setText={()=>setText}

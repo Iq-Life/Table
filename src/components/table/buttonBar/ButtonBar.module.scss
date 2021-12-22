@@ -3,11 +3,6 @@
   align-items: center;
   margin-left: 13px;
 
-  .selectLessons {
-    display: flex;
-
-  }
-
   .divAdd {
     display: flex;
 
@@ -33,7 +28,7 @@
     display:flex;
     justify-content: center;
     align-items: center;
-
+    margin-left: 30px;
 
     & img {
       width: 15px;
@@ -41,23 +36,7 @@
 
     }
   }
-  .divCalculation {
-    display: flex;
-    flex-basis: 27%;
-    justify-content: flex-end;
 
-    .butCalculation {
-      background-color: #1976d2;
-      color: white;
-
-      background-size: .65em auto, 100%;
-
-      &:hover {
-        color: #1976d2;
-        background-color: white;
-      }
-    }
-  }
 }
 
 

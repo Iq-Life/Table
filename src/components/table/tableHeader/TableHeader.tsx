@@ -26,17 +26,17 @@ export const TableHeader: FC<TableHeaderType> = memo((
                 <button className={style.buttonDec} onClick={() => sortFNameDec()}>_</button>
                 Имя
                 <button className={style.buttonInc} onClick={() => sortFNameInc()}>_</button></div>
-            <div className={style.lastNameHeader}>
+            <div>
                 <button className={style.buttonDec} onClick={() => sortLNameDec()}>_</button>
                 Фамилия
                 <button className={style.buttonInc} onClick={() => sortLNameInc()}>_</button>
             </div>
-            <div className={style.lessonHeader}>
+            <div>
                 Предмет:
                 <SuperSelect options={lessonsArr} onChangeOption={setLessons}/>
             </div>
-            <div className={style.gradesHeader}>Оценки/посещаемость</div>
-            <div className={style.finalAssessmentHeader}>Зачёт</div>
+            <div >Оценки/посещаемость</div>
+            <div >Зачёт</div>
             <button className={style.butFinalAssessment} onClick={() => calculationOfGrades()}>
                 <img src={question} alt={'question'}/>
             </button>
