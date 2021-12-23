@@ -2,8 +2,8 @@ import React, {useState} from 'react';
 import style from "./ButtonBar.module.scss";
 import magnifier from "../../../icon/loupe_icon.png";
 import {MyInput} from "../../others/editableSpan/inputText/MyInput";
-import {Box, Modal, Typography} from "@mui/material";
-import {Counter} from "../../others/counter/Counter";
+import {ModalIcon} from "../../modal/ModalIcon";
+
 
 export const ButtonBar: React.FC<ButtonBarType> = React.memo((
     {
@@ -11,22 +11,6 @@ export const ButtonBar: React.FC<ButtonBarType> = React.memo((
     }) => {
 
     const [toggle, setToggle] = useState<boolean>(false)
-
-    const styles = {
-        position: 'absolute' as 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        width: 400,
-        bgcolor: 'background.paper',
-        border: '2px solid #1976d2',
-        boxShadow: 24,
-        p: 4,
-    };
-
-    const handleClose = () => {
-        setToggle(false);
-    };
 
     return (
 
@@ -41,20 +25,12 @@ export const ButtonBar: React.FC<ButtonBarType> = React.memo((
             <div>
                 <button className={style.addLesson} onClick={() => setToggle(!toggle)}>Добавить урок</button>
                 {toggle ?
-                    <Modal
-                        open={toggle}
-                        onClose={handleClose}
-                        aria-labelledby="modal-modal-title"
-                        aria-describedby="modal-modal-description"
-                    >
-                        <Box sx={styles}>
-                            <Typography id="modal-modal-title" variant="h6" component="h2">
-                                Введите название урока и кол-во занятий
-                            </Typography>
-                            <MyInput text={nameLesson} onChangeText={setNameLesson}/>
-                            <Counter/>
-                        </Box>
-                    </Modal>
+                    <ModalIcon
+                        toggle={toggle}
+                        setToggle={setToggle}
+                        nameLesson={nameLesson}
+                        setNameLesson={setNameLesson}
+                    />
                     : ''}
             </div>
         </div>
