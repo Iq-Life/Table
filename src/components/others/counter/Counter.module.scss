@@ -1,0 +1,42 @@
+.counter {
+  display: flex;
+  justify-content: center;
+
+  .display{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: black 1px solid;
+    width: 30px;
+    height: 35px;
+  }
+  .arrows{
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    .inc{
+      margin-bottom: 1px;
+      width: 10px;
+      height: 17.5px;
+      border: 1px solid black;
+      background-color: transparent;
+      background-image: url("../../../icon/arrow-up.png");
+      background-position: left -1px top 50%, 0 0;
+      background-repeat: no-repeat, repeat;
+      background-size: 14px auto, 100%;
+    }
+
+    .dec{
+      margin-top: 1px;
+      width: 10px;
+      height: 17.5px;
+      border: 1px solid black;
+      background-color: transparent;
+      background-image: url("../../../icon/arrow-down.png");
+      background-position: left -1px top 50%, 0 0;
+      background-repeat: no-repeat, repeat;
+      background-size: 14px auto, 100%;
+    }
+  }
+}
+

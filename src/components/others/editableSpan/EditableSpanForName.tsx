@@ -1,5 +1,6 @@
 import React, {DetailedHTMLProps, HTMLAttributes, InputHTMLAttributes, useCallback, useState} from 'react'
-import {InputForName} from "./inputText/InputForName";
+import { MyInput } from './inputText/MyInput'
+
 
 export const EditableSpanForName: React.FC<SuperEditableSpanType> = React.memo((
     {
@@ -48,7 +49,7 @@ export const EditableSpanForName: React.FC<SuperEditableSpanType> = React.memo((
         <>
             {editMode
                 ? (
-                    <InputForName
+                    <MyInput
                         autoFocus
                         onBlur={onBlurCallback}
                         onEnter={onEnterCallback}

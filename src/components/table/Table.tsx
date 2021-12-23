@@ -18,9 +18,10 @@ export const Table: React.FC = React.memo(() => {
 
     const dispatch = useDispatch()
     const students = useSelector<AppStoreType, StudentType[]>(state => state.StudentsReducer)
-    const [lessons, setLessons] = useState<string>(lessonsArr[0])
+    const [lessons, setLessons] = useState<string>(lessonsArr[0])   //for select, current lesson
     const [toggle, setToggle] = useState<boolean>(false)
-    const [text, setText] = useState<string>('')
+    const [text, setText] = useState<string>('')    //for input, search to first and last name
+    const [nameLesson, setNameLesson] = useState<string>('')    //for input, new Lesson
 
 //add and remove student
     const addStudent = () => {
@@ -116,9 +117,11 @@ export const Table: React.FC = React.memo(() => {
             />
             {toggle ?
                 <ButtonBar
-                           addStudent={addStudent}
-                           text={text}
-                           setText={()=>setText}
+                    addStudent={addStudent}
+                    text={text}
+                    setText={setText}
+                    setNameLesson={setNameLesson}
+                    nameLesson={nameLesson}
                 />
                 : ''}
             <div className={style.bodyTable}>

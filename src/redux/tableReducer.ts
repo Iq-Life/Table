@@ -558,14 +558,19 @@ export const slice = createSlice({
         },
         resettingFinalAssessmentAC: (state) => {
             state.forEach( student => student.finalAssessment = null)
+        },
+        addNewLessonAC: (state) => {
+
+            //state.forEach( student => student.grades['newLesson': ])
         }
     }
 })
 
 export const StudentsReducer = slice.reducer
 export const {addStudentAC, removeStudentAC, changeFirstNameAC, changeLastNameAC, sortFNameDecAC, sortLNameDecAC,
-    sortFNameIncAC, sortLNameIncAC, changeGradeAC, calculationOfGradesAC, resettingFinalAssessmentAC} = slice.actions
-
+    sortFNameIncAC, sortLNameIncAC, changeGradeAC, calculationOfGradesAC, resettingFinalAssessmentAC,
+    addNewLessonAC} = slice.actions
+//types
 export type StudentType = {
     id: string
     firstName: string

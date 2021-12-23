@@ -12,7 +12,6 @@ export const TableHeader: FC<TableHeaderType> = memo((
     }) => {
 
     const changeToggle = () => {
-        console.log(toggle)
         setToggle(!toggle)
         if (toggle) setText('')
     }
@@ -38,7 +37,7 @@ export const TableHeader: FC<TableHeaderType> = memo((
             <div >Оценки/посещаемость</div>
             <div >Зачёт</div>
             <button className={style.butFinalAssessment} onClick={() => calculationOfGrades()}>
-                <img src={question} alt={'question'}/>
+                {toggle ? <img src={question} alt={'question'}/> : <img src={exclamation} alt={'exclamation'}/>}
             </button>
         </div>
     )

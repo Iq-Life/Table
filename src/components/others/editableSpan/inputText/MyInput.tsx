@@ -1,7 +1,7 @@
 import React, {ChangeEvent, DetailedHTMLProps, InputHTMLAttributes, KeyboardEvent, useCallback} from 'react'
 import style from './InputForName.module.scss'
 
-export const InputForName: React.FC<SuperInputTextPropsType> = React.memo((
+export const MyInput: React.FC<SuperInputTextPropsType> = React.memo((
     {
         type, onChange, onChangeText,
         onEnter, error, resetError, text,
@@ -39,9 +39,9 @@ export const InputForName: React.FC<SuperInputTextPropsType> = React.memo((
 //types
 type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
 type SuperInputTextPropsType = DefaultInputPropsType & {
+    text: string
     onChangeText: (value: string) => void
     onEnter?: () => void
     error?: string
     resetError?: () => void
-    text: string
 }
