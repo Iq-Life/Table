@@ -1,3 +1,5 @@
+@import "../../../styles/mixins";
+@import "../../../styles/variables";
 .header {
   display: grid;
   grid-template-columns: 30px minmax(auto, 230px) minmax(auto, 270px) 1fr 1fr 55px 27px;
@@ -44,43 +46,11 @@
   }
 }
 
-
 .buttonDec {
-  background-color: transparent;
-  background-image: url("../../../icon/arrow-down.png");
-  background-position: right .4em top 50%, 0 0;
-  background-repeat: no-repeat, repeat;
-  background-size: .65em auto, 100%;
-  border-radius: 7px 0 0 7px;
-  color: white;
+  @include arrowButton($arrowDown, 7px 0 0 7px, 10px 14px, right 5px top 50%, 8px 10px);
   margin-right: 2px;
-  border: none;
-
-  &:hover {
-    cursor: pointer;
-  }
-
-  &:active {
-    background-size: .85em auto, 100%;
-  }
 }
 
 .buttonInc {
-  background-image: url("../../../icon/arrow-up.png");
-  background-position: right .4em top 50%, 0 0;
-  background-repeat: no-repeat, repeat;
-  background-size: .65em auto, 100%;
-  border-radius: 0 7px 7px 0;
-  background-color: transparent;
-  color: white;
-  border: none;
-
-  &:hover {
-    cursor: pointer;
-  }
-
-  &:active {
-    background-size: .85em auto, 100%;
-  }
+  @include arrowButton($arrowUp, 0 7px 7px 0, 10px 14px, right 5px top 50%, 8px 10px);
 }
-

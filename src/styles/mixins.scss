@@ -16,3 +16,21 @@
     background-color: #1976d2;
   }
 }
+@mixin arrowButton ($urlBgImage, $borderRadius, $bgSize, $bgPosition, $activeBgSize) {
+  background-image: $urlBgImage;
+  background-position: $bgPosition, 0 0;
+  background-size: $bgSize, 100%;
+  background-repeat: no-repeat, repeat;
+  border-radius: $borderRadius;
+  background-color: transparent;
+  border: none;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:active {
+    background-position: $bgPosition, 0 0;
+    background-size: $activeBgSize, 100%;
+  }
+}
