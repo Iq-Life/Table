@@ -1,35 +1,37 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import style from "./ButtonBar.module.scss";
 import magnifier from "../../../icon/loupe_icon.png";
-import {MyInput} from "../../others/editableSpan/inputText/MyInput";
-import {ModalIcon} from "../../modal/ModalIcon";
+import { MyInput } from "../../others/editableSpan/inputText/MyInput";
+import { ModalIcon } from "../../modal/ModalIcon";
 
 
 export const ButtonBar: React.FC<ButtonBarType> = React.memo((
     {
-        addStudent, text, setText, setNameLesson, nameLesson
+        addStudent, text, setText, lessonsArr
     }) => {
 
     const [toggle, setToggle] = useState<boolean>(false)
+
+    const onModal = () => setToggle(!toggle)
+    const clickAddStudent = () => addStudent()
 
     return (
 
         <div className={style.buttonBar}>
 
             <div className={style.divAdd}>
-                <button className={style.buttonAdd} onClick={() => addStudent()}>Добавить студента</button>
+                <button className={style.buttonAdd} onClick={clickAddStudent}>Добавить студента</button>
             </div>
             <div className={style.searchInput}>
-                <img src={magnifier} alt={'magnifier'}/><MyInput text={text} onChangeText={setText}/>
+                <img src={magnifier} alt={'magnifier'} /><MyInput text={text} onChangeText={setText} />
             </div>
             <div>
-                <button className={style.addLesson} onClick={() => setToggle(!toggle)}>Добавить урок</button>
+                <button className={style.addLesson} onClick={onModal}>Добавить урок</button>
                 {toggle ?
                     <ModalIcon
                         toggle={toggle}
                         setToggle={setToggle}
-                        nameLesson={nameLesson}
-                        setNameLesson={setNameLesson}
+                        lessonsArr={lessonsArr}
                     />
                     : ''}
             </div>
@@ -41,6 +43,5 @@ type ButtonBarType = {
     addStudent: () => void
     text: string
     setText: (value: string) => void
-    setNameLesson: (value: string) => void
-    nameLesson: string
+    lessonsArr: string[]
 }

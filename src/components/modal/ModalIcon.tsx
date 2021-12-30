@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import style from './ModalIcon.module.scss';
-import {Box, Modal, Typography} from "@mui/material";
-import {MyInput} from "../others/editableSpan/inputText/MyInput";
-import {Counter} from "../others/counter/Counter";
-
+import { Box, Modal, Typography } from "@mui/material";
+import { MyInput } from "../others/editableSpan/inputText/MyInput";
+import { useDispatch } from 'react-redux';
+import { addNewLessonAC } from '../../redux/tableReducer';
 
 export const ModalIcon: React.FC<ModalType> = (
     {
-        toggle, setToggle, nameLesson, setNameLesson
+        toggle, setToggle, lessonsArr
     }) => {
+
+    const [count, setCount] = useState(15)
+    const [nameLesson, setNameLesson] = useState<string>('')
+
+    let increment = () => setCount(count + 1)
+    let decrement = () => setCount(count - 1)
 
     const styles = {
         position: 'absolute' as 'absolute',
@@ -22,14 +28,24 @@ export const ModalIcon: React.FC<ModalType> = (
         border: '2px solid #1976d2',
         boxShadow: 24,
         p: 4,
-    };
+    }
+
+    //set newLesson and number of lessons
+    const setNewLesson = (newLesson: string, NumbersOfLessons: number) => {
+        console.log('new lesson = ' + newLesson)
+        lessonsArr.push(newLesson)
+        dispatch(addNewLessonAC({ newLesson, NumbersOfLessons }))
+    }
+
+    const dispatch = useDispatch()
 
     const handleClose = () => {
         setToggle(false);
     }
 
     const addLesson = () => {
-
+        console.log('add lesson : new lesson = ' + nameLesson)
+        setNewLesson(nameLesson, count)
         setToggle(false);
     }
 
@@ -45,8 +61,14 @@ export const ModalIcon: React.FC<ModalType> = (
                         Введите название урока и кол-во занятий
                     </Typography>
                     <div className={style.enter}>
-                        <MyInput text={nameLesson} onChangeText={setNameLesson}/>
-                        <Counter/>
+                        <MyInput text={nameLesson} onChangeText={setNameLesson} />
+                        <div className={style.counter}>
+                            <div className={style.display}>{count}</div>
+                            <div className={style.arrows}>
+                                <button className={style.inc} onClick={increment} />
+                                <button className={style.dec} onClick={decrement} />
+                            </div>
+                        </div>
                     </div>
                     <div className={style.divButtonAdd}>
                         <button className={style.buttonAdd} onClick={addLesson}>Добавить урок</button>
@@ -58,7 +80,6 @@ export const ModalIcon: React.FC<ModalType> = (
 }
 type ModalType = {
     toggle: boolean
-    nameLesson: string
+    lessonsArr: string[]
     setToggle: (value: boolean) => void
-    setNameLesson: (value: string) => void
 }

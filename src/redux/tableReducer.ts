@@ -559,9 +559,13 @@ export const slice = createSlice({
         resettingFinalAssessmentAC: (state) => {
             state.forEach( student => student.finalAssessment = null)
         },
-        addNewLessonAC: (state) => {
+        addNewLessonAC: (state, action: PayloadAction<{newLesson: string, NumbersOfLessons: number}>) => {
 
-            //state.forEach( student => student.grades['newLesson': ])
+            let numbersOfLesson:any = []
+            for (let i = 1; i <= action.payload.NumbersOfLessons ; i++){
+                numbersOfLesson.push({id: v1(), value: '.'})
+            }
+            state.forEach( student => student.grades[action.payload.newLesson] = numbersOfLesson)
         }
     }
 })

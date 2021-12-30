@@ -1,0 +1,18 @@
+
+@mixin bluButton {
+  border: 3px white double;
+  background-color: #1976d2;
+  color: white;
+  background-size: .65em auto, 100%;
+  border-radius: 10px;
+
+  &:hover {
+    color: #1976d2;
+    background-color: white;
+    border: 3px #1976d2 double;
+  }
+  &:active {
+    color: white;
+    background-color: #1976d2;
+  }
+}

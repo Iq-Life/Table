@@ -11,7 +11,7 @@ export const SuperSelect: React.FC<SuperSelectPropsType> = React.memo((
 
     const mappedOptions = options ? options.map((x, y) => (
         <option className={style.option} key={x + '-' + y} value={x}>
-            {x === 'maths' ? 'Математика' : x === 'physics' ? 'Физика' : 'Информатика'}
+            {x}
         </option>
     )) : []
 

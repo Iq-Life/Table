@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import style from './Table.module.scss'
 import {
+    addNewLessonAC,
     addStudentAC, calculationOfGradesAC, changeFirstNameAC, changeGradeAC, changeLastNameAC,
     removeStudentAC, resettingFinalAssessmentAC, sortFNameDecAC, sortFNameIncAC, sortLNameDecAC,
     sortLNameIncAC, StudentType
@@ -12,7 +13,7 @@ import {ButtonBar} from "./buttonBar/ButtonBar";
 import {EditableSpanForName} from "../others/editableSpan/EditableSpanForName";
 import {EditableSpanFromGrades} from "../others/editableSpan/EditableSpanFromGrades";
 
-const lessonsArr: string[] = ['maths', 'physics', 'computerScience']
+let lessonsArr: string[] = ['maths', 'physics', 'computerScience']
 
 export const Table: React.FC = React.memo(() => {
 
@@ -21,7 +22,6 @@ export const Table: React.FC = React.memo(() => {
     const [lessons, setLessons] = useState<string>(lessonsArr[0])   //for select, current lesson
     const [toggle, setToggle] = useState<boolean>(false)
     const [text, setText] = useState<string>('')    //for input, search to first and last name
-    const [nameLesson, setNameLesson] = useState<string>('')    //for input, new Lesson
 
 //add and remove student
     const addStudent = () => {
@@ -63,6 +63,11 @@ export const Table: React.FC = React.memo(() => {
         setLessons(value)
         dispatch(resettingFinalAssessmentAC())
     }
+//set newLesson and number of lessons
+//const setNewLesson = (newLesson:string, NumbersOfLessons: number) => {
+  //  lessonsArr.push(newLesson)
+    //dispatch(addNewLessonAC({newLesson, NumbersOfLessons}))
+//}
 
   const filterByName = students.filter( student => text ?
           (student.firstName + student.lastName).toLowerCase().includes(text.toLowerCase())
@@ -85,7 +90,7 @@ export const Table: React.FC = React.memo(() => {
                                      onChangeText={(newName) => changeLastname(student.id, newName)}/>
             </div>
             <div className={style.lessonBody}>
-                {lessons === 'maths' ? 'Математика' : lessons === 'physics' ? 'Физика' : 'Информатика'}
+                {lessons}
             </div>
 
             <div className={style.gradesBody}>
@@ -120,8 +125,7 @@ export const Table: React.FC = React.memo(() => {
                     addStudent={addStudent}
                     text={text}
                     setText={setText}
-                    setNameLesson={setNameLesson}
-                    nameLesson={nameLesson}
+                    lessonsArr={lessonsArr}
                 />
                 : ''}
             <div className={style.bodyTable}>
