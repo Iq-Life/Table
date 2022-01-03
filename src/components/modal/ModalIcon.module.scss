@@ -34,7 +34,7 @@
         border-radius: 10px;
         background: red;
         color: white;
-        box-shadow: 0 0 10px #8b0000,0 0 40px #8b0000,0 0 80px #8b0000;;
+        box-shadow: 0 0 10px #8b0000, 0 0 40px #8b0000, 0 0 80px #8b0000;
       }
       .arrows {
         display: flex;
@@ -62,8 +62,7 @@
     display: flex;
     justify-content: center;
     .buttonAdd {
-      @include bluButton;
-      width: 200px;
+      @include bluButton(200px);
     }
   }
 }

@@ -34,8 +34,8 @@ export const TableHeader: FC<TableHeaderType> = memo((
                 Предмет:
                 <SuperSelect options={lessonsArr} onChangeOption={setLessons}/>
             </div>
-            <div >Оценки/посещаемость</div>
-            <div >Зачёт</div>
+            <div className={style.grades}>Оценки/посещаемость</div>
+            <div className={style.finalAssessment}>Зачёт</div>
             <button className={style.butFinalAssessment} onClick={() => calculationOfGrades()}>
                 {toggle ? <img src={question} alt={'question'}/> : <img src={exclamation} alt={'exclamation'}/>}
             </button>

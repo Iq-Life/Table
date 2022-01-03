@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import style from './Table.module.scss'
 import {
     addNewLessonAC,
@@ -6,12 +6,12 @@ import {
     removeStudentAC, resettingFinalAssessmentAC, sortFNameDecAC, sortFNameIncAC, sortLNameDecAC,
     sortLNameIncAC, StudentType
 } from "../../redux/tableReducer";
-import {useDispatch, useSelector} from "react-redux";
-import {AppStoreType} from "../../redux/redux-store";
-import {TableHeader} from "./tableHeader/TableHeader";
-import {ButtonBar} from "./buttonBar/ButtonBar";
-import {EditableSpanForName} from "../others/editableSpan/EditableSpanForName";
-import {EditableSpanFromGrades} from "../others/editableSpan/EditableSpanFromGrades";
+import { useDispatch, useSelector } from "react-redux";
+import { AppStoreType } from "../../redux/redux-store";
+import { TableHeader } from "./tableHeader/TableHeader";
+import { ButtonBar } from "./buttonBar/ButtonBar";
+import { EditableSpanForName } from "../others/editableSpan/EditableSpanForName";
+import { EditableSpanFromGrades } from "../others/editableSpan/EditableSpanFromGrades";
 
 let lessonsArr: string[] = ['maths', 'physics', 'computerScience']
 
@@ -23,25 +23,25 @@ export const Table: React.FC = React.memo(() => {
     const [toggle, setToggle] = useState<boolean>(false)
     const [text, setText] = useState<string>('')    //for input, search to first and last name
 
-//add and remove student
+    //add and remove student
     const addStudent = () => {
         dispatch(addStudentAC())
     }
     const removeStudent = (idStudent: string) => {
-        dispatch(removeStudentAC({idStudent}))
+        dispatch(removeStudentAC({ idStudent }))
     }
-//change first and last name
+    //change first and last name
     const changeFirstname = (id: string, fName: string) => {
-        dispatch(changeFirstNameAC({id, value: fName}))
+        dispatch(changeFirstNameAC({ id, value: fName }))
     }
     const changeLastname = (id: string, lName: string) => {
-        dispatch(changeLastNameAC({id, value: lName}))
+        dispatch(changeLastNameAC({ id, value: lName }))
     }
-//change grade
+    //change grade
     const changeGrade = (idStudent: string, idGrade: string, lessons: string, newGrade: string | number) => {
-        dispatch(changeGradeAC({idStudent, idGrade, lessons, newGrade}))
+        dispatch(changeGradeAC({ idStudent, idGrade, lessons, newGrade }))
     }
-//sort first and last Name
+    //sort first and last Name
     const sortFNameDec = () => {
         dispatch(sortFNameDecAC())
     }
@@ -54,42 +54,41 @@ export const Table: React.FC = React.memo(() => {
     const sortLNameInc = () => {
         dispatch(sortLNameIncAC())
     }
-//calculation of grades
+    //calculation of grades
     const passed = () => {
-        dispatch(calculationOfGradesAC({lessons}))
+        dispatch(calculationOfGradesAC({ lessons }))
     }
-//set lessons and resetting finalAssessment
+    //set lessons and resetting finalAssessment
     const setLessonAndResettingFinalAssessment = (value: string) => {
         setLessons(value)
         dispatch(resettingFinalAssessmentAC())
     }
-//set newLesson and number of lessons
-//const setNewLesson = (newLesson:string, NumbersOfLessons: number) => {
-  //  lessonsArr.push(newLesson)
+    //!
+    //set newLesson and number of lessons
+    //const setNewLesson = (newLesson:string, NumbersOfLessons: number) => {
+    //  lessonsArr.push(newLesson)
     //dispatch(addNewLessonAC({newLesson, NumbersOfLessons}))
-//}
+    //}
 
-  const filterByName = students.filter( student => text ?
-          (student.firstName + student.lastName).toLowerCase().includes(text.toLowerCase())
-  : student
-  )
+    const filterByName = students.filter(student => text ?
+        (student.firstName + student.lastName).toLowerCase().includes(text.toLowerCase())
+        : student
+    )
 
     const finalPeople = filterByName.map((student: StudentType) => (
         <div key={student.id} className={style.rowTable}>
-            <button className={style.buttonRemove} onClick={() => {
-                removeStudent(student.id)
-            }}>
+            <button className={style.buttonRemove} onClick={() => removeStudent(student.id)}>
                 X
             </button>
             <div className={style.firstNameBody}>
                 <EditableSpanForName title={student.firstName}
-                                     onChangeText={(newName) => changeFirstname(student.id, newName)}/>
+                    onChangeText={(newName) => changeFirstname(student.id, newName)} />
             </div>
-            <div className={style.lastNameBody}>
+            <div>
                 <EditableSpanForName title={student.lastName}
-                                     onChangeText={(newName) => changeLastname(student.id, newName)}/>
+                    onChangeText={(newName) => changeLastname(student.id, newName)} />
             </div>
-            <div className={style.lessonBody}>
+            <div>
                 {lessons}
             </div>
 
@@ -97,7 +96,7 @@ export const Table: React.FC = React.memo(() => {
                 {student.grades[lessons].map(grade =>
                     <div className={style.oneGrade} key={grade.id}>
                         <EditableSpanFromGrades item={grade.value} onChangeText={(newGrade) =>
-                            changeGrade(student.id, grade.id, lessons, newGrade)}/>
+                            changeGrade(student.id, grade.id, lessons, newGrade)} />
                     </div>
                 )}
             </div>
@@ -110,15 +109,15 @@ export const Table: React.FC = React.memo(() => {
     return (
         <div className={style.table}>
             <TableHeader toggle={toggle}
-                         setText={setText}
-                         setToggle={setToggle}
-                         calculationOfGrades={passed}
-                         sortFNameDec={sortFNameDec}
-                         sortFNameInc={sortFNameInc}
-                         sortLNameDec={sortLNameDec}
-                         sortLNameInc={sortLNameInc}
-                         lessonsArr={lessonsArr}
-                         setLessons={setLessonAndResettingFinalAssessment}
+                setText={setText}
+                setToggle={setToggle}
+                calculationOfGrades={passed}
+                sortFNameDec={sortFNameDec}
+                sortFNameInc={sortFNameInc}
+                sortLNameDec={sortLNameDec}
+                sortLNameInc={sortLNameInc}
+                lessonsArr={lessonsArr}
+                setLessons={setLessonAndResettingFinalAssessment}
             />
             {toggle ?
                 <ButtonBar

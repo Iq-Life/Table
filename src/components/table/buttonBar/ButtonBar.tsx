@@ -20,24 +20,19 @@ export const ButtonBar: React.FC<ButtonBarType> = React.memo((
     return (
 
         <div className={style.buttonBar}>
-
-            <div className={style.divAdd}>
-                <button className={style.buttonAdd} onClick={clickAddStudent}>Добавить студента</button>
-            </div>
+            <button className={style.buttonAdd} onClick={clickAddStudent}>Добавить студента</button>
             <div className={style.searchInput}>
                 <img src={magnifier} alt={'magnifier'} />
-                <MyInput text={text} onChangeText={setText}/>
+                <MyInput text={text} onChangeText={setText} />
             </div>
-            <div>
-                <button className={style.addLesson} onClick={onModal}>Добавить урок</button>
-                {toggle ?
-                    <ModalIcon
-                        toggle={toggle}
-                        setToggle={setToggle}
-                        lessonsArr={lessonsArr}
-                    />
-                    : ''}
-            </div>
+            <button className={style.addLesson} onClick={onModal}>Добавить урок</button>
+            {toggle ?
+                <ModalIcon
+                    toggle={toggle}
+                    setToggle={setToggle}
+                    lessonsArr={lessonsArr}
+                />
+                : ''}
         </div>
     )
 })

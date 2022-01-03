@@ -2,7 +2,8 @@
 @import "../../../styles/variables";
 .header {
   display: grid;
-  grid-template-columns: 30px minmax(auto, 230px) minmax(auto, 250px) 1fr 1fr 55px 28px;
+ // grid-template-columns: 30px minmax(auto, 230px) minmax(auto, 250px) 1fr 1fr 55px 28px;
+  grid-template-columns: 2% 17% 16% 15% 42% 6% 2%;
   grid-template-rows: 24px;
   align-items: center;
   justify-items: start;
@@ -12,6 +13,9 @@
 
   .butSettings {
     background: none;
+    border: none;
+    height: 100%;
+    width: 100%;
     border-top-left-radius: 10px;
 
     & img {
@@ -28,10 +32,19 @@
   .firstNameHeader {
     padding-left: 10px;
   }
+  .grades{
+    @include elementToXY(100%, center, null);
+  }
 
+  .finalAssessment{
+    @include elementToXY(100%, center, null);
+  }
   .butFinalAssessment {
     align-items: center;
     background: none;
+    border: none;
+    height: 100%;
+    width: 100%;
     border-top-right-radius: 10px;
     
     & img {
