@@ -25,7 +25,17 @@
         background: #1976d2;
         color: white;
       }
-
+      .errorDisplay {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 35px;
+        border-radius: 10px;
+        background: red;
+        color: white;
+        box-shadow: 0 0 10px #8b0000,0 0 40px #8b0000,0 0 80px #8b0000;;
+      }
       .arrows {
         display: flex;
         flex-direction: column;

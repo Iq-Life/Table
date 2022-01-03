@@ -11,7 +11,7 @@ export const MyInput: React.FC<SuperInputTextPropsType> = React.memo((
 ) => {
 
     const onChangeCallback = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-        onChange && onChange(e)
+        onChange && onChange(e) 
         onChangeText(e.currentTarget.value)
     }, [onChangeText, onChange])
 

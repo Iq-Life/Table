@@ -16,6 +16,7 @@
     background-color: #1976d2;
   }
 }
+
 @mixin arrowButton ($urlBgImage, $borderRadius, $bgSize, $bgPosition, $activeBgSize) {
   background-image: $urlBgImage;
   background-position: $bgPosition, 0 0;

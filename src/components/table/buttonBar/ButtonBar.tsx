@@ -15,6 +15,8 @@ export const ButtonBar: React.FC<ButtonBarType> = React.memo((
     const onModal = () => setToggle(!toggle)
     const clickAddStudent = () => addStudent()
 
+
+
     return (
 
         <div className={style.buttonBar}>
@@ -23,7 +25,8 @@ export const ButtonBar: React.FC<ButtonBarType> = React.memo((
                 <button className={style.buttonAdd} onClick={clickAddStudent}>Добавить студента</button>
             </div>
             <div className={style.searchInput}>
-                <img src={magnifier} alt={'magnifier'} /><MyInput text={text} onChangeText={setText} />
+                <img src={magnifier} alt={'magnifier'} />
+                <MyInput text={text} onChangeText={setText}/>
             </div>
             <div>
                 <button className={style.addLesson} onClick={onModal}>Добавить урок</button>

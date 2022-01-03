@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import style from './ModalIcon.module.scss';
 import { Box, Modal, Typography } from "@mui/material";
 import { MyInput } from "../others/editableSpan/inputText/MyInput";
@@ -12,9 +12,10 @@ export const ModalIcon: React.FC<ModalType> = (
 
     const [count, setCount] = useState(15)
     const [nameLesson, setNameLesson] = useState<string>('')
+    const [error, setError] = useState<string>('')
 
-    let increment = () => setCount(count + 1)
-    let decrement = () => setCount(count - 1)
+    let increment = () => count < 30 ? setCount(count + 1) : count
+    let decrement = () => count > 10 ? setCount(count - 1) : count
 
     const styles = {
         position: 'absolute' as 'absolute',
@@ -44,10 +45,20 @@ export const ModalIcon: React.FC<ModalType> = (
     }
 
     const addLesson = () => {
-        console.log('add lesson : new lesson = ' + nameLesson)
-        setNewLesson(nameLesson, count)
-        setToggle(false);
+        if (nameLesson.trim()) {
+            setNewLesson(nameLesson, count)
+            setToggle(false)
+        } else {
+            setError('Ввидите название урока')
+        }
     }
+    const resetError = useCallback(() => {
+        if (nameLesson.trim() === "") {
+            setError("")
+        }
+    }, [nameLesson])
+
+    const finalDisplayClassName = count === 10 || count ===30 ? `${style.errorDisplay}`  : `${style.display}`
 
     return (
         <Modal
@@ -61,9 +72,15 @@ export const ModalIcon: React.FC<ModalType> = (
                         Введите название урока и кол-во занятий
                     </Typography>
                     <div className={style.enter}>
-                        <MyInput text={nameLesson} onChangeText={setNameLesson} />
+                        <MyInput
+                            text={nameLesson}
+                            onChangeText={setNameLesson}
+                            error={error}
+                            resetError={resetError}
+
+                        />
                         <div className={style.counter}>
-                            <div className={style.display}>{count}</div>
+                            <div className={finalDisplayClassName}>{count}</div>
                             <div className={style.arrows}>
                                 <button className={style.inc} onClick={increment} />
                                 <button className={style.dec} onClick={decrement} />
