@@ -1,497 +1,521 @@
 import { v1 } from "uuid";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+type state1 = {
+	students: Array<{
+		id: string
+		firstName: string
+		lastName: string
+		lesson: null | string
+		grades: gradesType
+		finalAssessment: null | boolean
+	}>,
+	lessons: [
+		{
+			name: string
+			countGrades: number
+		}
+	]
 
-export let initialPeople: Array<StudentType> = [
-	{
-		id: v1(), firstName: 'Иван', lastName: 'Фирстов', lesson: null,
-		grades: {
-			'maths': [
-				{ id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
-				{ id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' },
-				{ id: v1(), value: 4 }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
-				{ id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' }],
-			'physics': [
-				{ id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
-				{ id: v1(), value: 5 }, { id: v1(), value: '.' }, { id: v1(), value: 3 }, { id: v1(), value: '.' },
-				{ id: v1(), value: '.' }, { id: v1(), value: 3 }, { id: v1(), value: 4 }, { id: v1(), value: '.' },
-				{ id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' }],
-			'computerScience': [
-				{ id: v1(), value: 5 }, { id: v1(), value: 5 }, { id: v1(), value: '.' }, { id: v1(), value: 'н' },
-				{ id: v1(), value: 5 }, { id: v1(), value: 4 }, { id: v1(), value: 5 }, { id: v1(), value: '.' },
-				{ id: v1(), value: 4 }, { id: v1(), value: 5 }, { id: v1(), value: 4 }, { id: v1(), value: 3 },
-				{ id: v1(), value: 5 }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }]
-		}, finalAssessment: null
-	},
-	{
-		id: v1(), firstName: 'Олег', lastName: 'Куплинов', lesson: null,
-		grades: {
-			'maths': [
-				{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
-				{ id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
-				{ id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' },
-				{ id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' }],
-			'physics': [{ id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
-			{ id: v1(), value: '.' }, { id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
-			{ id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: 3 }, { id: v1(), value: '.' },
-			{ id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }],
-			'computerScience': [{ id: v1(), value: 5 }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }, {
-				id: v1(),
-				value: 'н'
-			},
-			{ id: v1(), value: 3 }, { id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' },
-			{ id: v1(), value: 4 }, { id: v1(), value: 3 }, { id: v1(), value: 4 }, { id: v1(), value: 3 },
-			{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }]
-		}, finalAssessment: null
-	},
-	{
-		id: v1(), firstName: 'Дмитрий', lastName: 'Дадарчук', lesson: null,
-		grades: {
-			'maths': [
-				{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
-				{ id: v1(), value: '.' }, { id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: '.' },
-				{ id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: 4 },
-				{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: 4 }],
-			'physics': [
-				{ id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
+}
+
+//let lessonsArr: string[] = ['maths', 'physics', 'computerScience']
+
+export let initialPeople: Array<StudentType> =
+	[
+		{
+			id: v1(), firstName: 'Иван', lastName: 'Фирстов', lesson: null,
+			grades: {
+				'maths': [
+					{ id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
+					{ id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' },
+					{ id: v1(), value: 4 }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
+					{ id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' }],
+				'physics': [
+					{ id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
+					{ id: v1(), value: 5 }, { id: v1(), value: '.' }, { id: v1(), value: 3 }, { id: v1(), value: '.' },
+					{ id: v1(), value: '.' }, { id: v1(), value: 3 }, { id: v1(), value: 4 }, { id: v1(), value: '.' },
+					{ id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' }],
+				'computerScience': [
+					{ id: v1(), value: 5 }, { id: v1(), value: 5 }, { id: v1(), value: '.' }, { id: v1(), value: 'н' },
+					{ id: v1(), value: 5 }, { id: v1(), value: 4 }, { id: v1(), value: 5 }, { id: v1(), value: '.' },
+					{ id: v1(), value: 4 }, { id: v1(), value: 5 }, { id: v1(), value: 4 }, { id: v1(), value: 3 },
+					{ id: v1(), value: 5 }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }]
+			}, finalAssessment: null
+		},
+		{
+			id: v1(), firstName: 'Олег', lastName: 'Куплинов', lesson: null,
+			grades: {
+				'maths': [
+					{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
+					{ id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
+					{ id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' },
+					{ id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' }],
+				'physics': [{ id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
 				{ id: v1(), value: '.' }, { id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
-				{ id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: 3 }, { id: v1(), value: '.' },
-				{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }],
-			'computerScience': [
-				{ id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
-				{ id: v1(), value: 4 }, { id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' },
-				{ id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: 3 },
-				{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }]
-		}, finalAssessment: null
-	},
-	{
-		id: v1(), firstName: 'Павел', lastName: 'Вавилин', lesson: null,
-		grades: {
-			'maths': [
-				{ id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: 3 }, { id: v1(), value: 3 },
-				{ id: v1(), value: '.' }, { id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: '.' },
-				{ id: v1(), value: 4 }, { id: v1(), value: 3 }, { id: v1(), value: 'н' }, { id: v1(), value: 4 },
-				{ id: v1(), value: 2 }, { id: v1(), value: 'н' }, { id: v1(), value: 4 }],
-			'physics': [
-				{ id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: 5 }, { id: v1(), value: '.' },
-				{ id: v1(), value: '.' }, { id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
-				{ id: v1(), value: 'н' }, { id: v1(), value: 5 }, { id: v1(), value: 3 }, { id: v1(), value: '.' },
-				{ id: v1(), value: 'н' }, { id: v1(), value: 5 }, { id: v1(), value: '.' }],
-			'computerScience': [
-				{ id: v1(), value: '.' }, { id: v1(), value: 5 }, { id: v1(), value: 5 }, { id: v1(), value: '.' },
-				{ id: v1(), value: 4 }, { id: v1(), value: 5 }, { id: v1(), value: 4 }, { id: v1(), value: 4 },
-				{ id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: 3 },
-				{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }]
-		}, finalAssessment: null
-	},
-	{
-		id: v1(), firstName: 'Лиза', lastName: 'Подопригора', lesson: null,
-		grades: {
-			'maths': [
-				{ id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: 3 }, { id: v1(), value: 3 },
-				{ id: v1(), value: '4' }, { id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: '.' },
-				{ id: v1(), value: 4 }, { id: v1(), value: 3 }, { id: v1(), value: 'н' }, { id: v1(), value: 4 },
-				{ id: v1(), value: 2 }, { id: v1(), value: 'н' }, { id: v1(), value: 4 }],
-			'physics': [
-				{ id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: 5 }, { id: v1(), value: '.' },
-				{ id: v1(), value: '.' }, { id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
-				{ id: v1(), value: 'н' }, { id: v1(), value: 3 }, { id: v1(), value: 3 }, { id: v1(), value: '.' },
-				{ id: v1(), value: 'н' }, { id: v1(), value: 5 }, { id: v1(), value: '.' }],
-			'computerScience': [
-				{ id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
-				{ id: v1(), value: '.' }, { id: v1(), value: 3 }, { id: v1(), value: '.' }, { id: v1(), value: 4 },
-				{ id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: 3 },
-				{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }]
-		}, finalAssessment: null
-	},
-	{
-		id: v1(), firstName: 'Евгения', lastName: 'Кудряшова', lesson: null,
-		grades: {
-			'maths': [
-				{ id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: 3 },
-				{ id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
-				{ id: v1(), value: 4 }, { id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: 4 },
-				{ id: v1(), value: 2 }, { id: v1(), value: 'н' }, { id: v1(), value: 4 }],
-			'physics': [
-				{ id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
-				{ id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' },
-				{ id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: 3 }, { id: v1(), value: '.' },
-				{ id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: '.' }],
-			'computerScience': [
-				{ id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: 5 }, { id: v1(), value: '.' },
-				{ id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: 3 }, { id: v1(), value: 4 },
-				{ id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: 2 }, { id: v1(), value: 3 },
-				{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }]
-		}, finalAssessment: null
-	},
-	{
-		id: v1(), firstName: 'Кирилл', lastName: 'Вавилин', lesson: null,
-		grades: {
-			'maths': [
-				{ id: v1(), value: 5 }, { id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: 3 },
-				{ id: v1(), value: 5 }, { id: v1(), value: 5 }, { id: v1(), value: 5 }, { id: v1(), value: '.' },
-				{ id: v1(), value: 4 }, { id: v1(), value: 3 }, { id: v1(), value: 4 }, { id: v1(), value: 4 },
-				{ id: v1(), value: 4 }, { id: v1(), value: 5 }, { id: v1(), value: 4 }],
-			'physics': [
-				{ id: v1(), value: 5 }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: 5 },
-				{ id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: 4 },
-				{ id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: 3 }, { id: v1(), value: 3 },
-				{ id: v1(), value: 3 }, { id: v1(), value: 5 }, { id: v1(), value: '.' }],
-			'computerScience': [
-				{ id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: 5 }, { id: v1(), value: '.' },
-				{ id: v1(), value: 4 }, { id: v1(), value: 5 }, { id: v1(), value: 3 }, { id: v1(), value: 4 },
-				{ id: v1(), value: 'н' }, { id: v1(), value: 3 }, { id: v1(), value: 5 }, { id: v1(), value: 3 },
-				{ id: v1(), value: 'н' }, { id: v1(), value: 3 }, { id: v1(), value: 4 }]
-		}, finalAssessment: null
-	},
-	{
-		id: v1(), firstName: 'Александра', lastName: 'Комарова', lesson: null,
-		grades: {
-			'maths': [
-				{ id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
-				{ id: v1(), value: '.' }, { id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: '.' },
-				{ id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: 4 },
-				{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: 4 }],
-			'physics': [
-				{ id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' },
-				{ id: v1(), value: '.' }, { id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
-				{ id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' },
-				{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }],
-			'computerScience': [
-				{ id: v1(), value: 4 }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
-				{ id: v1(), value: 4 }, { id: v1(), value: 'н' }, { id: v1(), value: 4 }, { id: v1(), value: '.' },
-				{ id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: 3 },
-				{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }]
-		}, finalAssessment: null
-	},
-	{
-		id: v1(), firstName: 'Иван', lastName: 'Бакалейщиков', lesson: null,
-		grades: {
-			'maths': [
-				{ id: v1(), value: '.' }, { id: v1(), value: 3 }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
-				{ id: v1(), value: '.' }, { id: v1(), value: 4 }, { id: v1(), value: 'н' }, { id: v1(), value: '.' },
-				{ id: v1(), value: 4 }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
-				{ id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' }],
-			'physics': [
-				{ id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
-				{ id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: 3 }, { id: v1(), value: '.' },
-				{ id: v1(), value: '.' }, { id: v1(), value: 3 }, { id: v1(), value: 4 }, { id: v1(), value: '.' },
-				{ id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' }],
-			'computerScience': [
-				{ id: v1(), value: '.' }, { id: v1(), value: 5 }, { id: v1(), value: 'н' }, { id: v1(), value: 'н' },
-				{ id: v1(), value: 5 }, { id: v1(), value: '.' }, { id: v1(), value: 2 }, { id: v1(), value: '.' },
-				{ id: v1(), value: '.' }, { id: v1(), value: 5 }, { id: v1(), value: 4 }, { id: v1(), value: 3 },
-				{ id: v1(), value: 5 }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }]
-		}, finalAssessment: null
-	},
-	{
-		id: v1(), firstName: 'Анастасия', lastName: 'Фирстова', lesson: null,
-		grades: {
-			'maths': [
-				{ id: v1(), value: '.' }, { id: v1(), value: 3 }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
-				{ id: v1(), value: 'н' }, { id: v1(), value: 3 }, { id: v1(), value: 'н' }, { id: v1(), value: '.' },
-				{ id: v1(), value: 4 }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
-				{ id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' }],
-			'physics': [
-				{ id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: 2 }, { id: v1(), value: '.' },
-				{ id: v1(), value: 4 }, { id: v1(), value: 3 }, { id: v1(), value: 3 }, { id: v1(), value: '.' },
-				{ id: v1(), value: '.' }, { id: v1(), value: 3 }, { id: v1(), value: 4 }, { id: v1(), value: '.' },
-				{ id: v1(), value: 5 }, { id: v1(), value: '.' }, { id: v1(), value: '.' }],
-			'computerScience': [
-				{ id: v1(), value: '.' }, { id: v1(), value: 4 }, { id: v1(), value: 'н' }, { id: v1(), value: 'н' },
-				{ id: v1(), value: 3 }, { id: v1(), value: 'н' }, { id: v1(), value: 2 }, { id: v1(), value: '.' },
-				{ id: v1(), value: '.' }, { id: v1(), value: 3 }, { id: v1(), value: 4 }, { id: v1(), value: 3 },
-				{ id: v1(), value: 4 }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }]
-		}, finalAssessment: null
-	},
-	{
-		id: v1(), firstName: 'Глеб', lastName: 'Радионов', lesson: null,
-		grades: {
-			'maths': [
-				{ id: v1(), value: '.' }, { id: v1(), value: 3 }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
-				{ id: v1(), value: 'н' }, { id: v1(), value: 4 }, { id: v1(), value: 'н' }, { id: v1(), value: '.' },
-				{ id: v1(), value: 4 }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
-				{ id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' }],
-			'physics': [
-				{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: 'н' },
-				{ id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: 3 }, { id: v1(), value: 'н' },
-				{ id: v1(), value: 'н' }, { id: v1(), value: 3 }, { id: v1(), value: 3 }, { id: v1(), value: '.' },
-				{ id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' }],
-			'computerScience': [
-				{ id: v1(), value: 'н' }, { id: v1(), value: 5 }, { id: v1(), value: 'н' }, { id: v1(), value: 'н' },
-				{ id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: 2 }, { id: v1(), value: '.' },
-				{ id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: 4 }, { id: v1(), value: 3 },
-				{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }]
-		}, finalAssessment: null
-	},
-	{
-		id: v1(), firstName: 'Валерия', lastName: 'Тарасова', lesson: null,
-		grades: {
-			'maths': [
-				{ id: v1(), value: 5 }, { id: v1(), value: 'н' }, { id: v1(), value: 3 }, { id: v1(), value: '.' },
-				{ id: v1(), value: 4 }, { id: v1(), value: 3 }, { id: v1(), value: 5 }, { id: v1(), value: '.' },
-				{ id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' },
-				{ id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' }],
-			'physics': [{ id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
-			{ id: v1(), value: 5 }, { id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: '.' },
-			{ id: v1(), value: 4 }, { id: v1(), value: 5 }, { id: v1(), value: 3 }, { id: v1(), value: '.' },
-			{ id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }],
-			'computerScience': [{ id: v1(), value: 5 }, { id: v1(), value: 5 }, { id: v1(), value: '.' }, {
-				id: v1(),
-				value: 5
-			},
-			{ id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: '.' },
-			{ id: v1(), value: 4 }, { id: v1(), value: 5 }, { id: v1(), value: 4 }, { id: v1(), value: 3 },
-			{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }]
-		}, finalAssessment: null
-	},
-	{
-		id: v1(), firstName: 'Ганзель', lastName: 'Фирстов', lesson: null,
-		grades: {
-			'maths': [
-				{ id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: 3 },
-				{ id: v1(), value: '.' }, { id: v1(), value: 4 }, { id: v1(), value: 'н' }, { id: v1(), value: '.' },
-				{ id: v1(), value: 'н' }, { id: v1(), value: 3 }, { id: v1(), value: 'н' }, { id: v1(), value: 4 },
-				{ id: v1(), value: 2 }, { id: v1(), value: 'н' }, { id: v1(), value: 4 }],
-			'physics': [
-				{ id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: 5 }, { id: v1(), value: '.' },
-				{ id: v1(), value: '.' }, { id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
-				{ id: v1(), value: 'н' }, { id: v1(), value: 3 }, { id: v1(), value: 3 }, { id: v1(), value: '.' },
-				{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }],
-			'computerScience': [
-				{ id: v1(), value: 'н' }, { id: v1(), value: 5 }, { id: v1(), value: 3 }, { id: v1(), value: '.' },
-				{ id: v1(), value: 4 }, { id: v1(), value: 3 }, { id: v1(), value: 4 }, { id: v1(), value: 4 },
-				{ id: v1(), value: 4 }, { id: v1(), value: 3 }, { id: v1(), value: 4 }, { id: v1(), value: 3 },
-				{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }]
-		}, finalAssessment: null
-	},
-	{
-		id: v1(), firstName: 'Илья', lastName: 'Вавилин', lesson: null,
-		grades: {
-			'maths': [
-				{ id: v1(), value: '.' }, { id: v1(), value: 5 }, { id: v1(), value: 3 }, { id: v1(), value: 3 },
-				{ id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: 5 }, { id: v1(), value: '.' },
-				{ id: v1(), value: 4 }, { id: v1(), value: 5 }, { id: v1(), value: 'н' }, { id: v1(), value: 4 },
-				{ id: v1(), value: 2 }, { id: v1(), value: 'н' }, { id: v1(), value: 4 }],
-			'physics': [
-				{ id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: 5 }, { id: v1(), value: '.' },
-				{ id: v1(), value: '.' }, { id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: '.' },
-				{ id: v1(), value: 5 }, { id: v1(), value: 5 }, { id: v1(), value: 3 }, { id: v1(), value: '.' },
-				{ id: v1(), value: 'н' }, { id: v1(), value: 5 }, { id: v1(), value: '.' }],
-			'computerScience': [
-				{ id: v1(), value: '.' }, { id: v1(), value: 5 }, { id: v1(), value: 5 }, { id: v1(), value: '.' },
-				{ id: v1(), value: 4 }, { id: v1(), value: 5 }, { id: v1(), value: 4 }, { id: v1(), value: 4 },
-				{ id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: 3 },
-				{ id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: '.' }]
-		}, finalAssessment: null
-	},
-	{
-		id: v1(), firstName: 'Анна', lastName: 'Ермошина', lesson: null,
-		grades: {
-			'maths': [
-				{ id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: 3 },
-				{ id: v1(), value: '.' }, { id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: '.' },
-				{ id: v1(), value: 4 }, { id: v1(), value: 3 }, { id: v1(), value: 'н' }, { id: v1(), value: 4 },
-				{ id: v1(), value: 2 }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }],
-			'physics': [
-				{ id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
-				{ id: v1(), value: '.' }, { id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
-				{ id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: 3 }, { id: v1(), value: '.' },
-				{ id: v1(), value: 'н' }, { id: v1(), value: 5 }, { id: v1(), value: '.' }],
-			'computerScience': [
-				{ id: v1(), value: '.' }, { id: v1(), value: 5 }, { id: v1(), value: 5 }, { id: v1(), value: '.' },
-				{ id: v1(), value: 4 }, { id: v1(), value: 5 }, { id: v1(), value: '.' }, { id: v1(), value: 4 },
-				{ id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: 4 }, { id: v1(), value: 3 },
-				{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }]
-		}, finalAssessment: null
-	},
-	{
-		id: v1(), firstName: 'Богдан', lastName: 'Римов', lesson: null,
-		grades: {
-			'maths': [
-				{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: 3 }, { id: v1(), value: 3 },
-				{ id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: 4 }, { id: v1(), value: '.' },
-				{ id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: 4 },
-				{ id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: 4 }],
-			'physics': [
-				{ id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: 5 }, { id: v1(), value: '.' },
-				{ id: v1(), value: '.' }, { id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
-				{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: 3 }, { id: v1(), value: '.' },
-				{ id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: '.' }],
-			'computerScience': [
-				{ id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: 5 }, { id: v1(), value: '.' },
-				{ id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: 4 },
-				{ id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: 3 },
-				{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }]
-		}, finalAssessment: null
-	},
-	{
-		id: v1(), firstName: 'Рудольф', lastName: 'Адольфовинов', lesson: null,
-		grades: {
-			'maths': [
-				{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' },
-				{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' },
-				{ id: v1(), value: 4 }, { id: v1(), value: 'н' }, { id: v1(), value: 2 }, { id: v1(), value: '.' },
-				{ id: v1(), value: '.' }, { id: v1(), value: 3 }, { id: v1(), value: 'н' }],
-			'physics': [
-				{ id: v1(), value: 4 }, { id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' },
-				{ id: v1(), value: 2 }, { id: v1(), value: 'н' }, { id: v1(), value: 3 }, { id: v1(), value: '.' },
-				{ id: v1(), value: 'н' }, { id: v1(), value: 3 }, { id: v1(), value: 2 }, { id: v1(), value: '.' },
-				{ id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' }],
-			'computerScience': [
-				{ id: v1(), value: 'н' }, { id: v1(), value: 5 }, { id: v1(), value: '.' }, { id: v1(), value: 'н' },
-				{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: 5 }, { id: v1(), value: '.' },
-				{ id: v1(), value: 'н' }, { id: v1(), value: 5 }, { id: v1(), value: 4 }, { id: v1(), value: 3 },
-				{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }]
-		}, finalAssessment: null
-	},
-	{
-		id: v1(), firstName: 'Павел', lastName: 'Кураев', lesson: null,
-		grades: {
-			'maths': [
-				{ id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: 3 }, { id: v1(), value: 3 },
-				{ id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: 4 }, { id: v1(), value: '.' },
-				{ id: v1(), value: 'н' }, { id: v1(), value: 3 }, { id: v1(), value: 'н' }, { id: v1(), value: 4 },
-				{ id: v1(), value: 2 }, { id: v1(), value: 'н' }, { id: v1(), value: 4 }],
-			'physics': [
-				{ id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: 5 }, { id: v1(), value: '.' },
-				{ id: v1(), value: '.' }, { id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
-				{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: 3 }, { id: v1(), value: '.' },
-				{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }],
-			'computerScience': [
-				{ id: v1(), value: '.' }, { id: v1(), value: 5 }, { id: v1(), value: 'н' }, { id: v1(), value: '.' },
-				{ id: v1(), value: 4 }, { id: v1(), value: 5 }, { id: v1(), value: 'н' }, { id: v1(), value: 4 },
-				{ id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: 3 },
-				{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }]
-		}, finalAssessment: null
-	},
-	{
-		id: v1(), firstName: 'Сергей', lastName: 'Запределькин', lesson: null,
-		grades: {
-			'maths': [
-				{ id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: 3 }, { id: v1(), value: 3 },
-				{ id: v1(), value: '.' }, { id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: '.' },
-				{ id: v1(), value: 'н' }, { id: v1(), value: 3 }, { id: v1(), value: 'н' }, { id: v1(), value: 4 },
-				{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: 'н' }],
-			'physics': [
-				{ id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' },
-				{ id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
-				{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: 3 }, { id: v1(), value: '.' },
-				{ id: v1(), value: 'н' }, { id: v1(), value: 5 }, { id: v1(), value: '.' }],
-			'computerScience': [
-				{ id: v1(), value: '.' }, { id: v1(), value: 5 }, { id: v1(), value: 5 }, { id: v1(), value: '.' },
-				{ id: v1(), value: 4 }, { id: v1(), value: 5 }, { id: v1(), value: 'н' }, { id: v1(), value: 4 },
-				{ id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: 'н' }, { id: v1(), value: 3 },
-				{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }]
-		}, finalAssessment: null
-	},
-	{
-		id: v1(), firstName: 'Сергей', lastName: 'Мамонов', lesson: null,
-		grades: {
-			'maths': [
-				{ id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: 3 }, { id: v1(), value: 3 },
-				{ id: v1(), value: '.' }, { id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: '.' },
-				{ id: v1(), value: 'н' }, { id: v1(), value: 3 }, { id: v1(), value: 'н' }, { id: v1(), value: 4 },
-				{ id: v1(), value: 2 }, { id: v1(), value: 'н' }, { id: v1(), value: 4 }],
-			'physics': [
-				{ id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' },
-				{ id: v1(), value: '.' }, { id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
-				{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: 3 }, { id: v1(), value: '.' },
-				{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }],
-			'computerScience': [
-				{ id: v1(), value: '.' }, { id: v1(), value: 5 }, { id: v1(), value: 5 }, { id: v1(), value: '.' },
-				{ id: v1(), value: 4 }, { id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: 4 },
-				{ id: v1(), value: 4 }, { id: v1(), value: 'н' }, { id: v1(), value: 4 }, { id: v1(), value: 3 },
-				{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }]
-		}, finalAssessment: null
-	},
-	{
-		id: v1(), firstName: 'Александр', lastName: 'Киркоров', lesson: null,
-		grades: {
-			'maths': [
-				{ id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
-				{ id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' },
-				{ id: v1(), value: 4 }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
-				{ id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' }],
-			'physics': [
-				{ id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
-				{ id: v1(), value: 5 }, { id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' },
-				{ id: v1(), value: '.' }, { id: v1(), value: 3 }, { id: v1(), value: 4 }, { id: v1(), value: '.' },
-				{ id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' }],
-			'computerScience': [
-				{ id: v1(), value: 5 }, { id: v1(), value: 5 }, { id: v1(), value: '.' }, { id: v1(), value: 'н' },
-				{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: 5 }, { id: v1(), value: '.' },
-				{ id: v1(), value: 'н' }, { id: v1(), value: 5 }, { id: v1(), value: 4 }, { id: v1(), value: 3 },
-				{ id: v1(), value: 5 }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }]
-		}, finalAssessment: null
-	},
-	{
-		id: v1(), firstName: 'Евгения', lastName: 'Бирова', lesson: null,
-		grades: {
-			'maths': [
-				{ id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: 3 },
-				{ id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
-				{ id: v1(), value: 4 }, { id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: 4 },
-				{ id: v1(), value: 2 }, { id: v1(), value: 'н' }, { id: v1(), value: 4 }],
-			'physics': [
-				{ id: v1(), value: 3 }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
-				{ id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' },
-				{ id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: 3 }, { id: v1(), value: '.' },
-				{ id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: '.' }],
-			'computerScience': [
-				{ id: v1(), value: 4 }, { id: v1(), value: 'н' }, { id: v1(), value: 5 }, { id: v1(), value: '.' },
-				{ id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: 3 }, { id: v1(), value: 4 },
-				{ id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: 2 }, { id: v1(), value: 3 },
-				{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }]
-		}, finalAssessment: null
-	},
-	{
-		id: v1(), firstName: 'Роман', lastName: 'Кудрявцев', lesson: null,
-		grades: {
-			'maths': [
-				{ id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: 3 }, { id: v1(), value: 3 },
-				{ id: v1(), value: 'н' }, { id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: '.' },
-				{ id: v1(), value: 4 }, { id: v1(), value: 3 }, { id: v1(), value: 'н' }, { id: v1(), value: 4 },
-				{ id: v1(), value: 2 }, { id: v1(), value: 'н' }, { id: v1(), value: 4 }],
-			'physics': [
-				{ id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: 5 }, { id: v1(), value: '.' },
-				{ id: v1(), value: '.' }, { id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
-				{ id: v1(), value: '.' }, { id: v1(), value: 5 }, { id: v1(), value: 3 }, { id: v1(), value: '.' },
-				{ id: v1(), value: 'н' }, { id: v1(), value: 5 }, { id: v1(), value: '.' }],
-			'computerScience': [
-				{ id: v1(), value: '.' }, { id: v1(), value: 5 }, { id: v1(), value: 5 }, { id: v1(), value: '.' },
-				{ id: v1(), value: 3 }, { id: v1(), value: 5 }, { id: v1(), value: 4 }, { id: v1(), value: 4 },
-				{ id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: 3 },
-				{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }]
-		}, finalAssessment: null
-	},
-	{
-		id: v1(), firstName: 'Юлия', lastName: 'Ахламонова', lesson: null,
-		grades: {
-			'maths': [
-				{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
-				{ id: v1(), value: 5 }, { id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
-				{ id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' },
-				{ id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' }],
-			'physics': [
-				{ id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
-				{ id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
 				{ id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: 3 }, { id: v1(), value: '.' },
 				{ id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }],
-			'computerScience': [
-				{ id: v1(), value: 5 }, { id: v1(), value: 5 }, { id: v1(), value: '.' }, { id: v1(), value: 'н' },
+				'computerScience': [{ id: v1(), value: 5 }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }, {
+					id: v1(),
+					value: 'н'
+				},
 				{ id: v1(), value: 3 }, { id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' },
 				{ id: v1(), value: 4 }, { id: v1(), value: 3 }, { id: v1(), value: 4 }, { id: v1(), value: 3 },
 				{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }]
-		}, finalAssessment: null
-	}
-]
+			}, finalAssessment: null
+		},
+		{
+			id: v1(), firstName: 'Дмитрий', lastName: 'Дадарчук', lesson: null,
+			grades: {
+				'maths': [
+					{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
+					{ id: v1(), value: '.' }, { id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: '.' },
+					{ id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: 4 },
+					{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: 4 }],
+				'physics': [
+					{ id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
+					{ id: v1(), value: '.' }, { id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
+					{ id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: 3 }, { id: v1(), value: '.' },
+					{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }],
+				'computerScience': [
+					{ id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
+					{ id: v1(), value: 4 }, { id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' },
+					{ id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: 3 },
+					{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }]
+			}, finalAssessment: null
+		},
+		{
+			id: v1(), firstName: 'Павел', lastName: 'Вавилин', lesson: null,
+			grades: {
+				'maths': [
+					{ id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: 3 }, { id: v1(), value: 3 },
+					{ id: v1(), value: '.' }, { id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: '.' },
+					{ id: v1(), value: 4 }, { id: v1(), value: 3 }, { id: v1(), value: 'н' }, { id: v1(), value: 4 },
+					{ id: v1(), value: 2 }, { id: v1(), value: 'н' }, { id: v1(), value: 4 }],
+				'physics': [
+					{ id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: 5 }, { id: v1(), value: '.' },
+					{ id: v1(), value: '.' }, { id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
+					{ id: v1(), value: 'н' }, { id: v1(), value: 5 }, { id: v1(), value: 3 }, { id: v1(), value: '.' },
+					{ id: v1(), value: 'н' }, { id: v1(), value: 5 }, { id: v1(), value: '.' }],
+				'computerScience': [
+					{ id: v1(), value: '.' }, { id: v1(), value: 5 }, { id: v1(), value: 5 }, { id: v1(), value: '.' },
+					{ id: v1(), value: 4 }, { id: v1(), value: 5 }, { id: v1(), value: 4 }, { id: v1(), value: 4 },
+					{ id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: 3 },
+					{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }]
+			}, finalAssessment: null
+		},
+		{
+			id: v1(), firstName: 'Лиза', lastName: 'Подопригора', lesson: null,
+			grades: {
+				'maths': [
+					{ id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: 3 }, { id: v1(), value: 3 },
+					{ id: v1(), value: '4' }, { id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: '.' },
+					{ id: v1(), value: 4 }, { id: v1(), value: 3 }, { id: v1(), value: 'н' }, { id: v1(), value: 4 },
+					{ id: v1(), value: 2 }, { id: v1(), value: 'н' }, { id: v1(), value: 4 }],
+				'physics': [
+					{ id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: 5 }, { id: v1(), value: '.' },
+					{ id: v1(), value: '.' }, { id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
+					{ id: v1(), value: 'н' }, { id: v1(), value: 3 }, { id: v1(), value: 3 }, { id: v1(), value: '.' },
+					{ id: v1(), value: 'н' }, { id: v1(), value: 5 }, { id: v1(), value: '.' }],
+				'computerScience': [
+					{ id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
+					{ id: v1(), value: '.' }, { id: v1(), value: 3 }, { id: v1(), value: '.' }, { id: v1(), value: 4 },
+					{ id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: 3 },
+					{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }]
+			}, finalAssessment: null
+		},
+		{
+			id: v1(), firstName: 'Евгения', lastName: 'Кудряшова', lesson: null,
+			grades: {
+				'maths': [
+					{ id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: 3 },
+					{ id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
+					{ id: v1(), value: 4 }, { id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: 4 },
+					{ id: v1(), value: 2 }, { id: v1(), value: 'н' }, { id: v1(), value: 4 }],
+				'physics': [
+					{ id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
+					{ id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' },
+					{ id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: 3 }, { id: v1(), value: '.' },
+					{ id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: '.' }],
+				'computerScience': [
+					{ id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: 5 }, { id: v1(), value: '.' },
+					{ id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: 3 }, { id: v1(), value: 4 },
+					{ id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: 2 }, { id: v1(), value: 3 },
+					{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }]
+			}, finalAssessment: null
+		},
+		{
+			id: v1(), firstName: 'Кирилл', lastName: 'Вавилин', lesson: null,
+			grades: {
+				'maths': [
+					{ id: v1(), value: 5 }, { id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: 3 },
+					{ id: v1(), value: 5 }, { id: v1(), value: 5 }, { id: v1(), value: 5 }, { id: v1(), value: '.' },
+					{ id: v1(), value: 4 }, { id: v1(), value: 3 }, { id: v1(), value: 4 }, { id: v1(), value: 4 },
+					{ id: v1(), value: 4 }, { id: v1(), value: 5 }, { id: v1(), value: 4 }],
+				'physics': [
+					{ id: v1(), value: 5 }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: 5 },
+					{ id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: 4 },
+					{ id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: 3 }, { id: v1(), value: 3 },
+					{ id: v1(), value: 3 }, { id: v1(), value: 5 }, { id: v1(), value: '.' }],
+				'computerScience': [
+					{ id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: 5 }, { id: v1(), value: '.' },
+					{ id: v1(), value: 4 }, { id: v1(), value: 5 }, { id: v1(), value: 3 }, { id: v1(), value: 4 },
+					{ id: v1(), value: 'н' }, { id: v1(), value: 3 }, { id: v1(), value: 5 }, { id: v1(), value: 3 },
+					{ id: v1(), value: 'н' }, { id: v1(), value: 3 }, { id: v1(), value: 4 }]
+			}, finalAssessment: null
+		},
+		{
+			id: v1(), firstName: 'Александра', lastName: 'Комарова', lesson: null,
+			grades: {
+				'maths': [
+					{ id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
+					{ id: v1(), value: '.' }, { id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: '.' },
+					{ id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: 4 },
+					{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: 4 }],
+				'physics': [
+					{ id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' },
+					{ id: v1(), value: '.' }, { id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
+					{ id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' },
+					{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }],
+				'computerScience': [
+					{ id: v1(), value: 4 }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
+					{ id: v1(), value: 4 }, { id: v1(), value: 'н' }, { id: v1(), value: 4 }, { id: v1(), value: '.' },
+					{ id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: 3 },
+					{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }]
+			}, finalAssessment: null
+		},
+		{
+			id: v1(), firstName: 'Иван', lastName: 'Бакалейщиков', lesson: null,
+			grades: {
+				'maths': [
+					{ id: v1(), value: '.' }, { id: v1(), value: 3 }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
+					{ id: v1(), value: '.' }, { id: v1(), value: 4 }, { id: v1(), value: 'н' }, { id: v1(), value: '.' },
+					{ id: v1(), value: 4 }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
+					{ id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' }],
+				'physics': [
+					{ id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
+					{ id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: 3 }, { id: v1(), value: '.' },
+					{ id: v1(), value: '.' }, { id: v1(), value: 3 }, { id: v1(), value: 4 }, { id: v1(), value: '.' },
+					{ id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' }],
+				'computerScience': [
+					{ id: v1(), value: '.' }, { id: v1(), value: 5 }, { id: v1(), value: 'н' }, { id: v1(), value: 'н' },
+					{ id: v1(), value: 5 }, { id: v1(), value: '.' }, { id: v1(), value: 2 }, { id: v1(), value: '.' },
+					{ id: v1(), value: '.' }, { id: v1(), value: 5 }, { id: v1(), value: 4 }, { id: v1(), value: 3 },
+					{ id: v1(), value: 5 }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }]
+			}, finalAssessment: null
+		},
+		{
+			id: v1(), firstName: 'Анастасия', lastName: 'Фирстова', lesson: null,
+			grades: {
+				'maths': [
+					{ id: v1(), value: '.' }, { id: v1(), value: 3 }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
+					{ id: v1(), value: 'н' }, { id: v1(), value: 3 }, { id: v1(), value: 'н' }, { id: v1(), value: '.' },
+					{ id: v1(), value: 4 }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
+					{ id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' }],
+				'physics': [
+					{ id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: 2 }, { id: v1(), value: '.' },
+					{ id: v1(), value: 4 }, { id: v1(), value: 3 }, { id: v1(), value: 3 }, { id: v1(), value: '.' },
+					{ id: v1(), value: '.' }, { id: v1(), value: 3 }, { id: v1(), value: 4 }, { id: v1(), value: '.' },
+					{ id: v1(), value: 5 }, { id: v1(), value: '.' }, { id: v1(), value: '.' }],
+				'computerScience': [
+					{ id: v1(), value: '.' }, { id: v1(), value: 4 }, { id: v1(), value: 'н' }, { id: v1(), value: 'н' },
+					{ id: v1(), value: 3 }, { id: v1(), value: 'н' }, { id: v1(), value: 2 }, { id: v1(), value: '.' },
+					{ id: v1(), value: '.' }, { id: v1(), value: 3 }, { id: v1(), value: 4 }, { id: v1(), value: 3 },
+					{ id: v1(), value: 4 }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }]
+			}, finalAssessment: null
+		},
+		{
+			id: v1(), firstName: 'Глеб', lastName: 'Радионов', lesson: null,
+			grades: {
+				'maths': [
+					{ id: v1(), value: '.' }, { id: v1(), value: 3 }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
+					{ id: v1(), value: 'н' }, { id: v1(), value: 4 }, { id: v1(), value: 'н' }, { id: v1(), value: '.' },
+					{ id: v1(), value: 4 }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
+					{ id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' }],
+				'physics': [
+					{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: 'н' },
+					{ id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: 3 }, { id: v1(), value: 'н' },
+					{ id: v1(), value: 'н' }, { id: v1(), value: 3 }, { id: v1(), value: 3 }, { id: v1(), value: '.' },
+					{ id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' }],
+				'computerScience': [
+					{ id: v1(), value: 'н' }, { id: v1(), value: 5 }, { id: v1(), value: 'н' }, { id: v1(), value: 'н' },
+					{ id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: 2 }, { id: v1(), value: '.' },
+					{ id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: 4 }, { id: v1(), value: 3 },
+					{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }]
+			}, finalAssessment: null
+		},
+		{
+			id: v1(), firstName: 'Валерия', lastName: 'Тарасова', lesson: null,
+			grades: {
+				'maths': [
+					{ id: v1(), value: 5 }, { id: v1(), value: 'н' }, { id: v1(), value: 3 }, { id: v1(), value: '.' },
+					{ id: v1(), value: 4 }, { id: v1(), value: 3 }, { id: v1(), value: 5 }, { id: v1(), value: '.' },
+					{ id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' },
+					{ id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' }],
+				'physics': [{ id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
+				{ id: v1(), value: 5 }, { id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: '.' },
+				{ id: v1(), value: 4 }, { id: v1(), value: 5 }, { id: v1(), value: 3 }, { id: v1(), value: '.' },
+				{ id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }],
+				'computerScience': [{ id: v1(), value: 5 }, { id: v1(), value: 5 }, { id: v1(), value: '.' }, {
+					id: v1(),
+					value: 5
+				},
+				{ id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: '.' },
+				{ id: v1(), value: 4 }, { id: v1(), value: 5 }, { id: v1(), value: 4 }, { id: v1(), value: 3 },
+				{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }]
+			}, finalAssessment: null
+		},
+		{
+			id: v1(), firstName: 'Ганзель', lastName: 'Фирстов', lesson: null,
+			grades: {
+				'maths': [
+					{ id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: 3 },
+					{ id: v1(), value: '.' }, { id: v1(), value: 4 }, { id: v1(), value: 'н' }, { id: v1(), value: '.' },
+					{ id: v1(), value: 'н' }, { id: v1(), value: 3 }, { id: v1(), value: 'н' }, { id: v1(), value: 4 },
+					{ id: v1(), value: 2 }, { id: v1(), value: 'н' }, { id: v1(), value: 4 }],
+				'physics': [
+					{ id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: 5 }, { id: v1(), value: '.' },
+					{ id: v1(), value: '.' }, { id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
+					{ id: v1(), value: 'н' }, { id: v1(), value: 3 }, { id: v1(), value: 3 }, { id: v1(), value: '.' },
+					{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }],
+				'computerScience': [
+					{ id: v1(), value: 'н' }, { id: v1(), value: 5 }, { id: v1(), value: 3 }, { id: v1(), value: '.' },
+					{ id: v1(), value: 4 }, { id: v1(), value: 3 }, { id: v1(), value: 4 }, { id: v1(), value: 4 },
+					{ id: v1(), value: 4 }, { id: v1(), value: 3 }, { id: v1(), value: 4 }, { id: v1(), value: 3 },
+					{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }]
+			}, finalAssessment: null
+		},
+		{
+			id: v1(), firstName: 'Илья', lastName: 'Вавилин', lesson: null,
+			grades: {
+				'maths': [
+					{ id: v1(), value: '.' }, { id: v1(), value: 5 }, { id: v1(), value: 3 }, { id: v1(), value: 3 },
+					{ id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: 5 }, { id: v1(), value: '.' },
+					{ id: v1(), value: 4 }, { id: v1(), value: 5 }, { id: v1(), value: 'н' }, { id: v1(), value: 4 },
+					{ id: v1(), value: 2 }, { id: v1(), value: 'н' }, { id: v1(), value: 4 }],
+				'physics': [
+					{ id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: 5 }, { id: v1(), value: '.' },
+					{ id: v1(), value: '.' }, { id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: '.' },
+					{ id: v1(), value: 5 }, { id: v1(), value: 5 }, { id: v1(), value: 3 }, { id: v1(), value: '.' },
+					{ id: v1(), value: 'н' }, { id: v1(), value: 5 }, { id: v1(), value: '.' }],
+				'computerScience': [
+					{ id: v1(), value: '.' }, { id: v1(), value: 5 }, { id: v1(), value: 5 }, { id: v1(), value: '.' },
+					{ id: v1(), value: 4 }, { id: v1(), value: 5 }, { id: v1(), value: 4 }, { id: v1(), value: 4 },
+					{ id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: 3 },
+					{ id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: '.' }]
+			}, finalAssessment: null
+		},
+		{
+			id: v1(), firstName: 'Анна', lastName: 'Ермошина', lesson: null,
+			grades: {
+				'maths': [
+					{ id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: 3 },
+					{ id: v1(), value: '.' }, { id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: '.' },
+					{ id: v1(), value: 4 }, { id: v1(), value: 3 }, { id: v1(), value: 'н' }, { id: v1(), value: 4 },
+					{ id: v1(), value: 2 }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }],
+				'physics': [
+					{ id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
+					{ id: v1(), value: '.' }, { id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
+					{ id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: 3 }, { id: v1(), value: '.' },
+					{ id: v1(), value: 'н' }, { id: v1(), value: 5 }, { id: v1(), value: '.' }],
+				'computerScience': [
+					{ id: v1(), value: '.' }, { id: v1(), value: 5 }, { id: v1(), value: 5 }, { id: v1(), value: '.' },
+					{ id: v1(), value: 4 }, { id: v1(), value: 5 }, { id: v1(), value: '.' }, { id: v1(), value: 4 },
+					{ id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: 4 }, { id: v1(), value: 3 },
+					{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }]
+			}, finalAssessment: null
+		},
+		{
+			id: v1(), firstName: 'Богдан', lastName: 'Римов', lesson: null,
+			grades: {
+				'maths': [
+					{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: 3 }, { id: v1(), value: 3 },
+					{ id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: 4 }, { id: v1(), value: '.' },
+					{ id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: 4 },
+					{ id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: 4 }],
+				'physics': [
+					{ id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: 5 }, { id: v1(), value: '.' },
+					{ id: v1(), value: '.' }, { id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
+					{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: 3 }, { id: v1(), value: '.' },
+					{ id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: '.' }],
+				'computerScience': [
+					{ id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: 5 }, { id: v1(), value: '.' },
+					{ id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: 4 },
+					{ id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: 3 },
+					{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }]
+			}, finalAssessment: null
+		},
+		{
+			id: v1(), firstName: 'Рудольф', lastName: 'Адольфовинов', lesson: null,
+			grades: {
+				'maths': [
+					{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' },
+					{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' },
+					{ id: v1(), value: 4 }, { id: v1(), value: 'н' }, { id: v1(), value: 2 }, { id: v1(), value: '.' },
+					{ id: v1(), value: '.' }, { id: v1(), value: 3 }, { id: v1(), value: 'н' }],
+				'physics': [
+					{ id: v1(), value: 4 }, { id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' },
+					{ id: v1(), value: 2 }, { id: v1(), value: 'н' }, { id: v1(), value: 3 }, { id: v1(), value: '.' },
+					{ id: v1(), value: 'н' }, { id: v1(), value: 3 }, { id: v1(), value: 2 }, { id: v1(), value: '.' },
+					{ id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' }],
+				'computerScience': [
+					{ id: v1(), value: 'н' }, { id: v1(), value: 5 }, { id: v1(), value: '.' }, { id: v1(), value: 'н' },
+					{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: 5 }, { id: v1(), value: '.' },
+					{ id: v1(), value: 'н' }, { id: v1(), value: 5 }, { id: v1(), value: 4 }, { id: v1(), value: 3 },
+					{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }]
+			}, finalAssessment: null
+		},
+		{
+			id: v1(), firstName: 'Павел', lastName: 'Кураев', lesson: null,
+			grades: {
+				'maths': [
+					{ id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: 3 }, { id: v1(), value: 3 },
+					{ id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: 4 }, { id: v1(), value: '.' },
+					{ id: v1(), value: 'н' }, { id: v1(), value: 3 }, { id: v1(), value: 'н' }, { id: v1(), value: 4 },
+					{ id: v1(), value: 2 }, { id: v1(), value: 'н' }, { id: v1(), value: 4 }],
+				'physics': [
+					{ id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: 5 }, { id: v1(), value: '.' },
+					{ id: v1(), value: '.' }, { id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
+					{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: 3 }, { id: v1(), value: '.' },
+					{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }],
+				'computerScience': [
+					{ id: v1(), value: '.' }, { id: v1(), value: 5 }, { id: v1(), value: 'н' }, { id: v1(), value: '.' },
+					{ id: v1(), value: 4 }, { id: v1(), value: 5 }, { id: v1(), value: 'н' }, { id: v1(), value: 4 },
+					{ id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: 3 },
+					{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }]
+			}, finalAssessment: null
+		},
+		{
+			id: v1(), firstName: 'Сергей', lastName: 'Запределькин', lesson: null,
+			grades: {
+				'maths': [
+					{ id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: 3 }, { id: v1(), value: 3 },
+					{ id: v1(), value: '.' }, { id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: '.' },
+					{ id: v1(), value: 'н' }, { id: v1(), value: 3 }, { id: v1(), value: 'н' }, { id: v1(), value: 4 },
+					{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: 'н' }],
+				'physics': [
+					{ id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' },
+					{ id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
+					{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: 3 }, { id: v1(), value: '.' },
+					{ id: v1(), value: 'н' }, { id: v1(), value: 5 }, { id: v1(), value: '.' }],
+				'computerScience': [
+					{ id: v1(), value: '.' }, { id: v1(), value: 5 }, { id: v1(), value: 5 }, { id: v1(), value: '.' },
+					{ id: v1(), value: 4 }, { id: v1(), value: 5 }, { id: v1(), value: 'н' }, { id: v1(), value: 4 },
+					{ id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: 'н' }, { id: v1(), value: 3 },
+					{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }]
+			}, finalAssessment: null
+		},
+		{
+			id: v1(), firstName: 'Сергей', lastName: 'Мамонов', lesson: null,
+			grades: {
+				'maths': [
+					{ id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: 3 }, { id: v1(), value: 3 },
+					{ id: v1(), value: '.' }, { id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: '.' },
+					{ id: v1(), value: 'н' }, { id: v1(), value: 3 }, { id: v1(), value: 'н' }, { id: v1(), value: 4 },
+					{ id: v1(), value: 2 }, { id: v1(), value: 'н' }, { id: v1(), value: 4 }],
+				'physics': [
+					{ id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' },
+					{ id: v1(), value: '.' }, { id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
+					{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: 3 }, { id: v1(), value: '.' },
+					{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }],
+				'computerScience': [
+					{ id: v1(), value: '.' }, { id: v1(), value: 5 }, { id: v1(), value: 5 }, { id: v1(), value: '.' },
+					{ id: v1(), value: 4 }, { id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: 4 },
+					{ id: v1(), value: 4 }, { id: v1(), value: 'н' }, { id: v1(), value: 4 }, { id: v1(), value: 3 },
+					{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }]
+			}, finalAssessment: null
+		},
+		{
+			id: v1(), firstName: 'Александр', lastName: 'Киркоров', lesson: null,
+			grades: {
+				'maths': [
+					{ id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
+					{ id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' },
+					{ id: v1(), value: 4 }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
+					{ id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' }],
+				'physics': [
+					{ id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
+					{ id: v1(), value: 5 }, { id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' },
+					{ id: v1(), value: '.' }, { id: v1(), value: 3 }, { id: v1(), value: 4 }, { id: v1(), value: '.' },
+					{ id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' }],
+				'computerScience': [
+					{ id: v1(), value: 5 }, { id: v1(), value: 5 }, { id: v1(), value: '.' }, { id: v1(), value: 'н' },
+					{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: 5 }, { id: v1(), value: '.' },
+					{ id: v1(), value: 'н' }, { id: v1(), value: 5 }, { id: v1(), value: 4 }, { id: v1(), value: 3 },
+					{ id: v1(), value: 5 }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }]
+			}, finalAssessment: null
+		},
+		{
+			id: v1(), firstName: 'Евгения', lastName: 'Бирова', lesson: null,
+			grades: {
+				'maths': [
+					{ id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: 3 },
+					{ id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
+					{ id: v1(), value: 4 }, { id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: 4 },
+					{ id: v1(), value: 2 }, { id: v1(), value: 'н' }, { id: v1(), value: 4 }],
+				'physics': [
+					{ id: v1(), value: 3 }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
+					{ id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' },
+					{ id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: 3 }, { id: v1(), value: '.' },
+					{ id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: '.' }],
+				'computerScience': [
+					{ id: v1(), value: 4 }, { id: v1(), value: 'н' }, { id: v1(), value: 5 }, { id: v1(), value: '.' },
+					{ id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: 3 }, { id: v1(), value: 4 },
+					{ id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: 2 }, { id: v1(), value: 3 },
+					{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }]
+			}, finalAssessment: null
+		},
+		{
+			id: v1(), firstName: 'Роман', lastName: 'Кудрявцев', lesson: null,
+			grades: {
+				'maths': [
+					{ id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: 3 }, { id: v1(), value: 3 },
+					{ id: v1(), value: 'н' }, { id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: '.' },
+					{ id: v1(), value: 4 }, { id: v1(), value: 3 }, { id: v1(), value: 'н' }, { id: v1(), value: 4 },
+					{ id: v1(), value: 2 }, { id: v1(), value: 'н' }, { id: v1(), value: 4 }],
+				'physics': [
+					{ id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: 5 }, { id: v1(), value: '.' },
+					{ id: v1(), value: '.' }, { id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
+					{ id: v1(), value: '.' }, { id: v1(), value: 5 }, { id: v1(), value: 3 }, { id: v1(), value: '.' },
+					{ id: v1(), value: 'н' }, { id: v1(), value: 5 }, { id: v1(), value: '.' }],
+				'computerScience': [
+					{ id: v1(), value: '.' }, { id: v1(), value: 5 }, { id: v1(), value: 5 }, { id: v1(), value: '.' },
+					{ id: v1(), value: 3 }, { id: v1(), value: 5 }, { id: v1(), value: 4 }, { id: v1(), value: 4 },
+					{ id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: 3 },
+					{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }]
+			}, finalAssessment: null
+		},
+		{
+			id: v1(),
+			firstName: 'Юлия',
+			lastName: 'Ахламонова',
+			lesson: null,
+			grades: {
+				'maths': [
+					{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
+					{ id: v1(), value: 5 }, { id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
+					{ id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' },
+					{ id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' }],
+				'physics': [
+					{ id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
+					{ id: v1(), value: 4 }, { id: v1(), value: 4 }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
+					{ id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: 3 }, { id: v1(), value: '.' },
+					{ id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }],
+				'computerScience': [
+					{ id: v1(), value: 5 }, { id: v1(), value: 5 }, { id: v1(), value: '.' }, { id: v1(), value: 'н' },
+					{ id: v1(), value: 3 }, { id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' },
+					{ id: v1(), value: 4 }, { id: v1(), value: 3 }, { id: v1(), value: 4 }, { id: v1(), value: 3 },
+					{ id: v1(), value: 'н' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }]
+			},
+			finalAssessment: null
+		}
+	]
 
 
 export const slice = createSlice({
 	name: 'Students',
 	initialState: initialPeople,
 	reducers: {
-		addStudentAC: (state) => {
+		addStudentAC: (state, action: PayloadAction<{ firstName: string, lastName: string }>) => {
 			const blankGrade = []
 
 			for (let i = 1; i < 16; i++) {
@@ -500,8 +524,8 @@ export const slice = createSlice({
 
 			state.unshift({
 				id: v1(),
-				firstName: 'Введите имя',
-				lastName: 'Введите фамилию',
+				firstName: action.payload.firstName,
+				lastName: action.payload.lastName,
 				lesson: null,
 				grades: {
 					'maths': blankGrade,
@@ -512,10 +536,14 @@ export const slice = createSlice({
 			})
 		},
 		removeStudentAC: (state, action: PayloadAction<{ idStudent: string }>) => {
+
 			const indexStudent = state.findIndex(student => {
 				return student.id === action.payload.idStudent
 			})
-			delete state[indexStudent]
+			if (indexStudent > -1) {
+				state.splice(indexStudent, 1)
+			}
+
 		},
 		changeFirstNameAC: (state, action: PayloadAction<{ id: string, value: string }>) => {
 			const indexStudent = state.findIndex(student => student.id === action.payload.id)
@@ -585,6 +613,10 @@ export const { addStudentAC, removeStudentAC, changeFirstNameAC, changeLastNameA
 	sortFNameIncAC, sortLNameIncAC, changeGradeAC, calculationOfGradesAC, resettingFinalAssessmentAC,
 	addNewLessonAC } = slice.actions
 //types
+type StateType = {
+	students: Array<StudentType>
+	lessons: Array<LessonsType>
+}
 export type StudentType = {
 	id: string
 	firstName: string
@@ -592,6 +624,10 @@ export type StudentType = {
 	lesson: null | string
 	grades: gradesType
 	finalAssessment: null | boolean
+}
+type LessonsType = {
+	name: string
+	countGrades: number
 }
 export type gradeType = {
 	id: string;

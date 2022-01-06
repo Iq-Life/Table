@@ -24,8 +24,8 @@ export const Table: React.FC = React.memo(() => {
 	const [text, setText] = useState<string>('')    //for input, search to first and last name
 
 	//add and remove student
-	const addStudent = () => {
-		dispatch(addStudentAC())
+	const addStudent = (firstName: string, lastName: string) => {
+		dispatch(addStudentAC({ firstName, lastName }))
 	}
 	const removeStudent = (idStudent: string) => {
 		dispatch(removeStudentAC({ idStudent }))

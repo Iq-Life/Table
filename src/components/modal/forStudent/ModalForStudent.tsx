@@ -7,14 +7,38 @@ import { addNewLessonAC } from '../../../redux/tableReducer';
 
 export const ModalForStudent: React.FC<ModalType> = (
 	{
-		toggle, setToggle, lessonsArr
+		toggle, setToggle, lessonsArr, addStudent
 	}) => {
-
-	const dispatch = useDispatch()
 
 	const [firstName, setFirstName] = useState<string>('')
 	const [lastName, setLastName] = useState<string>('')
 	const [error, setError] = useState<string>('')
+
+	const addLesson = () => {
+		if (firstName.trim()) {
+			if (lastName.trim()) {
+				addStudent(firstName, lastName)
+				setToggle(null)
+			} else {
+				setError('Ввидите фамилию студента')
+			}
+		} else {
+			setError('Ввидите имя студента')
+		}
+	}
+
+	const handleClose = () => {
+		setToggle(null);
+	}
+
+	const resetError = useCallback(() => {
+		if (firstName.trim() !== "" && lastName.trim() !== "") {
+			setError("")
+		}
+	}, [firstName, lastName])
+
+	const errorFirstName = error === 'Ввидите имя студента' ? 'Ввидите имя студента' : ''
+	const errorLastName = error === 'Ввидите фамилию студента' ? 'Ввидите фамилию студента' : ''
 
 	const styles = {
 		position: 'absolute' as 'absolute',
@@ -29,34 +53,6 @@ export const ModalForStudent: React.FC<ModalType> = (
 		boxShadow: 24,
 		p: 4,
 	}
-
-	//set newLesson and number of lessons
-	const setNewLesson = (newLesson: string, NumbersOfLessons: number) => {
-		console.log('new lesson = ' + newLesson)
-		lessonsArr.push(newLesson)
-		dispatch(addNewLessonAC({ newLesson, NumbersOfLessons }))
-	}
-
-
-	const handleClose = () => {
-		setToggle(null);
-	}
-
-	const addLesson = () => {
-		if (firstName.trim() || lastName.trim()) {
-
-			setToggle(null)
-		}
-		setError('Ввидите имя студента')
-
-	}
-	const resetError = useCallback(() => {
-		if (firstName.trim() === "" || lastName.trim() === "") {
-			setError("")
-		}
-	}, [firstName, lastName])
-
-
 
 	return (
 		<Modal
@@ -74,7 +70,7 @@ export const ModalForStudent: React.FC<ModalType> = (
 							<MyInput
 								text={firstName}
 								onChangeText={setFirstName}
-								error={error}
+								error={errorFirstName}
 								resetError={resetError}
 
 							/>
@@ -83,7 +79,7 @@ export const ModalForStudent: React.FC<ModalType> = (
 							<MyInput
 								text={lastName}
 								onChangeText={setLastName}
-								error={error}
+								error={errorLastName}
 								resetError={resetError}
 
 							/>
@@ -99,4 +95,5 @@ type ModalType = {
 	toggle: null | string
 	lessonsArr: string[]
 	setToggle: (value: null | string) => void
+	addStudent: (firstName: string, lastName: string) => void
 }

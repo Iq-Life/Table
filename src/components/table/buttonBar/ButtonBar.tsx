@@ -13,14 +13,11 @@ export const ButtonBar: React.FC<ButtonBarType> = React.memo((
 	const [toggle, setToggle] = useState<null | string>(null)
 
 	const onModalForLesson = () => {
-
 		setToggle('lesson')
 	}
 	const onModalForStudent = () => {
-
 		setToggle('student')
 	}
-	const clickAddStudent = () => addStudent()
 
 
 
@@ -32,6 +29,7 @@ export const ButtonBar: React.FC<ButtonBarType> = React.memo((
 			</button>
 			{toggle === 'student' ?
 				<ModalForStudent
+					addStudent={addStudent}
 					toggle={toggle}
 					setToggle={setToggle}
 					lessonsArr={lessonsArr}
@@ -54,7 +52,7 @@ export const ButtonBar: React.FC<ButtonBarType> = React.memo((
 })
 //types
 type ButtonBarType = {
-	addStudent: () => void
+	addStudent: (firstName: string, lastName: string) => void
 	text: string
 	setText: (value: string) => void
 	lessonsArr: string[]

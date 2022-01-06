@@ -2,7 +2,6 @@
 @import "../../../styles/variables";
 .header {
 	display: grid;
-	// grid-template-columns: 30px minmax(auto, 230px) minmax(auto, 250px) 1fr 1fr 55px 28px;
 	grid-template-columns: 2% 17% 16% 15% 42% 6% 2%;
 	grid-template-rows: 24px;
 	align-items: center;
