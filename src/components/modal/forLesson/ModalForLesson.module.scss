@@ -1,0 +1,57 @@
+@import "../../../styles/mixins";
+@import "../../../styles/variables";
+.box {
+	@include alignToFlex(null, null, null);
+	flex-direction: column;
+	.enter {
+		@include alignToFlex(null, space-around, center);
+		margin: 20px 0;
+
+		.counter {
+			@include alignToFlex(null, center, center);
+
+			.display {
+				@include alignToFlex(30px, center, center);
+
+				height: 35px;
+				border-radius: 10px;
+				background: #1976d2;
+				color: white;
+			}
+			.errorDisplay {
+				@include alignToFlex(30px, center, center);
+				height: 35px;
+				border-radius: 10px;
+				background: red;
+				color: white;
+				box-shadow: 0 0 10px #8b0000, 0 0 40px #8b0000, 0 0 80px #8b0000;
+			}
+			.arrows {
+				display: flex;
+				flex-direction: column;
+				margin-left: 10px;
+
+				.inc {
+					margin-bottom: 1px;
+					width: 10px;
+					height: 17.5px;
+					@include arrowButton($arrowUp, none, 14px 16px, left -1px top 50%, 12px 14px);
+				}
+
+				.dec {
+					margin-top: 1px;
+					width: 10px;
+					height: 17.5px;
+					@include arrowButton($arrowDown, none, 14px 16px, left -1px top 50%, 12px 14px);
+				}
+			}
+		}
+	}
+
+	.divButtonAdd {
+		@include alignToFlex(null, center, center);
+		.buttonAdd {
+			@include bluButton(200px);
+		}
+	}
+}

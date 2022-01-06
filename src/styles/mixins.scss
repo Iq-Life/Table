@@ -1,43 +1,44 @@
 @mixin bluButton($width) {
-  border: 3px white double;
-  background-color: #1976d2;
-  color: white;
-  background-size: 0.65em auto, 100%;
-  border-radius: 10px;
-  width: $width;
+	border: 3px white double;
+	background-color: #1976d2;
+	color: white;
+	background-size: 0.65em auto, 100%;
+	border-radius: 10px;
+	width: $width;
 
-  &:hover {
-    color: #1976d2;
-    background-color: white;
-    border: 3px #1976d2 double;
-  }
-  &:active {
-    color: white;
-    background-color: #1976d2;
-  }
+	&:hover {
+		color: #1976d2;
+		background-color: white;
+		border: 3px #1976d2 double;
+	}
+	&:active {
+		color: white;
+		background-color: #1976d2;
+	}
 }
 
 @mixin arrowButton($urlBgImage, $borderRadius, $bgSize, $bgPosition, $activeBgSize) {
-  background-image: $urlBgImage;
-  background-position: $bgPosition, 0 0;
-  background-size: $bgSize, 100%;
-  background-repeat: no-repeat, repeat;
-  border-radius: $borderRadius;
-  background-color: transparent;
-  border: none;
+	background-image: $urlBgImage;
+	background-position: $bgPosition, 0 0;
+	background-size: $bgSize, 100%;
+	background-repeat: no-repeat, repeat;
+	border-radius: $borderRadius;
+	background-color: transparent;
+	border: none;
 
-  &:hover {
-    cursor: pointer;
-  }
+	&:hover {
+		cursor: pointer;
+	}
 
-  &:active {
-    background-position: $bgPosition, 0 0;
-    background-size: $activeBgSize, 100%;
-  }
+	&:active {
+		background-position: $bgPosition, 0 0;
+		background-size: $activeBgSize, 100%;
+	}
 }
-@mixin elementToXY($width, $x, $y) {
-  display: flex;
-  justify-content: $x;
-  align-items: $y;
-  width: $width;
+
+@mixin alignToFlex($width, $justifyContent, $alignItems) {
+	display: flex;
+	justify-content: $justifyContent;
+	align-items: $alignItems;
+	width: $width;
 }

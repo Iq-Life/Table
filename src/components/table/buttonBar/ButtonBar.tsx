@@ -2,44 +2,60 @@ import React, { useState } from 'react';
 import style from "./ButtonBar.module.scss";
 import magnifier from "../../../icon/loupe_icon.png";
 import { MyInput } from "../../others/editableSpan/inputText/MyInput";
-import { ModalIcon } from "../../modal/ModalIcon";
-
+import { ModalForLesson } from "../../modal/forLesson/ModalForLesson";
+import { ModalForStudent } from "../../modal/forStudent/ModalForStudent";
 
 export const ButtonBar: React.FC<ButtonBarType> = React.memo((
-    {
-        addStudent, text, setText, lessonsArr
-    }) => {
+	{
+		addStudent, text, setText, lessonsArr
+	}) => {
+	const toggleFor = ['student', 'lesson']
+	const [toggle, setToggle] = useState<null | string>(null)
 
-    const [toggle, setToggle] = useState<boolean>(false)
+	const onModalForLesson = () => {
 
-    const onModal = () => setToggle(!toggle)
-    const clickAddStudent = () => addStudent()
+		setToggle('lesson')
+	}
+	const onModalForStudent = () => {
+
+		setToggle('student')
+	}
+	const clickAddStudent = () => addStudent()
 
 
 
-    return (
+	return (
 
-        <div className={style.buttonBar}>
-            <button className={style.buttonAdd} onClick={clickAddStudent}>Добавить студента</button>
-            <div className={style.searchInput}>
-                <img src={magnifier} alt={'magnifier'} />
-                <MyInput text={text} onChangeText={setText} />
-            </div>
-            <button className={style.addLesson} onClick={onModal}>Добавить урок</button>
-            {toggle ?
-                <ModalIcon
-                    toggle={toggle}
-                    setToggle={setToggle}
-                    lessonsArr={lessonsArr}
-                />
-                : ''}
-        </div>
-    )
+		<div className={style.buttonBar}>
+			<button className={style.buttonAdd} onClick={onModalForStudent}>
+				Добавить студента
+			</button>
+			{toggle === 'student' ?
+				<ModalForStudent
+					toggle={toggle}
+					setToggle={setToggle}
+					lessonsArr={lessonsArr}
+				/>
+				: ''}
+			<div className={style.searchInput}>
+				<img src={magnifier} alt={'magnifier'} />
+				<MyInput text={text} onChangeText={setText} />
+			</div>
+			<button className={style.addLesson} onClick={onModalForLesson}>Добавить урок</button>
+			{toggle === 'lesson' ?
+				<ModalForLesson
+					toggle={toggle}
+					setToggle={setToggle}
+					lessonsArr={lessonsArr}
+				/>
+				: ''}
+		</div>
+	)
 })
 //types
 type ButtonBarType = {
-    addStudent: () => void
-    text: string
-    setText: (value: string) => void
-    lessonsArr: string[]
+	addStudent: () => void
+	text: string
+	setText: (value: string) => void
+	lessonsArr: string[]
 }

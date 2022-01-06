@@ -1,22 +1,20 @@
+@import "./styles/mixins";
 .App {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
 
-  .header {
-    height: 45px;
-  }
+	.header {
+		height: 45px;
+	}
 
-  .body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex: 1 0 auto;
-    color: white;
-  }
+	.body {
+		@include alignToFlex(null, center, center);
+		flex: 1 0 auto;
+		color: white;
+	}
 
-  .footer {
-    flex: 0 0 auto;
-  }
+	.footer {
+		flex: 0 0 auto;
+	}
 }
-
