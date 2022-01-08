@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import style from './Table.module.scss'
 import {
-	addNewLessonAC,
+	addNewLessonAC, StateType,
 	addStudentAC, calculationOfGradesAC, changeFirstNameAC, changeGradeAC, changeLastNameAC,
 	removeStudentAC, resettingFinalAssessmentAC, sortFNameDecAC, sortFNameIncAC, sortLNameDecAC,
 	sortLNameIncAC, StudentType
@@ -12,13 +12,18 @@ import { TableHeader } from "./tableHeader/TableHeader";
 import { ButtonBar } from "./buttonBar/ButtonBar";
 import { EditableSpanForName } from "../others/editableSpan/EditableSpanForName";
 import { EditableSpanFromGrades } from "../others/editableSpan/EditableSpanFromGrades";
-
-let lessonsArr: string[] = ['maths', 'physics', 'computerScience']
+import { getStepLabelUtilityClass } from '@mui/material';
 
 export const Table: React.FC = React.memo(() => {
 
+	const state = useSelector<AppStoreType, StateType>(state => state.StudentsReducer)
 	const dispatch = useDispatch()
-	const students = useSelector<AppStoreType, StudentType[]>(state => state.StudentsReducer)
+
+	let lessonsArr: string[] = []
+	for (let i = 0; i < state.lessons.length; i++) {
+		lessonsArr.push(state.lessons[i].name);
+	}
+
 	const [lessons, setLessons] = useState<string>(lessonsArr[0])   //for select, current lesson
 	const [toggle, setToggle] = useState<boolean>(false)
 	const [text, setText] = useState<string>('')    //for input, search to first and last name
@@ -70,7 +75,7 @@ export const Table: React.FC = React.memo(() => {
 	//dispatch(addNewLessonAC({newLesson, NumbersOfLessons}))
 	//}
 
-	const filterByName = students.filter(student => text ?
+	const filterByName = state.students.filter(student => text ?
 		(student.firstName + student.lastName).toLowerCase().includes(text.toLowerCase())
 		: student
 	)

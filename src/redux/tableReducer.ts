@@ -1,29 +1,13 @@
 import { v1 } from "uuid";
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-type state1 = {
-	students: Array<{
-		id: string
-		firstName: string
-		lastName: string
-		lesson: null | string
-		grades: gradesType
-		finalAssessment: null | boolean
-	}>,
-	lessons: [
+import { createSlice, PayloadAction } from "@reduxjs/toolkit"
+
+export let initialPeople: StateType = {
+	students: [
 		{
-			name: string
-			countGrades: number
-		}
-	]
-
-}
-
-//let lessonsArr: string[] = ['maths', 'physics', 'computerScience']
-
-export let initialPeople: Array<StudentType> =
-	[
-		{
-			id: v1(), firstName: 'Иван', lastName: 'Фирстов', lesson: null,
+			id: v1(),
+			firstName: 'Иван',
+			lastName: 'Фирстов',
+			lesson: null,
 			grades: {
 				'maths': [
 					{ id: v1(), value: '.' }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }, { id: v1(), value: '.' },
@@ -40,7 +24,8 @@ export let initialPeople: Array<StudentType> =
 					{ id: v1(), value: 5 }, { id: v1(), value: 4 }, { id: v1(), value: 5 }, { id: v1(), value: '.' },
 					{ id: v1(), value: 4 }, { id: v1(), value: 5 }, { id: v1(), value: 4 }, { id: v1(), value: 3 },
 					{ id: v1(), value: 5 }, { id: v1(), value: 'н' }, { id: v1(), value: '.' }]
-			}, finalAssessment: null
+			},
+			finalAssessment: null
 		},
 		{
 			id: v1(), firstName: 'Олег', lastName: 'Куплинов', lesson: null,
@@ -508,71 +493,79 @@ export let initialPeople: Array<StudentType> =
 			},
 			finalAssessment: null
 		}
+	],
+	lessons: [
+		{ name: 'maths', countGrades: 15 },
+		{ name: 'physics', countGrades: 15 },
+		{ name: 'computerScience', countGrades: 15 }
 	]
-
+}
 
 export const slice = createSlice({
 	name: 'Students',
 	initialState: initialPeople,
 	reducers: {
 		addStudentAC: (state, action: PayloadAction<{ firstName: string, lastName: string }>) => {
-			const blankGrade = []
 
-			for (let i = 1; i < 16; i++) {
-				blankGrade.push({ id: v1(), value: '.' })
+			const oldGrades: gradesType = {}
+
+			for (let i = 0; i < state.lessons.length; i++) {
+				const blankGrade = []
+
+				for (let q = 1; q <= state.lessons[i].countGrades; q++) {
+					blankGrade.push({ id: v1(), value: '.' })
+				}
+
+				oldGrades[state.lessons[i].name] = blankGrade
 			}
-
-			state.unshift({
+			state.students.unshift({
 				id: v1(),
 				firstName: action.payload.firstName,
 				lastName: action.payload.lastName,
 				lesson: null,
-				grades: {
-					'maths': blankGrade,
-					'physics': blankGrade,
-					'computerScience': blankGrade
-				},
+				grades: oldGrades,
 				finalAssessment: null
 			})
+
 		},
 		removeStudentAC: (state, action: PayloadAction<{ idStudent: string }>) => {
 
-			const indexStudent = state.findIndex(student => {
+			const indexStudent = state.students.findIndex(student => {
 				return student.id === action.payload.idStudent
 			})
 			if (indexStudent > -1) {
-				state.splice(indexStudent, 1)
+				state.students.splice(indexStudent, 1)
 			}
 
 		},
 		changeFirstNameAC: (state, action: PayloadAction<{ id: string, value: string }>) => {
-			const indexStudent = state.findIndex(student => student.id === action.payload.id)
-			state[indexStudent].firstName = action.payload.value
+			const indexStudent = state.students.findIndex(student => student.id === action.payload.id)
+			state.students[indexStudent].firstName = action.payload.value
 			/*state.map((student) => student.id === action.id ? {...student, firstName: action.value} : student)*/
 		},
 		changeLastNameAC: (state, action: PayloadAction<{ id: string, value: string }>) => {
-			const indexStudent = state.findIndex(student => student.id === action.payload.id)
-			state[indexStudent].lastName = action.payload.value
+			const indexStudent = state.students.findIndex(student => student.id === action.payload.id)
+			state.students[indexStudent].lastName = action.payload.value
 		},
 		sortFNameDecAC: (state) => {
-			state.sort((studentA, studentB) => studentA.firstName.localeCompare(studentB.firstName))
+			state.students.sort((studentA, studentB) => studentA.firstName.localeCompare(studentB.firstName))
 		},
 		sortLNameDecAC: (state) => {
-			state.sort((studentA, studentB) => studentA.lastName.localeCompare(studentB.lastName))
+			state.students.sort((studentA, studentB) => studentA.lastName.localeCompare(studentB.lastName))
 		},
 		sortFNameIncAC: (state) => {
-			state.sort((studentA, studentB) => studentB.firstName.localeCompare(studentA.firstName))
+			state.students.sort((studentA, studentB) => studentB.firstName.localeCompare(studentA.firstName))
 		},
 		sortLNameIncAC: (state) => {
-			state.sort((studentA, studentB) => studentB.lastName.localeCompare(studentA.lastName))
+			state.students.sort((studentA, studentB) => studentB.lastName.localeCompare(studentA.lastName))
 		},
 		changeGradeAC: (state, action: PayloadAction<{ idStudent: string, idGrade: string, lessons: string, newGrade: string | number }>) => {
-			const indexStudent = state.findIndex(student => student.id === action.payload.idStudent)
-			const indexGrade = state[indexStudent].grades[action.payload.lessons].findIndex(grade => grade.id === action.payload.idGrade)
-			state[indexStudent].grades[action.payload.lessons][indexGrade].value = action.payload.newGrade
+			const indexStudent = state.students.findIndex(student => student.id === action.payload.idStudent)
+			const indexGrade = state.students[indexStudent].grades[action.payload.lessons].findIndex(grade => grade.id === action.payload.idGrade)
+			state.students[indexStudent].grades[action.payload.lessons][indexGrade].value = action.payload.newGrade
 		},
 		calculationOfGradesAC: (state, action: PayloadAction<{ lessons: string }>) => {
-			state.forEach((student) => {
+			state.students.forEach((student) => {
 
 				const arrGrades = student.grades[action.payload.lessons].map((grade) => grade.value)
 				let searchForNumber = arrGrades.join().match(/\d+/g)
@@ -595,7 +588,7 @@ export const slice = createSlice({
 			})
 		},
 		resettingFinalAssessmentAC: (state) => {
-			state.forEach(student => student.finalAssessment = null)
+			state.students.forEach(student => student.finalAssessment = null)
 		},
 		addNewLessonAC: (state, action: PayloadAction<{ newLesson: string, NumbersOfLessons: number }>) => {
 
@@ -603,7 +596,10 @@ export const slice = createSlice({
 			for (let i = 1; i <= action.payload.NumbersOfLessons; i++) {
 				numbersOfLesson.push({ id: v1(), value: '.' })
 			}
-			state.forEach(student => student.grades[action.payload.newLesson] = numbersOfLesson)
+
+			state.students.forEach(student => student.grades[action.payload.newLesson] = numbersOfLesson)
+			state.lessons.push({ name: action.payload.newLesson, countGrades: action.payload.NumbersOfLessons })
+
 		}
 	}
 })
@@ -613,7 +609,7 @@ export const { addStudentAC, removeStudentAC, changeFirstNameAC, changeLastNameA
 	sortFNameIncAC, sortLNameIncAC, changeGradeAC, calculationOfGradesAC, resettingFinalAssessmentAC,
 	addNewLessonAC } = slice.actions
 //types
-type StateType = {
+export type StateType = {
 	students: Array<StudentType>
 	lessons: Array<LessonsType>
 }
@@ -629,16 +625,10 @@ type LessonsType = {
 	name: string
 	countGrades: number
 }
-export type gradeType = {
+type gradesType = {
+	[key: string]: gradeType[]
+}
+type gradeType = {
 	id: string;
 	value: number | string;
 }
-export type gradesType = {
-	[key: string]: gradeType[]
-}
-
-
-
-
-
-
