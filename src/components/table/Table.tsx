@@ -83,6 +83,7 @@ export const Table: React.FC = React.memo(() => {
 	const finalPeople = filterByName.map((student: StudentType) => {
 		const fnClNameForFnAssessment = student.finalAssessment ?
 			`${style.finalAssessmentBody}` : `${style.finalAssessmentRed}`
+
 		return (
 			<div key={student.id} className={style.rowTable}>
 				<button className={style.buttonRemove} onClick={() => removeStudent(student.id)}>
@@ -97,7 +98,7 @@ export const Table: React.FC = React.memo(() => {
 						onChangeText={(newName) => changeLastname(student.id, newName)} />
 				</div>
 				<div>
-					{lessons}
+					{lessons === 'maths' ? 'Математика' : lessons === 'physics' ? 'Физика' : lessons === 'computerScience' ? 'Информатика' : lessons}
 				</div>
 
 				<div className={style.gradesBody}>
